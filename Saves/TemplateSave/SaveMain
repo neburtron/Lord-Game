@@ -1,0 +1,9 @@
+##Values##
+Treasury = 1000
+Population = 1000
+Infastructure = 1000
+Stability = 1000
+Wellbeing = 1000
+Authority = 1000
+
+CurrentTurn = 1
