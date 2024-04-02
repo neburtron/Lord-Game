@@ -1,0 +1,42 @@
+This is more of a planning doc. I'm working on this because I want an LLM based game, if anyone else wants to help... Sure. As it says on my DeviantArt page (MuteMar) everything I make is, unless stated otherwise, public domain. 
+
+Events + decision prompts refer to the same thing
+
+Now, on to the more interesting bit.
+
+The game is rather simple in concept, but I haven't fully worked out the implementation. 
+
+There are 5 or 6 values that tether the game to some sort of structure
+These values change based on the users decisions
+This happens in the form of 3 "commands" the LLM can call:
+	Change now
+	Change same way for X turns
+	Change after X turns
+These changes have a name, desc, set of turns, and a list for the values changed and by what amount
+- later potentially have other stop conditions + giving the LLM the ability to stop previously started change same way for x turns or change after x turns
+
+
+First turn
+Player given a what king do you want to be monologue, then the llm makes a change same way based on their response (but this one doesn't have a turn limit)
+
+After that the game actually starts with a set of pre-written decision prompts
+
+The LLM through commands decides what happens to the values after every decision prompt
+
+After the turn is over several things happen and this part isn't the most mapped out.
+There's gotta be some data saved about the world, so that's collected / updated
+Sown seeds are collected, storylines are formed, or followup things are decided on
+The decision prompts list is repopulated with the starting list as reference for the style, alongside other data
+
+More complexity might be added later, I like aging as a thing in theory, I like seasons, named characters and lore has to be a thing and I don't know how that's best tackled, yeah. 
+
+Other stuff's probably in my head, but I don't know what I haven't said.
+
+
+What's Next for development:
+
+I'm going to fix the prompts, I wrote some stuff, but I was planning to have the descriptions of prompts and have the llm expand them so it doesn't need to do the characterization / style at the same time as the content, but you don't really need that long of a decision prompt and at the very least I need the first turn's worth to show it what style it should be writing in.
+
+Then I'll probably do a temp terminal chat thing and get a script together that puts all the text in an array for the LLM.
+
+From there I'm not sure, but I told you what the goal is, this is a proof of concept, I'm going to try and get it working first and foremost because I don't know how to code and that's the whole idea for this project.
