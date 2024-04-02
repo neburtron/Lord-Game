@@ -14,12 +14,12 @@ def makeprompt():
     print("Desired Line:", desired_line)
     
     return [
-        {"role": "system", "content": "this is a test. talk about rocks or something."},
-        {"role": "user", "content": "for instance, you could say rocks are cool."},
-        {"role": "user", "content": desired_line}
+        {"role": "system", "content": "Your job is to take the short descriptions below, and expand them, written from the POV of a character involved talking to the king. You are doing this for a game where the player acts as the king and has to make decisions. Don’t write the King’s reactions for them. Either tell the player what happened giving them a chance to decide what to do now that the thing happened, tell them what’s happening and give them a chance to decide what to do, or try to propose something to the player. Don't make things bigger than they are, if there's a small problem, it is small for a reason. Only generate one prompt. The player is the king, refer to them as such, don't tell them what they do or what they've heard or anything like that. Your job is to be the world around them."},
+        {"role": "system", "content": desired_line}
     ]
 
 Prompt = makeprompt()
+print(Prompt)
 response = Call_LLM.main(Prompt)
 print(response)
 
