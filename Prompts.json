@@ -1,0 +1,57 @@
+{
+  "prompts": [
+    {
+      "title": "First",
+      "EnterDesc": "",
+      "text1": "You are the lord of a small town. Your father passed away a short time ago, and today marks your first day on the throne. There's a particular tension in the air this cold late winter, early spring.\n\nIt isn't in the air, but your chest.\n\nBefore anything else, you must choose how you wish to rule. There are decisions to be made, and the time for that will be soon, but a good king is an active one, one with a vision for the future. The greatest rulers were lead by a sight of how the world could be.\n\nIn a word, in a sentence, in a paragraph, in this world, what do you want to be?",
+      "character": "",
+      "notes": "This is the first decision the player is to make. This is the first indicator as to how they are looking to play, so record this and use as you see fit."
+    },
+    {
+      "title": "Wizard Character",
+      "EnterDesc": "A young, skinny person wearing a dark blue robe, a pair of spectacles, and a short messy haircut walks up to your throne and looks at you.",
+      "text1": "Greetings! I am a scholar from ---- who's fell on hard times... Do you have space in your court and heart for someone who's gonna change the world?",
+      "character": "Wizard",
+      "notes": "This is a nonbinary Wizard. Don't use gendered pronouns for them. Besides pronouns and protraying them as being nonbinary, characterize them as just as a young ambitious magic scholar type character."
+    },
+    {
+      "title": "Second",
+      "EnterDesc": "",
+      "text1": "Great, cool. This is the most I’ve heard you say. Moving on, I’ve got this whole thing to go through so forgive me if I go through quickly…",
+      "text2": "I’m Gary, I’m your advisor, I helped raise you until you were whisked away at the age of three, you’re now the lord of Small Village, the key to the treasury is in the bottom left, every week you’re gonna get a line of people coming in asking for you to solve their problems. Got that?",
+      "character": "Advisor",
+      "notes": ""
+    },
+    {
+      "title": "Builder Character",
+      "EnterDesc": "",
+      "text1": "Hey lord. I’m the town’s head architect. Thought I’d introduce myself. If you need anything built or fixed I’m the one to come to.",
+      "character": "Gruff Builder Guy (temp)",
+      "notes": ""
+    },
+    {
+      "title": "Merchant",
+      "EnterDesc": "",
+      "text1": "Good tidings! I am Markhas Good, the Merchant. I came here to give my condolences for the passing of your father. He truly was a good man. I knew him personally…",
+      "text2": "You know, before he… uh. passed… he and I were working on a thing. Him and I were in the rough stages of getting a trade agreement between Small Town and the neighboring portwood. Very rough plans of course, but it occurs to me that this may be a great way to honor the man. What do you say? Should I start pressing my contacts?",
+      "character": "Markhas the Merchant",
+      "notes": "This guy's not being entirely honest and is trying to push for a trade agreement the Player/king's dad was not open to. Up to you how malicious this dupe is, it could just be a policy thing and Markhas thinking it's a safer bet to lie."
+    },
+    {
+      "title": "Mysterious Stranger",
+      "EnterDesc": "The doors to your throne room close, but you aren't done yet. The people around you freeze and you realize that you're paralyzed from the neck down. You watch the classical portrayal of a demon walk out from behind a pillar out of the corner of your eye",
+      "text1": "Ah, Lord it’s good to see you back after so many years abroad. I see you've grown into quite the impressive young man. *tips hat* My name is... difficult to pronounce, but I assure ye it's a pleasure to make your acquaintance. *reaches into coat pocket* I have business in Small Village. *drops a small pouch of coins* I’ve come here to air my condolences for your father. Him and I had our disagreements, but he was a great man. I hope you and I are more async… \n*he drops another coin pouch from his pocket*",
+      "text2": "",
+      "character": "Mysterious Stranger",
+      "notes": ""
+    }
+    {
+      "title": "Demon",
+      "EnterDesc": "The doors to your throne room close, but you aren't done yet. The people around you freeze and you realize that you're paralyzed from the neck down. You watch the classical portrayal of a demon walk out from behind a pillar out of the corner of your eye",
+      "text1": "Yo, I’m Damian, nice to meet you, just making the rounds, I’m a demon as you can see by my devilishly handsome 2d sprite, I’m a guy who loves chaos and making deals with shortsighted schmucks and other sorts of associates…",
+      "text2": "You know the stories, if you want to make a deal just call me with a few seconds notice and we can work something out. Cool?",
+      "character": "Defaun",
+      "notes": "Just a demon character, do with him as you'd like."
+    }
+  ]
+}
