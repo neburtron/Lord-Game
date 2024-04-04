@@ -4,6 +4,7 @@
       "title": "First",
       "EnterDesc": "",
       "text1": "You are the lord of a small town. Your father passed away a short time ago, and today marks your first day on the throne. There's a particular tension in the air this cold late winter, early spring.\n\nIt isn't in the air, but your chest.\n\nBefore anything else, you must choose how you wish to rule. There are decisions to be made, and the time for that will be soon, but a good king is an active one, one with a vision for the future. The greatest rulers were lead by a sight of how the world could be.\n\nIn a word, in a sentence, in a paragraph, in this world, what do you want to be?",
+      "text2": "",
       "character": "",
       "notes": "This is the first decision the player is to make. This is the first indicator as to how they are looking to play, so record this and use as you see fit."
     },
@@ -11,6 +12,7 @@
       "title": "Wizard Character",
       "EnterDesc": "A young, skinny person wearing a dark blue robe, a pair of spectacles, and a short messy haircut walks up to your throne and looks at you.",
       "text1": "Greetings! I am a scholar from ---- who's fell on hard times... Do you have space in your court and heart for someone who's gonna change the world?",
+      "text2": "",
       "character": "Wizard",
       "notes": "This is a nonbinary Wizard. Don't use gendered pronouns for them. Besides pronouns and protraying them as being nonbinary, characterize them as just as a young ambitious magic scholar type character."
     },
@@ -26,6 +28,7 @@
       "title": "Builder Character",
       "EnterDesc": "",
       "text1": "Hey lord. I’m the town’s head architect. Thought I’d introduce myself. If you need anything built or fixed I’m the one to come to.",
+      "text2": "",
       "character": "Gruff Builder Guy (temp)",
       "notes": ""
     },
@@ -44,7 +47,7 @@
       "text2": "",
       "character": "Mysterious Stranger",
       "notes": ""
-    }
+    },
     {
       "title": "Demon",
       "EnterDesc": "The doors to your throne room close, but you aren't done yet. The people around you freeze and you realize that you're paralyzed from the neck down. You watch the classical portrayal of a demon walk out from behind a pillar out of the corner of your eye",
