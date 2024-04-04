@@ -9,6 +9,13 @@ Sort the court but with LLMs. This isn't a replace writers type thing, Fuck anyo
 Sort the Court Devs, I just want to say, big fan of your stuff, you made a great game and this doesn't come across as an insult, your work is great, even though I exhausted the story I've revisited the game so many times, multiple times this year, it really is great, AI doesn't exist and ChatGPT is a glorified word guesser, I just want to boss computer people around, don't be mad at me plz.
 
 
-Just go to Call_LLM.py and put your details in if you want to play with this, you can host an LLM locally if you find an app that mimics the OpenAI API, I know LM Studio does, but I don't know if they're trustworthy, that's just what I use.
+Stuff I've done so far:
+- Made a script that calls LLM through openAI API
+- Created a set of prompts to start the game off and give an example to the the LLM what it should aim for stylistically
+- a script that can get a random line from a txt doc, and put that into a call prompt. Prototype to be pulled apart and applied.
+- The most basic of placeholder GUIs with just a start button and second frame with a bit of text on it
+- A json with some prompts on it that I think are ok.
 
-All I've made so far is the call LLM script, it's not a game yet, don't download it.
+The call script is the biggest thing I've done so far, there's a section on the top of the script where you can put your details in, if you don't want to use OpenAI's models and servers you can host an LLM locally, I know LM Studio lets you host a local server that works for the OpenAI API, not an endorsement of them, that's just what I use and no thought or foresight was put into that decision. Just downloaded one of them. Other local LLM software probably has the same features. 
+
+If you want to do something with it just make a script that imports Call_LLM.py, call the main command like in thing.py, and write the prompt as a Json in the format it likes. Not that anyone's reading this or anything.

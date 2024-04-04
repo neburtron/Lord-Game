@@ -1,2 +1,0 @@
-{"role": "system", "content": "Always answer in rhymes."},
-{"role": "user", "content": "Introduce yourself."}
