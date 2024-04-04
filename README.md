@@ -15,6 +15,8 @@ Stuff I've done so far:
 - a script that can get a random line from a txt doc, and put that into a call prompt. Prototype to be pulled apart and applied.
 - The most basic of placeholder GUIs with just a start button and second frame with a bit of text on it
 - A json with some prompts on it that I think are ok.
+- A temp terminal UI for getting the actual video game part of it developed.
+
 
 The call script is the biggest thing I've done so far, there's a section on the top of the script where you can put your details in, if you don't want to use OpenAI's models and servers you can host an LLM locally, I know LM Studio lets you host a local server that works for the OpenAI API, not an endorsement of them, that's just what I use and no thought or foresight was put into that decision. Just downloaded one of them. Other local LLM software probably has the same features. 
 
