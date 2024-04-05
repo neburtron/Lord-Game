@@ -1,42 +1,36 @@
-This is more of a planning doc. I'm working on this because I want an LLM based game, if anyone else wants to help... Sure. As it says on my DeviantArt page (MuteMar) everything I make is, unless stated otherwise, public domain. 
-
-Events + decision prompts refer to the same thing
-
-Now, on to the more interesting bit.
-
-The game is rather simple in concept, but I haven't fully worked out the implementation. 
-
-There are 5 or 6 values that tether the game to some sort of structure
-These values change based on the users decisions
-This happens in the form of 3 "commands" the LLM can call:
-	Change now
-	Change same way for X turns
-	Change after X turns
-These changes have a name, desc, set of turns, and a list for the values changed and by what amount
-- later potentially have other stop conditions + giving the LLM the ability to stop previously started change same way for x turns or change after x turns
+This is more of a planning doc. I'm working on this because I want an LLM based game, if anyone else wants to help... Sure. 
+I'm focusing on working on this myself and don't know if + when people will look at this thing I'm making. 
+If you want to help work on this thing, send me a message or something and I can set up whatever to make that easier for you.
+Not doing it now because I know the details of making the game in my head already
 
 
-First turn
-Player given a what king do you want to be monologue, then the llm makes a change same way based on their response (but this one doesn't have a turn limit)
+Game idea
 
-After that the game actually starts with a set of pre-written decision prompts
+This is a proof of concept. Although I've got some experience with coding and made a few things that technically did what I wanted them to, I hardly know anything about coding. This is my first coding project that's got the chance to have a working prototype. The idea is to take Sort the Court, and turn it into a story generator, a somewhat informal genre of game that includes Minecraft, Rimworld, DF, PDX map games, the Civ series, etc. The idea is to take an LLM, give it strict instructions, and direct the limited creativity it's able to emulate into a coherent narrative digital substitute for a weekly game of DND.
 
-The LLM through commands decides what happens to the values after every decision prompt
+Right now all I've got are some prompts, a call LLM script, and some rough plans.
 
-After the turn is over several things happen and this part isn't the most mapped out.
-There's gotta be some data saved about the world, so that's collected / updated
-Sown seeds are collected, storylines are formed, or followup things are decided on
-The decision prompts list is repopulated with the starting list as reference for the style, alongside other data
+Here's the idea
 
-More complexity might be added later, I like aging as a thing in theory, I like seasons, named characters and lore has to be a thing and I don't know how that's best tackled, yeah. 
+The game is rather simple in concept. The player is given a short list of problems to deal with, then they interact with the situation through a text box. Then, based on what the player writes, the LLM continues the story. To a limited extent you can do this now in ChatGPT, but the core of this project is building a structure that makes the LLM much more coherent and good. It is mainly text based, however it's not just a chatbot. Hopefully this can act as a first step towards being able to jumpstart the Industrial Revolution in CK3 and conquer all of Europe within a lifetime in CK4. 
 
-Other stuff's probably in my head, but I don't know what I haven't said.
+The LLM has to do 4 big things for this project to work. They are to:
+
+- write what happens that the player needs to deal with based on previous decisions and other data
+	This isn't that hard assuming we've got the moving data where it should go and storyline stuff figured out
 
 
-What's Next for development:
+- talk with the player and keep things going until the player hits the "I'm done with my decision making, let's move on" button
+	Piece of cake, only thing might be the context it's given, I tried to sell my soul to the devil for as much power he could give me, and he offered me thousands of souls in exchange for some reason.
 
-I'm going to fix the prompts, I wrote some stuff, but I was planning to have the descriptions of prompts and have the llm expand them so it doesn't need to do the characterization / style at the same time as the content, but you don't really need that long of a decision prompt and at the very least I need the first turn's worth to show it what style it should be writing in.
 
-Then I'll probably do a temp terminal chat thing and get a script together that puts all the text in an array for the LLM.
+- Interpret the dialogue into a series of commands that effect the 5 or 6 main values that the player has to balance to avoid a game over or something.
+	This shouldn't be that hard, AutoGPT and similar projects already exist, might just take a bit of work to get right.
 
-From there I'm not sure, but I told you what the goal is, this is a proof of concept, I'm going to try and get it working first and foremost because I don't know how to code and that's the whole idea for this project.
+
+- Interpret the dialogue in a more narrative sense and the whole thing of recording the stuff that should be recorded and putting that in the right 
+	Hardest part that I don't know exactly how I'm going to handle yet. 
+
+
+
+This isn't a complex idea. Implementation is going to take a decent chunk of effort, but after hours of writing I could organize my ideas into this. There's not a lot of LLM applications out there beyond chatbots. There are some. There's a mod for Skyrim and some other games I think that actually lets you talk to people to a limited extent, which is really really cool, there's DougDoug's AI setup, and I think there are some Minecraft bots that use LLMs to some extent. There's also AGI attempts, but from what I've heard they're pretty incompetent. Most of the games I like are games that allow me to do my own thing. LLMs have the potential to revolutionize this type of game if we can tie their no rules derivative by design make-believe to the structure of normal games with code like CK3 well enough to feel like one cohesive thing. Seriously, imagine if you could spend thousands of gold in CK3 to bring the brightest minds you could get your hands on to your court and getting them to invent a very particular technology and then being given that technology soon after if successful. This is miles away, but that's the idea this proof of concept is trying to push towards.
