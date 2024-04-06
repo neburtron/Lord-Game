@@ -1,23 +1,25 @@
 # Lord Game Rewrite
 
-not done yet
+This is a project that I am currently developing. Currently a lot of the core mechanics are still in development, and a working prototype is my current end goal. 
 
-This is a project I've been thinking about for a while.
+The idea is Sort the Court, but with a text input rather than just yes or no. The idea is to use an LLM (Large Language Model), like ChatGPT to do the following: 
+Deal with follow up questions
+interpret the decisions the player makes into a series of effects that change a set of values the player has to balance
+manage relevant information and storylines
+plan + write out new situations or prompts the user has to deal with.
 
-Sort the court but with LLMs. This isn't a replace writers type thing, Fuck anyone who thinks getting rid of writers is a good idea. This is a different type of game. Where Sort the Court is about the story, this game is more about specific decisionmaking and player lead stuff. Games are an interactive medium and this is my attempt at a less telltale, more rimworld / DF type game. 
+The game is formatted W a series of turns. Each turn consists of a set of ~10 situations that the player makes a decision on. The LLM writes new prompts in batches. Another thing to make this less of a chatbot and more of a game.
 
-Sort the Court Devs, I just want to say, big fan of your stuff, you made a great game and this doesn't come across as an insult, your work is great, even though I exhausted the story I've revisited the game so many times, multiple times this year, it really is great, AI doesn't exist and ChatGPT is a glorified word guesser, I just want to boss computer people around, don't be mad at me plz.
+Whereas Sort the Court is designed to be a small, simple, cute, replayable, relaxing game with a loose narritive and the same decisions being handed to you again and again, this is a more player lead game. 
 
+I've played Sort the Court far too much considering the limited scope of the game, picking it up every some amount of months and playing for an hour or two. I highly respect the devs and I want to make it clear that I am not trying to replace artists. This is a game in the same genre, but of a different type to sourt the court. Where that game was narritively focused and had cute, relaxing gameplay and a matching asthetic, my goals are entirely different. I am taking the simple style of gameplay for this prototype of a story generator game that tries to capture enough of the potential LLMs have to convince actual programmers to make story generator games that use LLMs and give me a free copy of it. When I say Story Generator I mean the genre that surrounds DF: Rimworld, minecraft, PDX map games, Civilization, etc. Stuff where you control some person, a country, a town, or a group of people, and get to control their actions and see what happens. 
 
 Stuff I've done so far:
-- Made a script that calls LLM through openAI API
-- Created a set of prompts to start the game off and give an example to the the LLM what it should aim for stylistically
-- a script that can get a random line from a txt doc, and put that into a call prompt. Prototype to be pulled apart and applied.
-- The most basic of placeholder GUIs with just a start button and second frame with a bit of text on it
-- A json with some prompts on it that I think are ok.
-- A temp terminal UI for getting the actual video game part of it developed.
+First I've got a call LLM script that takes an input array, sends that to the LLM, and returns the response.
+Second I've got a WIP for the first turn of the game (TempTerminalRewrite.py). It works to some extent, I haven't written a prompt for the LLM so if you want to run that you'll need to do that. Next moves on to the next prompt, exit exists.
+Third I've got a script that saves the chat log from Temp, and is going to evaluate the chat logs given by TempTerminalRewrite.
+Third I've got a saves folder, and some stuff to do with the values the player has to balance
+Also main.py, a GUI thing using Tkinter that I've hardly touched.
 
 
-The call script is the biggest thing I've done so far, there's a section on the top of the script where you can put your details in, if you don't want to use OpenAI's models and servers you can host an LLM locally, I know LM Studio lets you host a local server that works for the OpenAI API, not an endorsement of them, that's just what I use and no thought or foresight was put into that decision. Just downloaded one of them. Other local LLM software probably has the same features. 
-
-If you want to do something with it just make a script that imports Call_LLM.py, call the main command like in thing.py, and write the prompt as a Json in the format it likes. Not that anyone's reading this or anything.
+If you're interested in helping me with development, or running the very incomplete state the game's in, message me and I'll deal with whatever stuff. I'm not going to put the effort into making this accessible if I'm just working on this by myself, but I have no problem with people giving me an excuse to work on this project more.
