@@ -5,10 +5,11 @@
 # I removed what turned into LLM_start_prompt I'm gonna write a new one, in the meantime just write your own and change it everytime it doesn't do what you want.
 # I suggest starting W telling it to write just a few sentences tops, and what it's job is.
 
-
-
 import json
 import Call_LLM
+import Value_Evaluation
+# Still working on Value Evaluation
+
 
 class Conversation:
 
@@ -22,7 +23,8 @@ class Conversation:
 
         self.conversation = []
         self.current_prompt_index = 0
-        self.LLM_start_prompt = ""
+        LLM_start_prompt = "This is a test. Just write 'test' regardless of what I say, just the one word so I can test the systems around you without waiting for you to generate lots of text. Don't worry if you say something else, that isn't you, I'm injecting pre-written prompts and putting them under the assistant role because there it's the one that fits best."
+        self.Array_Input("system","",LLM_start_prompt)
 
         if self.prompts:
             first_prompt = self.get_next_prompt()
@@ -39,11 +41,10 @@ class Conversation:
         if self.current_prompt_index < len(self.prompts):
             next_prompt = self.prompts[self.current_prompt_index]
             self.current_prompt_index += 1  # Move to the next prompt for the next call
-            
             return next_prompt
         else:
-            return None
-            # Put stuff here when we're moving on from the first turn
+            Value_Evaluation.main(self.conversation)
+
 
     def relayprompt(self, prompt):
         # for printing prompt in terminal + giving to LLM
@@ -75,15 +76,15 @@ class Conversation:
     def user_input(self):
         user_input = input("You: ").strip().lower()
         if user_input == "exit":
-            self.save_conversation()
+            Value_Evaluation.main(self.conversation)
             return
         elif user_input == "next":
-            self.save_conversation()
+            self.Array_Input("user", "player", "next")
             prompt = self.get_next_prompt()
             if prompt:
                 self.relayprompt(prompt)
             else:
-                print("No more prompts available.")
+                print("Out of Prompts")
         else:
             # Send message to Array and send Array to LLM
             self.Array_Input("user", "player", user_input)
@@ -115,12 +116,7 @@ class Conversation:
 
         except Exception as e:
             print(f"Error while calling LLM: {e}")
-
-
-    def save_conversation(self):
-        with open('conversation.json', 'w') as f:
-            json.dump(self.conversation, f, indent=4)  # Use indentation for readability
-        print("Conversation saved to conversation.json.")
+    
 
 if __name__ == "__main__":
     conversation_manager = Conversation()
