@@ -4,7 +4,6 @@ import json
 # Then do the evaluation...
 # Similar script could be made for context, but I have no idea how I want to tackle that.
 
-
 def main(conversation): #temp
     with open('conversation.json', 'w') as f:
         json.dump(conversation, f, indent=4)  # Use indentation for readability
