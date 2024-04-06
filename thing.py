@@ -1,4 +1,4 @@
-import os
+# I'm going to leave this here, even though I've moved on past it, it's simple, midnight, and I'll deal with this later.
 import random
 import Call_LLM
 
@@ -22,5 +22,3 @@ Prompt = makeprompt()
 print(Prompt)
 response = Call_LLM.main(Prompt)
 print(response)
-
-

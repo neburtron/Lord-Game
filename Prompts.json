@@ -9,20 +9,20 @@
       "notes": "This is the first decision the player is to make. This is the first indicator as to how they are looking to play, so record this and use as you see fit."
     },
     {
-      "title": "Wizard Character",
-      "EnterDesc": "A young, skinny person wearing a dark blue robe, a pair of spectacles, and a short messy haircut walks up to your throne and looks at you.",
-      "text1": "Greetings! I am a scholar from ---- who's fell on hard times... Do you have space in your court and heart for someone who's gonna change the world?",
-      "text2": "",
-      "character": "Wizard",
-      "notes": "This is a nonbinary Wizard. Don't use gendered pronouns for them. Besides pronouns and protraying them as being nonbinary, characterize them as just as a young ambitious magic scholar type character."
-    },
-    {
       "title": "Second",
       "EnterDesc": "",
       "text1": "Great, cool. This is the most I’ve heard you say. Moving on, I’ve got this whole thing to go through so forgive me if I go through quickly…",
       "text2": "I’m Gary, I’m your advisor, I helped raise you until you were whisked away at the age of three, you’re now the lord of Small Village, the key to the treasury is in the bottom left, every week you’re gonna get a line of people coming in asking for you to solve their problems. Got that?",
       "character": "Advisor",
       "notes": ""
+    },
+    {
+      "title": "Wizard Character",
+      "EnterDesc": "A young, skinny person wearing a dark blue robe, a pair of spectacles, and a short messy haircut walks up to your throne and looks at you.",
+      "text1": "Greetings! I am a scholar from ---- who's fell on hard times... Do you have space in your court and heart for someone who's gonna change the world?",
+      "text2": "",
+      "character": "Wizard",
+      "notes": "This is a nonbinary Wizard. Don't use gendered pronouns for them. Besides pronouns and protraying them as being nonbinary, characterize them as just as a young ambitious magic scholar type character."
     },
     {
       "title": "Builder Character",
@@ -42,7 +42,7 @@
     },
     {
       "title": "Mysterious Stranger",
-      "EnterDesc": "The doors to your throne room close, but you aren't done yet. The people around you freeze and you realize that you're paralyzed from the neck down. You watch the classical portrayal of a demon walk out from behind a pillar out of the corner of your eye",
+      "EnterDesc": "",
       "text1": "Ah, Lord it’s good to see you back after so many years abroad. I see you've grown into quite the impressive young man. *tips hat* My name is... difficult to pronounce, but I assure ye it's a pleasure to make your acquaintance. *reaches into coat pocket* I have business in Small Village. *drops a small pouch of coins* I’ve come here to air my condolences for your father. Him and I had our disagreements, but he was a great man. I hope you and I are more async… \n*he drops another coin pouch from his pocket*",
       "text2": "",
       "character": "Mysterious Stranger",

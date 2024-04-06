@@ -25,9 +25,11 @@ def writefile(filename, completion_message):
     with open(filename, 'w') as f:
         f.write(completion_message.content)
 
-# Example usage
-#response = main([
-#    {"role": "system", "content": "this is a test. talk about rocks or something."},
-#    {"role": "user", "content": "for instance, you could say rocks are cool."}
-#])
-#writefile("response.txt", response)
+if __name__ == "__main__":
+    response = main([
+        {"role": "system", "content": "this is a test. talk about rocks or something."},
+        {"role": "user", "content": "for instance, you could say rocks are cool."}
+        ])
+    writefile("response.txt", response)
+
+    
