@@ -1,30 +1,29 @@
-# I used ChatGPT for this, but I rewrote it from pretty much scratch.
-# Still using it's help + suggestions, but being intentional over things are done + organized.
-# Should work like the old one, but better. I worked on this script for basically all of today, for added functionality, so hopefully it works good.
-# Sorry about LLM response, I want this to work before I commit this and I'm relying on ChatGPT because I don't know enough about arrays and whatnot.
-# I removed what turned into LLM_start_prompt I'm gonna write a new one, in the meantime just write your own and change it everytime it doesn't do what you want.
+# Write your own LLM prompt for now. I wrote the current one while testing script to see if it worked.
 # I suggest starting W telling it to write just a few sentences tops, and what it's job is.
 
 import json
 import Call_LLM
 import Value_Evaluation
-# Still working on Value Evaluation
-
 
 class Conversation:
 
     def __init__(self, prompts_file='prompts.json'):
+        
+        # Get prompts from prompts JSON
+        self.prompts = []
         try:
             with open(prompts_file) as f:
-                self.prompts = json.load(f).get("prompts", [])
+                self.prompts = json.load(f).get("prompts", ])
         except FileNotFoundError:
             print("Error: prompts.json file not found.")
-            self.prompts = []
-
+            self.prompts = [] 
+        
+        # set stuff used elsewhere
         self.conversation = []
         self.current_prompt_index = 0
         LLM_start_prompt = "This is a test. Just write 'test' regardless of what I say, just the one word so I can test the systems around you without waiting for you to generate lots of text. Don't worry if you say something else, that isn't you, I'm injecting pre-written prompts and putting them under the assistant role because there it's the one that fits best."
         self.Array_Input("system","",LLM_start_prompt)
+        # give the LLM it's start prompt before anything else
 
         if self.prompts:
             first_prompt = self.get_next_prompt()
@@ -34,51 +33,69 @@ class Conversation:
                 print("No prompts available.")
         else:
             print("No prompts found in prompts.json.")
+        # Run relayprompt command for first prompt, or don't if there's a problem.
 
 
     def get_next_prompt(self):
-        #check if there's more prompts before moving on
+        #check if there's more prompt
         if self.current_prompt_index < len(self.prompts):
-            next_prompt = self.prompts[self.current_prompt_index]
+            next_prompt = self.prompts[self.current_prompt_index] # Continue to next prompt
             self.current_prompt_index += 1  # Move to the next prompt for the next call
             return next_prompt
         else:
             Value_Evaluation.main(self.conversation)
+            # End of turn, run eval script
+            # Then prepare for next turn
+            # Then this script will run again with new prompts
 
 
     def relayprompt(self, prompt):
         # for printing prompt in terminal + giving to LLM
 
+        # Temp notation of current prompt
         print(self.current_prompt_index)
 
+        # only prints + adds to array if things have stuff in them
         if "EnterDesc" in prompt:
             self.Array_Input("assistant", "Scene", prompt["EnterDesc"])
             print(f"Scene: {prompt['EnterDesc']}")
+            # both get to see enter description
 
         if "character" in prompt and "text1" in prompt:
             self.Array_Input("assistant", prompt["character"], prompt["text1"])
             print(f"{prompt['character']}: {prompt['text1']}")
+            # same for text1
 
         if "character" in prompt and "text2" in prompt:
             self.Array_Input("assistant", prompt["character"], prompt["text2"])
             print(f"{prompt['character']}: {prompt['text2']}")
-        
+            # same for text2
+
+        # I forgot to add notes
+
         self.user_input()
 
+
     def Array_Input(self,thing,person,msg):
-        if thing:
+        if person:
             self.conversation.append({"role": thing, "content": person + ": " + msg})
         else:
             self.conversation.append({"role": thing, "content": msg})
-        #Just the format for putting stuff in Array
+        # Just the format for putting stuff in Array
+        # Checks to see if the name + message are seperate, and combines them if they are not.
+        # This is a thing because OpenAI API only accepts User, System, and Assistant... for my setup at least.
 
 
     def user_input(self):
+        # Remove "You: " added to line of user input before user input
+        # then make lowercase + check for commands
+
         user_input = input("You: ").strip().lower()
-        if user_input == "exit":
+
+        if user_input == "exit":  # Exit the program
             Value_Evaluation.main(self.conversation)
             return
-        elif user_input == "next":
+        elif user_input == "next":  # Move on to next prompt
             self.Array_Input("user", "player", "next")
             prompt = self.get_next_prompt()
             if prompt:
@@ -86,14 +103,15 @@ class Conversation:
             else:
                 print("Out of Prompts")
         else:
-            # Send message to Array and send Array to LLM
+            # Send message to Array and send Array to LLM for response
             self.Array_Input("user", "player", user_input)
             self.llmresponse()
+
     def llmresponse(self):
         try:
-            # Call LLM and retrieve response
+            # Call LLM and get response
             llmresponse = Call_LLM.main(self.conversation)
-            print("LLM Response:", llmresponse)  # Print the response for debugging
+            print("LLM Response:", llmresponse)  # Print the response, maybe pretty up later
 
             if llmresponse:
                 # Extract role and content from llmresponse object attributes
@@ -101,22 +119,34 @@ class Conversation:
                 content = llmresponse.content
 
                 # Save to conversation array
+                # Role is Assistant, unnessisary to seperate character + message for this part
                 self.Array_Input(role, "", content)
 
-                # Print the message content
+                # Print the message
                 print()
-                print(f"{role}: {content}")
+                print(f":{content}")
                 print()
                 
-                # go back to user when LLM done + it's stuff is printed.
+                # go back to user when LLM's done + printed.
                 self.user_input()
 
             else:
+                print()
                 print("Empty LLM response.")
+                print()
+                # If you're getting this error some of the time uncomment:
+                # self.user_input()
+                # not doing now because if you want this line is case specific. 
+                # I think you should just be able to press enter again
+                # add another elseif to user_input without the self.Array_Input for if user input is empty if if that doesn't work.
 
         except Exception as e:
+            print()
             print(f"Error while calling LLM: {e}")
-    
+            print()
+            self.user_input()
 
+
+# This command runs stuff if and only if this script is being run directly.
 if __name__ == "__main__":
     conversation_manager = Conversation()

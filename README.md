@@ -1,4 +1,4 @@
-# Lord Game Rewrite
+# Lord Game
 
 This is a project that I am currently developing. Currently a lot of the core mechanics are still in development, and a working prototype is my current end goal. 
 
@@ -16,8 +16,8 @@ I've played Sort the Court far too much considering the limited scope of the gam
 
 Stuff I've done so far:
 First I've got a call LLM script that takes an input array, sends that to the LLM, and returns the response.
-Second I've got a WIP for the first turn of the game (TempTerminalRewrite.py). It works to some extent, I haven't written a prompt for the LLM so if you want to run that you'll need to do that. Next moves on to the next prompt, exit exists.
-Third I've got a script that saves the chat log from Temp, and is going to evaluate the chat logs given by TempTerminalRewrite.
+Second I've got a WIP for the first turn of the game (TempTerminal.py). It works to some extent, I haven't written a prompt for the LLM so if you want to run that you'll need to do that. Next moves on to the next prompt, exit exists.
+Third I've got a script that saves the chat log from Temp, and is going to evaluate the chat logs given by TempTerminal.
 Third I've got a saves folder, and some stuff to do with the values the player has to balance
 Also main.py, a GUI thing using Tkinter that I've hardly touched.
 

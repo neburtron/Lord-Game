@@ -8,6 +8,8 @@ client = OpenAI(
     )
 temp = 0.7
 usedmodel="local model"
+# Results depend on model and other settings.'
+# Additionally, if the LLM is being wierd, you can look at the prompt + change however you want.
 
 
 ## Main function ##
@@ -20,10 +22,12 @@ def main(msgs):
     )
     return completion.choices[0].message
 
+
 ## Write response to file ##
 def writefile(filename, completion_message):
     with open(filename, 'w') as f:
         f.write(completion_message.content)
+
 
 if __name__ == "__main__":
     response = main([

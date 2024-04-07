@@ -1,0 +1,19 @@
+temp file, ignore this, I'm going to put this stuff somewhere else + delete it in the next commit
+
+Make importable script for commonly run commands
+- ex. write file
+
+Write new start LLM script
+
+Add notes to TempTerminal relay command, only LLM should see, don't print.
+
+Get Values command for Values.py + whatever they're saved in
+
+Create new save - I've got a prevous draft of this project + I might take this from that. 
+
+Next_Turn.py
+
+I don't know if I need to do anything about dependencies / what. 
+You need to import openai for this to work, I don't remember if there's any others.
+
+Make TempTerminal get LLM start prompt from txt file or something

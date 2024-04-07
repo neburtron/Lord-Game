@@ -1,8 +1,9 @@
 This is more of a planning doc. I'm working on this because I want an LLM based game, if anyone else wants to help... Sure. 
 I'm focusing on working on this myself and don't know if + when people will look at this thing I'm making. 
-If you want to help work on this thing, send me a message or something and I can set up whatever to make that easier for you.
-Not doing it now because I know the details of making the game in my head already
+Sorry if things are done wierd / bad / wrong / am not following procedures that make things easier, I'm going by the seat of my pants.
+If you want to help work on this thing, I can prioritize making stuff more coherent.
 
+If you use VS code / another thing that leaves paragraphs as single lines, open in whatever standard text editor you've got
 
 Game idea
 

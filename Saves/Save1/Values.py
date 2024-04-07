@@ -9,10 +9,10 @@ sys.path.append(two_levels_up)
 import Next_Turn
 import json
 
-turn_number = 5
+turn_number = 5 # Temp
 Turn_Json = "Every_Turn.json"
 
-# Current values temporarally set here static. 
+# Temp 
 values = [
     {"Treasury": 10},
     {"Population": 10},
@@ -23,32 +23,25 @@ values = [
 ]
 
 def get_values():
-    return values
-
-
-def main(conversation): #temp
-    with open('conversation.json', 'w') as f:
-        json.dump(conversation, f, indent=4)  # Use indentation for readability
-    print("Conversation saved to conversation.json.")
+    return values # replace with proper data storage / whatever.
 
 
 def change_values():
-    # Run command to save current values in turns folder, turn number, new txt file
-
+    # Write file thing used to save values for turn / whatever
     with open ('turns/turn' + str(turn_number) + '.txt', 'w') as f:
         f.write(str(values))
-    
-
 
     # Read values from Every_turn.json
     try:
         with open(Turn_Json) as f:
-            changes = json.load(f).get("Effects",[])
+            changes = json.load(f).get("Effects",[]) # Get the effects
     except FileNotFoundError:
         print("Error: Every_Turn.json file not found.")
         changes = []
 
     # Send to Next_Turn.py # Does the actual next turning
+    # I don't know why I was thinking to have this as it's own script
+    # I'm going to leave it for now. 
     Next_Turn.main(values, changes)
 
 
@@ -56,7 +49,3 @@ if __name__ == "__main__":
     # Call the get_values() function and capture its result
     retrieved_values = get_values()
     print("Treasury:", retrieved_values[0]["Treasury"])
-
-
-
-change_values()
