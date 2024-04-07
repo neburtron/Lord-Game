@@ -11,4 +11,4 @@ def main(conversation): #temp
     print("Conversation saved to conversation.json.")
 
 # Save the list as file is just a placeholder, probably not nessisary in final doc.
-# Needed something to do with array from TempTerminal.py
+# Needed something to do with array from TempTerminal.pyV
