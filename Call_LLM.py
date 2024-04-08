@@ -1,5 +1,5 @@
 from openai import OpenAI
-import json
+import Commands
 
 ## LLM Details ##
 client = OpenAI(
@@ -23,17 +23,10 @@ def main(msgs):
     return completion.choices[0].message
 
 
-## Write response to file ##
-def writefile(filename, completion_message):
-    with open(filename, 'w') as f:
-        f.write(completion_message.content)
-
-
 if __name__ == "__main__":
     response = main([
-        {"role": "system", "content": "this is a test. talk about rocks or something."},
-        {"role": "user", "content": "for instance, you could say rocks are cool."}
+        {"role": "user", "content": "this is a test. talk about rocks or something."},
+        {"role": "system", "content": "for instance, you could say rocks are cool."}
         ])
-    writefile("response.txt", response)
-
-    
+    # save stuff as txt file
+    Commands.Save("response.txt", response)

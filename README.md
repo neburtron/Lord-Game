@@ -22,4 +22,4 @@ Third I've got a saves folder, and some stuff to do with the values the player h
 Also main.py, a GUI thing using Tkinter that I've hardly touched.
 
 
-If you're interested in helping me with development, or running the very incomplete state the game's in, message me and I'll deal with whatever stuff. I'm not going to put the effort into making this accessible if I'm just working on this by myself, but I have no problem with people giving me an excuse to work on this project more.
+If you're interested in helping me with development, or running the very incomplete state the game's in, you can try. I'm trying to make things organized and coherent, and I think I'm making some progress. I'm not a professional coder, so by all means tell me exactly what I'm doing wrong and how, that'd be really helpful. 

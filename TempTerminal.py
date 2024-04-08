@@ -4,6 +4,7 @@
 import json
 import Call_LLM
 import Value_Evaluation
+import Commands
 
 class Conversation:
 
@@ -13,7 +14,7 @@ class Conversation:
         self.prompts = []
         try:
             with open(prompts_file) as f:
-                self.prompts = json.load(f).get("prompts", ])
+                self.prompts = json.load(f).get("prompts", [])
         except FileNotFoundError:
             print("Error: prompts.json file not found.")
             self.prompts = [] 
@@ -21,7 +22,7 @@ class Conversation:
         # set stuff used elsewhere
         self.conversation = []
         self.current_prompt_index = 0
-        LLM_start_prompt = "This is a test. Just write 'test' regardless of what I say, just the one word so I can test the systems around you without waiting for you to generate lots of text. Don't worry if you say something else, that isn't you, I'm injecting pre-written prompts and putting them under the assistant role because there it's the one that fits best."
+        LLM_start_prompt = Commands.Read("Start_Prompt.txt")
         self.Array_Input("system","",LLM_start_prompt)
         # give the LLM it's start prompt before anything else
 
@@ -50,30 +51,27 @@ class Conversation:
 
 
     def relayprompt(self, prompt):
-        # for printing prompt in terminal + giving to LLM
-
-        # Temp notation of current prompt
+       # Temp notation of current prompt
         print(self.current_prompt_index)
 
-        # only prints + adds to array if things have stuff in them
-        if "EnterDesc" in prompt:
-            self.Array_Input("assistant", "Scene", prompt["EnterDesc"])
-            print(f"Scene: {prompt['EnterDesc']}")
-            # both get to see enter description
+        # Check and print enter description if available
+        if "EnterDesc" in prompt and prompt["EnterDesc"].strip():
+            self.Array_Input("assistant", "Scene", prompt["EnterDesc"].strip())
+            print(f"Scene: {prompt['EnterDesc'].strip()}")
 
-        if "character" in prompt and "text1" in prompt:
-            self.Array_Input("assistant", prompt["character"], prompt["text1"])
-            print(f"{prompt['character']}: {prompt['text1']}")
-            # same for text1
+        # Check and print text1 if available
+        if "character" in prompt and "text1" in prompt and prompt["text1"].strip():
+            self.Array_Input("assistant", prompt["character"], prompt["text1"].strip())
+            print(f"{prompt['character']}: {prompt['text1'].strip()}")
 
-        if "character" in prompt and "text2" in prompt:
-            self.Array_Input("assistant", prompt["character"], prompt["text2"])
-            print(f"{prompt['character']}: {prompt['text2']}")
-            # same for text2
-
-        # I forgot to add notes
+        # Check and print text2 if available
+        if "character" in prompt and "text2" in prompt and prompt["text2"].strip():
+            self.Array_Input("assistant", prompt["character"], prompt["text2"].strip())
+            print(f"{prompt['character']}: {prompt['text2'].strip()}")
 
         self.user_input()
+
+
 
 
     def Array_Input(self,thing,person,msg):
