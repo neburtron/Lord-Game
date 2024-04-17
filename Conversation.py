@@ -9,10 +9,10 @@ import Commands
 class Conversation:
 
     def __init__(self, prompts_file='prompts.json'):
-        
         # Get prompts from prompts JSON
         self.prompts = []
         try:
+            # I think the only time json is used rather than commands script, I don't want to deal with formatting
             with open(prompts_file) as f:
                 self.prompts = json.load(f).get("prompts", [])
         except FileNotFoundError:
@@ -143,6 +143,7 @@ class Conversation:
             print(f"Error while calling LLM: {e}")
             print()
             self.user_input()
+
 
 
 # This command runs stuff if and only if this script is being run directly.
