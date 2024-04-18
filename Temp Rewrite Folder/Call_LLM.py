@@ -1,5 +1,5 @@
 from openai import OpenAI
-import Simple_Commands
+import Commands
 
 ## LLM Details ##
 client = OpenAI(
@@ -28,4 +28,4 @@ if __name__ == "__main__":
         {"role": "system", "content": "for instance, you could say rocks are cool."}
         ])
     # save stuff as txt file
-    Simple_Commands.Save("response.txt", response)
+    Commands.save("response.txt", response)

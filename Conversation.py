@@ -4,7 +4,7 @@
 import json
 import Call_LLM
 import Value_Evaluation
-import Commands
+import Simple_Commands
 
 class Conversation:
 
@@ -22,7 +22,7 @@ class Conversation:
         # set stuff used elsewhere
         self.conversation = []
         self.current_prompt_index = 0
-        LLM_start_prompt = Commands.Read("Start_Prompt.txt")
+        LLM_start_prompt = Simple_Commands.Read("Start_Prompt.txt")
         self.Array_Input("system","",LLM_start_prompt)
         # give the LLM it's start prompt before anything else
 

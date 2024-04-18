@@ -1,5 +1,5 @@
 import Call_LLM
-import Simple_Commands
+import Commands
 # Seperate different bits @ "user: next" + "user: end", or thing to same effect.
 # Then call LLM W Evaluate this prompt
 # Then interpret that as a series of called commands + run those commands
@@ -7,6 +7,6 @@ import Simple_Commands
 
 
 def main(conversation): # Placeholder script that just writes array to json
-    Simple_Commands.Save("conversation.json", conversation)
+    Commands.save("conversation.json", conversation)
     print("conversation saved to conversation.json.")
 
