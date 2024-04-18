@@ -25,11 +25,19 @@ import Value_Evaluation
     Next prompt also copied from previous version. Called to print + add to array the next prompt if there
     is a next prompt, if not, shut things down. Should change at some point. 
 
+    ...
+
     Notes:
-    Exit command should have confirmation
+    
     make save file script / add to Commands.py, import if it's own script.
         Script should copy from template
+
     Double check relay command, I don't think I added the notes section, I think I got everything else but I'm not sure.
+    
+    I should seperate the terminal stuff from the actual conversation stuff here, either in a script that 
+    calls this / a script that this calls so that it's easier to add a GUI
+
+
 
 """
 
@@ -39,9 +47,10 @@ class Talk:
         
         # Values
         self.save = 0 
+        # Temp static value, replace with get_save or something.
         # get save should ask for input, re ask if bad name, check if save file exists + asks for
-        # confirmation if so, asks to create new save if not, else for cases is asking for new name
-        # "exit" should exit
+        # confirmation if so, asks to create new save if not, else for both cases - ask to 
+        # make new game / fresh save file W given name
         self.current_prompt_index = 0
         self.prompts = []
         self.array = []
