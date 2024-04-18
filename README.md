@@ -1,5 +1,8 @@
 # Lord Game
 
+Lord Game is a text-based decision-making game prototype that uses Large Language Models (LLMs) rather than a pre-written script to let the player make decisions. Largely inspired by Sort the Court, 
+
+
 This is my first proper coding project. It's a proof of concept for an LLM based decision making game. The idea is to take sort the court's narritive focused cute, relaxing gameplay with little player agency, and throwing out the pre-written narritive, and making player agency the core of the game. Taking the pre-written story type of game and trying to push that close enough to the story generator genre (PDX map games lineup, DF, Rimworld, Minecraft, etc) for a CK4 where you can invent the steam engine or space ship without any mods.
 
 LLMs are cool. They're stupid, anyone who uses them for non-filler writing is lazy or bad at writing, but their ability to write coherently enough and reason enough for idiots and students to use it makes them useful for automation where the procedure can't be broken down to just if else. 
@@ -15,6 +18,8 @@ Right now I'm developing this by myself and I don't see that changing until I ge
 
 Now, what do I have so far?
 This may be outdated by the time you read this, but:
+
+Conversation.py: 
 
 
 There's a commands.py file, that contains some file interactions - save, load, load saves file, etc.
@@ -43,26 +48,54 @@ I'm going to improve things at my own pace, and I'm going to focus on what I wan
 
 First I'm probably work in the area of the Conversation.py script, I'll need to get the save data stuff figured out before moving on to val eval + refresh prompts, and all of that really requires thought put into info storage / memory and I don't know how I'm going to tackle that. If I make something, it'll be bad and rewritten after some time if I feel like it. Stuff has, and also will be added in a minimal state, and then removed. Yeah.
 
+## Installation
+
+This project uses the OpenAI API, so you need to get some LLM that goes through the OpenAI API to get this to work. You can host an LLM locally through LM Studio or probably it's competitors, or you can get an OpenAI API thing. 
+
+To install the required dependencies for this project, ensure you have Python installed on your system. Then, follow these steps:
+
+1. Clone the repository to your local machine:
+   ```bash
+   git clone https://github.com/yourusername/yourproject.git
+
+2. Navigate to the project directory:
+    
+    cd yourproject
+
+3. Install the dependencies using pip:
+
+    pip install -r requirements.txt
+
+4. Put your OpenAI API details into llm_interface.py 
+
+    You can also change whatever config
+
+5. Run game
+
+    python Conversation.py
+
+If this is bad, sorry, it was worse before + I got ChatGPT to fill in the install commands + whatever. I don't know if it'll work on Linux or Windows, I don't know why it wouldn't, but I don't know a lot about coding for different OS's. 
 
 
-How to set this thing up?
-
-1 - get an LLM that can be accessed through OpenAI's API. LM Studio lets you host one locally thorugh the OpenAI API, it's compeditors probably have similar features.
-
-2 - go to llm_interface.py and fill in your detials. 
-
-3 - NPM install OpenAI (or other synonymous terminal command)
-
-4 - run Conversation.py
-
-It should work for the most part, I just did a test run through. 
-
-I'd suggest looking at editing the starting prompt + maybe fleshing out / replacing the starter prompts if you're looking to test this thing. It's also gonna be better with a better LLM model, so keep that in mind.
 
 
-
-How to help
+## How to help
 
 This is an open source project. I am new to coding and still setting things up as I go. Find something that I stay I plan on doing and do it, or figure out how this thing works and improve it, or write / fix prompts, etc.
 
 If you can't help because I didn't set something up / set something up wrong, just contact me.
+
+
+## How to Contribute
+
+Contributions to this project are welcome! Here's how you can help:
+
+- Improve existing prompts or add new prompts to `prompts.json` and share them publically.
+- Optimize game logic in `Conversation.py` or other scripts for better user interaction.
+- Test the game on different platforms and report any issues.
+- Provide feedback on the project's design and usability.
+- Implement planned features noted in comments.
+
+Fork the repository, make your changes, and submit a pull request!
+
+You can contact me through github (I think) or mutemaroonworm@gmail.com
