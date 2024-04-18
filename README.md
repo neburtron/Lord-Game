@@ -23,13 +23,14 @@ llm_interface.py, formerly Call_LLM.py, calls the LLM W the OpenAI API.
 
 Next_Turn.py is a placeholder script for now, here because it's called by another script
 
-Prompts.json is the first turn's prompts formatted in a way TempTerminal.py can read
-Conversation_Start_Prompt.txt is the place where the conversation system prompt is stored for TempTerminal.py
+Prompts.json is the first turn's prompts formatted in a way Conversation.py can read
+Conversation_Start_Prompt.txt is the place where the conversation system prompt is stored for Conversation.py
 
 Refresh Prompts is another placeholder, it's to be called by Value_Evaluation.py to write the next set of prompts + start the next turn when it's done
 
-TempTerminal is the core script for this thing, at least for now. It's basically the conversation bit all set up. This isn't saying much since chatbots are so overdone for LLMs that it's not even an achievement, but there's other stuff too and I'm working on the actually interesting LLM stuff...
+Conversation.py is the core script for this thing, at least for now. It's basically the conversation bit all set up. This isn't saying much since chatbots are so overdone for LLMs that it's not even an achievement, but there's other stuff too and I'm working on the actually interesting LLM stuff...
 
+New script, now instead of being called TempTerminal and interacting with the terminal itself, conversation.py now tells Terminal.py what to do. Should make moving to GUI easier, hopefully. 
 
 Then there's the saves folder, I am going to look at that later, it's not anything yet, it's the thing that calls next turn.py, yeah.
 
@@ -40,7 +41,8 @@ What development's probably going to look like:
 
 I'm going to improve things at my own pace, and I'm going to focus on what I want to focus on. Expect broken and unfinished code.
 
-First I'm probably work in the area of the TempTerminal.py script, I'll need to get the save data stuff figured out before moving on to val eval + refresh prompts, and all of that really requires thought put into info storage / memory and I don't know how I'm going to tackle that. If I make something, it'll be bad and rewritten after some time if I feel like it. Stuff has, and also will be added in a minimal state, and then removed. Yeah.
+First I'm probably work in the area of the Conversation.py script, I'll need to get the save data stuff figured out before moving on to val eval + refresh prompts, and all of that really requires thought put into info storage / memory and I don't know how I'm going to tackle that. If I make something, it'll be bad and rewritten after some time if I feel like it. Stuff has, and also will be added in a minimal state, and then removed. Yeah.
+
 
 
 
