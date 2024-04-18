@@ -2,7 +2,6 @@ import llm_interface
 import Commands
 import sys
 import Value_Evaluation
-import Terminal
 
 """
 
@@ -54,10 +53,10 @@ class Talk:
             self.prompts = Commands.prompts('Prompts.json', self.save)
             # Just opens start prompts, add stuff for other prompts later
             if not self.prompts:
-                Terminal.printpure("Error: No prompts retrieved.")
+                Commands.printpure("Error: No prompts retrieved.")
                 sys.exit(1)  # Exit program if prompts are not retrieved successfully
         except Exception as e:
-            Terminal.printpure(f"Error in prompt retrieval: {e}")
+            Commands.printpure(f"Error in prompt retrieval: {e}")
             sys.exit(1)  # Exit program for any other unexpected errors
     
     def array_input(self,thing,character,msg):
@@ -80,7 +79,7 @@ class Talk:
             self.current_prompt_index += 1  # Move to the next prompt for the next call
             return next_prompt
         else:
-            Terminal.printspace("First turn over, second turn not implemented yet. THE END.")
+            Commands.printspace("First turn over, second turn not implemented yet. THE END.")
 
             Value_Evaluation.main(self.array)
             # @ end of turn, run the prepare next turn script. 
@@ -88,22 +87,22 @@ class Talk:
 
     def relayprompt(self, prompt):
        # Temp notation of current prompt
-        Terminal.printpure(self.current_prompt_index)
+        Commands.printpure(self.current_prompt_index)
 
         # Check and print enter description if available
         if "EnterDesc" in prompt and prompt["EnterDesc"].strip():
             self.array_input("assistant", "Scene", prompt["EnterDesc"].strip())
-            Terminal.printpure(f"Scene: {prompt['EnterDesc'].strip()}")
+            Commands.printpure(f"Scene: {prompt['EnterDesc'].strip()}")
 
         # Check and print text1 if available
         if "character" in prompt and "text1" in prompt and prompt["text1"].strip():
             self.array_input("assistant", prompt["character"], prompt["text1"].strip())
-            Terminal.printpure(f"{prompt['character']}: {prompt['text1'].strip()}")
+            Commands.printpure(f"{prompt['character']}: {prompt['text1'].strip()}")
 
         # Check and print text2 if available
         if "character" in prompt and "text2" in prompt and prompt["text2"].strip():
             self.array_input("assistant", prompt["character"], prompt["text2"].strip())
-            Terminal.printpure(f"{prompt['character']}: {prompt['text2'].strip()}")
+            Commands.printpure(f"{prompt['character']}: {prompt['text2'].strip()}")
 
         self.user_input()
 
@@ -111,11 +110,11 @@ class Talk:
     def user_input(self):
         # Call script that manages inputs + interpret what it returns
 
-        user_input = Terminal.input1()
+        user_input = Commands.input1()
 
         if user_input == "exit":  # Exit the program
-            Terminal.printspace("Are you sure you want to exit? Type yes to confirm.")
-            confirm = Terminal.input1()  # Get user confirmation
+            Commands.printspace("Are you sure you want to exit? Type yes to confirm.")
+            confirm = Commands.input1()  # Get user confirmation
             if confirm == "yes":
                 sys.exit()
         elif user_input == "next":
@@ -141,7 +140,7 @@ class Talk:
             self.array_input(role, "", content)
                 
             # Print the message for player
-            Terminal.printspace(f":{content}")
+            Commands.printspace(f":{content}")
 
         self.user_input()
 

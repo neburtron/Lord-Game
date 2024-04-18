@@ -61,3 +61,16 @@ def prompts(filename, save=0):
     except json.JSONDecodeError:
         print(f"Error decoding JSON from {filename}.")
         return []
+
+
+def printspace(thing):
+    print()
+    print(thing)
+    print()
+
+def printpure(thing):
+    print(thing)
+
+def input1():
+    input2 = input("you: ").strip().lower()
+    return input2
