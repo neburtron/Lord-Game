@@ -45,4 +45,24 @@ First I'm probably work in the area of the Conversation.py script, I'll need to 
 
 
 
+How to set this thing up?
 
+1 - get an LLM that can be accessed through OpenAI's API. LM Studio lets you host one locally thorugh the OpenAI API, it's compeditors probably have similar features.
+
+2 - go to llm_interface.py and fill in your detials. 
+
+3 - NPM install OpenAI (or other synonymous terminal command)
+
+4 - run Conversation.py
+
+It should work for the most part, I just did a test run through. 
+
+I'd suggest looking at editing the starting prompt + maybe fleshing out / replacing the starter prompts if you're looking to test this thing. It's also gonna be better with a better LLM model, so keep that in mind.
+
+
+
+How to help
+
+This is an open source project. I am new to coding and still setting things up as I go. Find something that I stay I plan on doing and do it, or figure out how this thing works and improve it, or write / fix prompts, etc.
+
+If you can't help because I didn't set something up / set something up wrong, just contact me.

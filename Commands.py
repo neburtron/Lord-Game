@@ -47,8 +47,9 @@ def read(filename):
 def prompts(filename, save=0):
     # Load prompts from a specific save file or default file.
     # This is nonsense, fix it later.
+    # replace 0 with if it's a new saves file or not, new var, taken when called.
     if save == 0:
-        filename = 'Start_Prompt.txt'
+        filename = 'Prompts.json'
     else:
         save_filename = f'save{save}.txt'
         filename = f'save/{save_filename}'
