@@ -14,12 +14,19 @@ usedmodel="local model"
 
 ## Call Function ##
 def main(msgs):
-    completion = client.chat.completions.create(
-        model=usedmodel,
-        messages=msgs,
-        temperature=temp,
-    )
-    return completion.choices[0].message
+    try:
+        completion = client.chat.completions.create(
+            model=usedmodel,
+            messages=msgs,
+            temperature=temp,
+        )
+        return completion.choices[0].message
+    except Exception as e:
+        print()
+        print(f"Error during LLM interaction: {e}")
+        print()
+        return None
+
 
 ## Run by itself ##
 if __name__ == "__main__":

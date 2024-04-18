@@ -1,9 +1,18 @@
 import json
-import Call_LLM
+import llm_interface
+import Commands
+"""
+    Early start to new script. This is what goes after the eval script to use whatever info stored 
+    + the turn 1 example scripts to create the next set of scripts. Barely started.
+
+
+"""
 
 def get_prompts(prompts_file='prompts.json'):
     # Get prompts from prompts JSON
     prompts = []
+    # Replace W prompts script from Commands
+    # Not doing now because it's a bit of a mess + I'm gonna fix it later.
     try:
         with open(prompts_file) as f:
             prompts = json.load(f).get("prompts", [])
