@@ -2,10 +2,11 @@
 
 Lord Game is a text-based decision-making game prototype that uses Large Language Models (LLMs) rather than a pre-written script to let the player make decisions. Largely inspired by Sort the Court, 
 
+This is MuteMar talking, I'm the only one to contribute so far, it's my project, I'm the one who's spent hours and hours working on it. 
 
 This is my first proper coding project. It's a proof of concept for an LLM based decision making game. The idea is to take sort the court's narritive focused cute, relaxing gameplay with little player agency, and throwing out the pre-written narritive, and making player agency the core of the game. Taking the pre-written story type of game and trying to push that close enough to the story generator genre (PDX map games lineup, DF, Rimworld, Minecraft, etc) for a CK4 where you can invent the steam engine or space ship without any mods.
 
-LLMs are cool. They're stupid, anyone who uses them for non-filler writing is lazy or bad at writing, but their ability to write coherently enough and reason enough for idiots and students to use it makes them useful for automation where the procedure can't be broken down to just if else. 
+LLMs are cool. They're stupid, anyone who uses them for non-filler / formulaic writing is lazy or bad at writing, but their ability to write coherently enough and reason enough for idiots and students to use it makes them useful for automation where the procedure can't be broken down to just if else. 
 
 There are four core tasks LLMs are to be used for in this project:
 Writing the prompts / decisions the king is tasked with
@@ -20,6 +21,7 @@ Now, what do I have so far?
 This may be outdated by the time you read this, but:
 
 Conversation.py: 
+
 
 
 There's a commands.py file, that contains some file interactions - save, load, load saves file, etc.
@@ -41,12 +43,14 @@ Then there's the saves folder, I am going to look at that later, it's not anythi
 
 
 
-
+## Development
 What development's probably going to look like:
 
-I'm going to improve things at my own pace, and I'm going to focus on what I want to focus on. Expect broken and unfinished code.
+I will try to be organized and make my plans open, but being consise and clear is hard and I am not writing a novel. I'm going to go at my own pace, but I'll try and get things setup because the whole idea of this thing is to get a working proof of concept done.
 
-First I'm probably work in the area of the Conversation.py script, I'll need to get the save data stuff figured out before moving on to val eval + refresh prompts, and all of that really requires thought put into info storage / memory and I don't know how I'm going to tackle that. If I make something, it'll be bad and rewritten after some time if I feel like it. Stuff has, and also will be added in a minimal state, and then removed. Yeah.
+Right now the main thing I've got implemented is Conversation.py and the scripts that it interacts with. The best way forwards in my mind isn't to have a bunch of different seperate parts, but build from the working chatbot type thing. I'll write bad code, fix it, then go a step further. 
+
+Sorry, I'm going to rewrite this section later
 
 ## Installation
 
@@ -74,28 +78,26 @@ To install the required dependencies for this project, ensure you have Python in
 
     python Conversation.py
 
-If this is bad, sorry, it was worse before + I got ChatGPT to fill in the install commands + whatever. I don't know if it'll work on Linux or Windows, I don't know why it wouldn't, but I don't know a lot about coding for different OS's. 
+Note - there are two commands you can run through the user input thing. Next and Exit. Self explanitory. Next moves on to next person / decision to make, exit closes the thing. I don't say this explicitly in the pre-written prompts yet, and the llama model I'm running doesn't tell the user to say next like I told it to.
 
 
+Might or might not work on Windows or Linux. 
 
-
-## How to help
-
-This is an open source project. I am new to coding and still setting things up as I go. Find something that I stay I plan on doing and do it, or figure out how this thing works and improve it, or write / fix prompts, etc.
-
-If you can't help because I didn't set something up / set something up wrong, just contact me.
+Does work on my M1 macbook pro. 
 
 
 ## How to Contribute
 
 Contributions to this project are welcome! Here's how you can help:
 
-- Improve existing prompts or add new prompts to `prompts.json` and share them publically.
-- Optimize game logic in `Conversation.py` or other scripts for better user interaction.
-- Test the game on different platforms and report any issues.
-- Provide feedback on the project's design and usability.
-- Implement planned features noted in comments.
+- Play around with the prompts (prompts.json and conversation_start_prompt.txt) and share what you find.
+- Fix things in the script / bugfix / improve the code / add comments / whatever else
+- Test the game on different platforms and report issues.
+- Write things for the project you think fit / work towards vision
+- Implement something not yet implemented you see commented in or mentioned somewhere.
 
 Fork the repository, make your changes, and submit a pull request!
 
 You can contact me through github (I think) or mutemaroonworm@gmail.com
+
+If anything here is wrong / not working just tell me, I'm new to github + coding + sections of this read me use ChatGPT.
