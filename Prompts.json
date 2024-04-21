@@ -4,7 +4,7 @@
       "title": "First",
       "EnterDesc": "",
       "text1": "You are the lord of a small town. Your father passed away a short time ago, and today marks your first day on the throne. There's a particular tension in the air this cold late winter, early spring.\n\nIt isn't in the air, but your chest.\n\nBefore anything else, you must choose how you wish to rule. There are decisions to be made, and the time for that will be soon, but a good king is an active one, one with a vision for the future. The greatest rulers were lead by a sight of how the world could be.\n\nIn a word, in a sentence, in a paragraph, in this world, what do you want to be?",
-      "text2": "",
+      "text2": "\n(to move on to the next prompt, type 'next', and to exit type 'exit')\n",
       "character": "",
       "notes": "This is the first decision the player is to make. This is the first indicator as to how they are looking to play, so record this and use as you see fit."
     },

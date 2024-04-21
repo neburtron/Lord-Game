@@ -1,10 +1,11 @@
 from openai import OpenAI
-import Commands
 
 ## LLM Details ##
 client = OpenAI(
     base_url="http://localhost:1234/v1", 
+    # If you're actually paying OpenAI for their models, you either need to comment this out or figure out what URL to put here instead.
     api_key="not-needed"
+    # Probably a good idea to get this from somewhere private for people that pay for OpenAI's stuff
     )
 temp = 0.7
 usedmodel="local model"
@@ -26,13 +27,3 @@ def main(msgs):
         print(f"Error during LLM interaction: {e}")
         print()
         return None
-
-
-## Run by itself ##
-if __name__ == "__main__":
-    response = main([
-        {"role": "user", "content": "this is a test. talk about rocks or something."},
-        {"role": "system", "content": "for instance, you could say rocks are cool."}
-        ])
-    # save stuff as txt file
-    Commands.save("response.txt", response)
