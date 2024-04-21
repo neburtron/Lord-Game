@@ -73,5 +73,7 @@ def printpure(thing):
     print(thing)
 
 def input1():
+    print()
     input2 = input("you: ").strip().lower()
+    print()
     return input2

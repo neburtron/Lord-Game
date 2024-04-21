@@ -6,7 +6,7 @@
       "text1": "You are the lord of a small town. Your father passed away a short time ago, and today marks your first day on the throne. There's a particular tension in the air this cold late winter, early spring.\n\nIt isn't in the air, but your chest.\n\nBefore anything else, you must choose how you wish to rule. There are decisions to be made, and the time for that will be soon, but a good king is an active one, one with a vision for the future. The greatest rulers were lead by a sight of how the world could be.\n\nIn a word, in a sentence, in a paragraph, in this world, what do you want to be?",
       "text2": "\n(to move on to the next prompt, type 'next', and to exit type 'exit')\n",
       "character": "",
-      "notes": "This is the first decision the player is to make. This is the first indicator as to how they are looking to play, so record this and use as you see fit."
+      "notes": "This is the first decision the player is to make. This is the first indicator as to how they are looking to play. Don't ask follow ups, and if they don't type next, push them to. The next message that the user will be given is recontextualizing this as an assistant character asking the player/king this question as part of some scripted procedure, so you should write as though you aren't part of the story, but the main menu tutorial trying to push them into the story.."
     },
     {
       "title": "Second",
@@ -29,7 +29,7 @@
       "EnterDesc": "",
       "text1": "Hey lord. I’m the town’s head architect. Thought I’d introduce myself. If you need anything built or fixed I’m the one to come to.",
       "text2": "",
-      "character": "Gruff Builder Guy (temp)",
+      "character": "Gruff Builder Guy",
       "notes": ""
     },
     {
@@ -46,7 +46,7 @@
       "text1": "Ah, Lord it’s good to see you back after so many years abroad. I see you've grown into quite the impressive young man. *tips hat* My name is... difficult to pronounce, but I assure ye it's a pleasure to make your acquaintance. *reaches into coat pocket* I have business in Small Village. *drops a small pouch of coins* I’ve come here to air my condolences for your father. Him and I had our disagreements, but he was a great man. I hope you and I are more async… \n*he drops another coin pouch from his pocket*",
       "text2": "",
       "character": "Mysterious Stranger",
-      "notes": ""
+      "notes": "This guy is trying to bribe the king, try and write him in a way where it makes sense for him to be so blatant about trying to bribe the king."
     },
     {
       "title": "Demon",

@@ -6,7 +6,6 @@ This proof of concept is hugely inspired by the game Sort the Court, a story-bas
 
 This is not a story game, it is a story generation game. I denounce anyone who wants to replace artists with by-design derivative algorithms, as the pursuit and creation of art is only meaningful for someone who can experience its majesty. This is a game that uses LLMs as an algorithm for its emergent properties of reason and decision-making. It is an early proof of concept and uses Sort the Court as inspiration because of its simplicity.
 
-
 ## Instalation Instructions
 
 Necessary to run core project functionalities:
@@ -138,6 +137,7 @@ The plan for this project right now is to build up around Conversation.py. Befor
 - Add selected save as argument for Conversation.py talk class (or something to that extent), and make sure the already written stuff for save managemnet is working there (W setting the save from parent script manually)
 - Probably a good idea to work out what the core values are, and add them to some extent 
     (values the player has to manage like gold, pops, etc.)
+- retcon / reroll command
 
 2 - Saves
 From there I am going to focus on save data. This is a pretty narritive focused game where what happens is generated as you go. Saving your stuff is pretty important. This is going to take some time, while rewriting Conversation.py I had saving in mind and know how user interactions through that script are going to happen.
