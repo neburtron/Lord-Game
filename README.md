@@ -164,13 +164,15 @@ Refer to the license document
 ## Developers
 
 MuteMaroonWorm - Only dev for now + creator
-    Right now I'm the only one to work on this thing, hello, I'm MuteMar, most things in the first person I'm saying. I think you're able to contact me through GitHub, my old handle's neburtron. Here's my email too. I've also got a Deviantart if you like looking at graphite on paper, it's linked to my GitHub.
-    https://github.com/neburtron
-    mutemaroonworm@gmail.com
+
+Right now I'm the only one to work on this thing, hello, I'm MuteMar, most things in the first person I'm saying. I think you're able to contact me through GitHub, my old handle's neburtron. Here's my email too. I've also got a Deviantart if you like looking at graphite on paper, it's linked to my GitHub.
+
+https://github.com/neburtron
+mutemaroonworm@gmail.com
 
 
 ## Inspiration
 
 Sort the Court
-    The core gameplay of this project is hugely inspired by Sort the Court, a small indie game that I've played far far too much considering the limited narrative content for a game driven more by a pre-written story than gripping gameplay. Play the game. search for sort the court in Google or click the link below.
-    https://graebor.itch.io/sort-the-court
+The core gameplay of this project is hugely inspired by Sort the Court, a small indie game that I've played far far too much considering the limited narrative content for a game driven more by a pre-written story than gripping gameplay. Play the game. search for sort the court in Google or click the link below.
+https://graebor.itch.io/sort-the-court
