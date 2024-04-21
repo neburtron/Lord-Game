@@ -5,10 +5,10 @@ import Value_Evaluation
 
 class Talk:
 
-    def __init__(self):
+    def __init__(self, save):
         
         # Values
-        self.save = 0 
+        self.save = save
         # Temp static value, replace with get_save or something.
         # get save should ask for input, re ask if bad name, check if save file exists + asks for
         # confirmation if so, asks to create new save if not, else for both cases - ask to 
@@ -146,4 +146,4 @@ class Talk:
         self.user_input(0)
 
 if __name__ == "__main__":
-    talk_instance = Talk()
+    talk_instance = Talk(0)

@@ -22,7 +22,6 @@ If you don't want to pay them, you can imitate an OpenAI server W LM Studio for 
 
 Get the game files on your computer. I think you can also download the game as a zip file.
 
-
 2. Navigate to the project directory (through terminal)
 
 ```bash
@@ -90,29 +89,37 @@ The third and final part is the writing of the prompts for the next turn. This i
 
 #### Scripts
 
-Commands.py
+UNFINISHED main.py
+Start of script responsible for save selection + running conversation.py. It does not work yet. 
+
+Commands.py:
 This script is responsible for some basic actions done across the project. currently, it handles interacting with the terminal, so if and when a proper GUI is implemented Conversaton.py doesn't need to be edited, and basic file operations including a more specific command for reading prompts.json and future prompt jsons for specific turns.
 
-Conversation.py
+Conversation.py:
 Currently the main file for this project, it handles the user interaction section of the turn. Interacted with through the terminal it uses the first turn's set of prompts from Prompts.json, calls the LLM using llm_interface.py, and gets the user input, handling moving on to the next prompt and exiting the program by checking if the user's message is "next" or "exit" and handling that appropriately. It also handles the chat log used by the LLM. If it reaches the last prompt and the command to move on to the next is fired, it sends the chat log array on to Value_Evaluation.py, a temp script to be used later.
 
-llm_interface.py
+llm_interface.py:
 A simple script in charge of sending whatever server is hosting the LLM the messages, returning whatever the LLM responds with. Also stores data like the model being used, the temperature, the API Key, etc.
 
 Refreshed_Prompts.py
 Temp script, this is for rewriting scripts and will be called at the end of eval when the user is reading through the results of turn. It's got some stuff in it, I don't remember what I was working on to have me make the script and the contents of it, but it's not all that important and should just be looked at as an extension of whatever calls it / as an early thing to deal with when properly developing the prompt writing section of this game.
 
-Value_Evaluation.py
+Value_Evaluation.py:
 Temp script made for Conversation.py. Conversation.py calls a function in it with the chatlog array the LLM is given. Right now it just saves a file with that data, but this script is going to be responsible for starting or doing the 2nd part of the turn. 
 
 #### Other Files
 
-Conversation_Start_Prompt.txt
+Conversation_Start_Prompt.txt:
 This is the prompt used for telling the LLM instances created by Conversation.py what it should be doing.
 
-Prompts.json
+Prompts.json:
 A set of prompts used for the first turn. Used by Conversation.py and will eventually be used in part 3 for the format + style the LLM should be writing in.
 
+Saves
+Empty folder that will contain created saves when I setup saves
+
+Save_Template
+Empty folder that's gonna be copied into saves by main.py when it loses the UNFINISHED.
 
 ## Now, soon, and later
 
@@ -130,7 +137,8 @@ I'm not going to be the most organized. I'll move from place to place, but I'll 
 
 1 - Conversation.py
 The plan for this project right now is to build up around Conversation.py. Before I move on there's some more stuff I want to work on in this script. 
-- Add a main script or parent script to Conversation.py, that takes on save file management
+
+- Add a main script or parent script to Conversation.py, that takes on save file management (started)
 - Give LLM the next command the player can issue + tweak that
 - Maybe update / add to scripts since I'm already editing for next command
 - Additional info for LLM taken from elsewhere
@@ -138,6 +146,7 @@ The plan for this project right now is to build up around Conversation.py. Befor
 - Probably a good idea to work out what the core values are, and add them to some extent 
     (values the player has to manage like gold, pops, etc.)
 - retcon / reroll command
+- Fix formatting so there's not :'s before stuff and any other issues that pop up 
 
 2 - Saves
 From there I am going to focus on save data. This is a pretty narritive focused game where what happens is generated as you go. Saving your stuff is pretty important. This is going to take some time, while rewriting Conversation.py I had saving in mind and know how user interactions through that script are going to happen.
