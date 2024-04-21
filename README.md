@@ -36,7 +36,7 @@ Open the terminal, and navigate to wherever you put the game files. the CD comma
 
 To leave the folder you're in if you go the wrong way or want to have the game files somewhere else, you can type:
 ```bash
-CD ../
+cd ../
 ```
 
 If you use the git clone command (in step 1), you should just be able to type CD Lord-Game because you're making it in the root directory, and all you need to do to set things up is go into the folder you got onto your computer.
