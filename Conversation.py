@@ -3,17 +3,6 @@ import Commands
 import sys
 import Value_Evaluation
 
-"""
-
-    Notes:
-
-    make save file script / add to Commands.py, import if it's own script.
-        Script should copy from template
-
-    Double check relay command, I don't think I added the notes section, I think I got everything else but I'm not sure.
-    
-"""
-
 class Talk:
 
     def __init__(self):
@@ -103,6 +92,11 @@ class Talk:
         if "character" in prompt and "text2" in prompt and prompt["text2"].strip():
             self.array_input("assistant", prompt["character"], prompt["text2"].strip())
             Commands.printpure(f"{prompt['character']}: {prompt['text2'].strip()}")
+        
+        # Check and give LLM Notes if available
+        if "notes" in prompt and prompt["notes"].strip():
+            self.array_input("assistant", "notes", prompt["notes"].strip())
+            # For LLM only
 
         self.user_input()
 

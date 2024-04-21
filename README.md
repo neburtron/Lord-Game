@@ -1,12 +1,10 @@
 # Lord-Game
 
-Lord Game is a proof of concept for the implementation of Large Language Models (LLMs) in story generator games. Story Generator games are a particular genre where a complex world is simulated, the player is given some role in this world, and their job is to interact with it. Think Minecraft, Rimworld, games produced by Paradox Interactive, etc. The idea is to use LLMs and their emergent creativity and flexibility, to further player agency.
+Lord Game is a proof of concept for the implementation of Large Language Models (LLMs) in story generator games. Story Generator games are a particular genre where a complex world is simulated, the player is given some role in this world, and the fun comes from the player doing whatever they want. Think Minecraft, Rimworld, games produced by Paradox Interactive, etc. The idea is to use LLMs and their emergent creativity and flexibility, to further player agency.
 
 This proof of concept is hugely inspired by the game Sort the Court, a story-based, no-stakes, relaxing game where you are tasked with being the king, and responding yes or no to people asking for your rulings. This project replaces that binary choice with a textbox. (It's gonna be more than a chatbot I swear)
 
 This is not a story game, it is a story generation game. I denounce anyone who wants to replace artists with by-design derivative algorithms, as the pursuit and creation of art is only meaningful for someone who can experience its majesty. This is a game that uses LLMs as an algorithm for its emergent properties of reason and decision-making. It is an early proof of concept and uses Sort the Court as inspiration because of its simplicity.
-
-I have not seen all that much LLM integration in gaming, and for games where player agency and the world reacting to it are the essence of their gameplay, it seems like an innovation waiting to happen. Although in this early stage of development, this is a step away from yet another glorified chatbot, the goal is to push for more complexity and structure for something that is still a game, while letting the player do almost anything within reason, their character's abilities, and setting.
 
 
 ## Instalation Instructions
@@ -102,9 +100,6 @@ Currently the main file for this project, it handles the user interaction sectio
 llm_interface.py
 A simple script in charge of sending whatever server is hosting the LLM the messages, returning whatever the LLM responds with. Also stores data like the model being used, the temperature, the API Key, etc.
 
-Next_Turn.py
-Temp script that doesn't do anything, old, and might just remove.
-
 Refreshed_Prompts.py
 Temp script, this is for rewriting scripts and will be called at the end of eval when the user is reading through the results of turn. It's got some stuff in it, I don't remember what I was working on to have me make the script and the contents of it, but it's not all that important and should just be looked at as an extension of whatever calls it / as an early thing to deal with when properly developing the prompt writing section of this game.
 
@@ -112,9 +107,6 @@ Value_Evaluation.py
 Temp script made for Conversation.py. Conversation.py calls a function in it with the chatlog array the LLM is given. Right now it just saves a file with that data, but this script is going to be responsible for starting or doing the 2nd part of the turn. 
 
 #### Other Files
-
-Saves
-I'm going to deal with / remove this later. Old work for game saves. 
 
 Conversation_Start_Prompt.txt
 This is the prompt used for telling the LLM instances created by Conversation.py what it should be doing.
@@ -131,26 +123,41 @@ Right now only the first part is implemented, and it is a very basic implementat
 
 I rewrote much of the stuff I wrote and it should not be the hardest thing to expand things further. Several placeholder scripts are there so that the written scripts that are already written and are going to interact with those scripts can.
 
-I tried to set up game saves, but what I have is very incomplete and I might start fresh when I return to that.
-
 Much of the game is still in development, and sections may be nonsense or not yet implemented. I will try to finish things before publishing them and clean up unfinished garbage I forgot about or just left somewhere.
 
 ### Roadmap
-Development will center around the Conversation.py script for some time. There are things I still want to implement + improve upon there, and I think I've commented in a lot of those plans.
 
-Chances are, the next thing I will focus on is the save system. I've played around with the idea of one a bit, and in the current draft of the Conversation.py script, I've got a way to handle selecting saves setup. I want to do this before focusing on eval + writing new prompts because I want a lot of the data to be saved in case the user wants to look back at it + everything isn't just lost to the aether.
+I'm not going to be the most organized. I'll move from place to place, but I'll try to work on one area at a time.
+
+1 - Conversation.py
+The plan for this project right now is to build up around Conversation.py. Before I move on there's some more stuff I want to work on in this script. 
+- Add a main script or parent script to Conversation.py, that takes on save file management
+- Give LLM the next command the player can issue + tweak that
+- Maybe update / add to scripts since I'm already editing for next command
+- Additional info for LLM taken from elsewhere
+- Add selected save as argument for Conversation.py talk class (or something to that extent), and make sure the already written stuff for save managemnet is working there (W setting the save from parent script manually)
+- Probably a good idea to work out what the core values are, and add them to some extent 
+    (values the player has to manage like gold, pops, etc.)
+
+2 - Saves
+From there I am going to focus on save data. This is a pretty narritive focused game where what happens is generated as you go. Saving your stuff is pretty important. This is going to take some time, while rewriting Conversation.py I had saving in mind and know how user interactions through that script are going to happen.
 
 I'm also focusing on trying to make this script more accessible and whatnot for people who are not myself. I've spent hours and hours on this readme and I started from scratch this morning. I think people have seen this thing, and although I think the comments I've got in my code are pretty clear, the more fundamental, planning and instructions have not been good for a while. I'm gonna make this shorter too. I know it's way too long.
 
-### Unplanned features / potential future
+### Other features I'm not doing right now, but at some point probably.
 
-At some point I want there to be a GUI for this thing. I'm focusing on the gameplay right now, and that'll take a while to finish.
+add 4-5 additional prompts to prompts.json so there's about 10, plus the first one, and maybe the second one, or last one W the demon, so there's 10 pretty standard examples.
 
-The future of this type of game is more simulated world. The goal is CK3 but you can do literally anything, if you want to make a game in this genre go ahead, if you want to contact me (MuteMar) about this sort of stuff go ahead, I'd love to talk about this sort of stuff / help you as much as I can with your own project. Even though I don't know what I'm doing, I'm tens and tens of hours into this thing as of April 20th, 2024, I know some stuff if we're talking about the type of game I've been working on.
+A command for until GUI is setup: print turn - print json like that made from Value_Evaluation.py.
 
-I also like the idea of giving the LLM a sense of scale for what the values are worth at different intervals.
 
-Also having the LLM roll dice to determine outcomes / having that done automatically is a cool idea. 
+Later into development, I want to move over to something with a GUI. Not for some time though
+
+#### looser ideas
+I like the idea of giving the LLM a sense of scale for what the values are worth at different intervals.
+
+Probability either called by LLM through some command or automatically fired that LLM uses to decide what happens is a cool idea
+
 
 ## Contributing
 

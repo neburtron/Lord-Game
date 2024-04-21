@@ -10,4 +10,3 @@ def main(conversation): # Placeholder script that just writes array to json
     Commands.save("conversation.json", conversation)
     print("conversation saved to conversation.json.")
 
-    
