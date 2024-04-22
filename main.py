@@ -1,10 +1,16 @@
 from Conversation import Talk
 import Commands
+import os
 
 def makesave(save):
-    # Implement logic to create a new save with the given name later
+    # Implement proper logic later
     Commands.printpure(f"Creating new save: {save}")
-    Commands.printpure("NOTE: creating saves is not yet implemented.")
+    try:
+        os.mkdir ("Saves/" + save)
+    except:
+        Commands.print("Didn't work")
+    
+    Commands.printspace("If an error didn't pop up, a folder was made for your game! If you use the next command on the last prompt, it'll automatically save the Array used by LLM.")
 
 def inputsave(existing_saves):
     
@@ -36,6 +42,9 @@ def main():
     Commands.printspace("")
     Commands.printpure("Welcome to Lord Game!")
     Commands.printpure("Type in the name of an existing save listed below, or a new name to create a new game.\n")
+    Commands.printpure("")
+    Commands.printpure("Note - Game saves are not fully implemented, and current version only goes up to turn 1.")
+    Commands.printpure("If you play all the way through, your progress will be saved, but you can't play an existing save without error or your old save being overwritten.")
     Commands.printpure("")
 
     existing_saves = Commands.list_saves()

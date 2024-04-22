@@ -2,6 +2,7 @@ import llm_interface
 import Commands
 import sys
 import Value_Evaluation
+import Find_Commands
 
 class Talk:
 
@@ -47,14 +48,16 @@ class Talk:
             sys.exit(1)  # Exit program for any other unexpected errors
     
     def array_input(self,thing,character,msg):
-            if thing:
+            if character:
                 self.array.append({"role": thing, "content": character + ": " + msg})
             else:
                 self.array.append({"role": thing, "content": msg})
+
             """
             Just for putting stuff in Array
             Checks to see if the name + message are seperate, and combines them if they are not.
-            This is a thing because OpenAI API only accepts User, System, and Assistant
+            Character seperate from thing because LLM only accepts System, User, and Assistant for
+            the person saying the message, and character names are important.
             """
 
     def get_next_prompt(self):
@@ -66,7 +69,7 @@ class Talk:
         else:
             Commands.printspace("First turn over, second turn not implemented yet. THE END.")
 
-            Value_Evaluation.main(self.array)
+            Value_Evaluation.main(self.array, self.save, self.turn)
             # @ end of turn, run the prepare next turn script. 
             sys.exit() # Remove when continuing to turn 2 is possible 
 
@@ -133,11 +136,17 @@ class Talk:
             role = llmresponse.role
             content = llmresponse.content
                 
-            # Save what they said to conversation array, easy
+            # Save what they said to conversation array
             self.array_input(role, "", content)
-                
+
+
+            # Interaction with Find_Commands should go here.
+
+
             # Print the message for player
             Commands.printspace(f":{content}")
+    
+
 
         self.user_input(0)
 

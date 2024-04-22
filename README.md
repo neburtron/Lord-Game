@@ -109,6 +109,12 @@ Temp script, this is for rewriting scripts and will be called at the end of eval
 Value_Evaluation.py:
 Temp script made for Conversation.py. Conversation.py calls a function in it with the chatlog array the LLM is given. Right now it just saves a file with that data, but this script is going to be responsible for starting or doing the 2nd part of the turn. 
 
+Find_Commands.py:
+Not usable yet. This gets handed copy of raw LLM output, it checks for commands called by LLM in whatever format, issues those commands in the order they were called, and returns a copy of the LLM output without commands in it (this is for Conversation.py so player doesn't need to see LLM's called commands)
+
+Commands/Conversation_Commands.py
+Empty python script. Gonna be part of the giving LLM instances access to commands thing, made for the Conversation.py script / the LLM instance directly interacting with the user, has list of potential functions, made because I'm working on Find_Commnads.py.
+
 #### Other Files
 
 Conversation_Start_Prompt.txt:
@@ -122,6 +128,9 @@ Empty folder that will contain created saves when I setup saves
 
 Save_Template
 Empty folder that's gonna be copied into saves by main.py when I handle save file stuff.
+
+Commands folder
+folder full of python scripts containing list of functions different instances of LLM can call. Originally made for Find_Commands.py, as it uses a list of these functions to only call commands that exist.
 
 ## Now, soon, and later
 
@@ -139,8 +148,6 @@ DONE
 
 
 
-
-
 I'm not going to be the most organized. I'll move from place to place, but I'll try to work on one area at a time.
 
 1 - Conversation.py
@@ -153,6 +160,7 @@ The plan for this project right now is to build up around Conversation.py. Befor
     (values the player has to manage like gold, pops, etc.)
 - retcon / reroll command
 - Fix formatting so there's not :'s before stuff and any other issues that pop up 
+
 
 2 - Saves
 From there I am going to focus on save data. This is a pretty narritive focused game where what happens is generated as you go. Saving your stuff is pretty important. This is going to take some time, while rewriting Conversation.py I had saving in mind and know how user interactions through that script are going to happen.
