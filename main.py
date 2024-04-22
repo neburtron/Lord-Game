@@ -1,22 +1,13 @@
 from Conversation import Talk
 import Commands
 
-# NOT DONE YET
-# Run Conversation.py until UNFINISHED disapears and this is just main.py.
-
-def getsaves():
-    # Replace this with logic to get contents of save folder
-    # Put in commands.py
-    saves = ["save1", "save2", "save3"]  # Temp list of existing save names
-    return saves
-
-
 def makesave(save):
     # Implement logic to create a new save with the given name later
     Commands.printpure(f"Creating new save: {save}")
+    Commands.printpure("NOTE: creating saves is not yet implemented.")
 
 def inputsave(existing_saves):
-
+    
     Commands.printspace("Saves:")
 
     # Display existing save names
@@ -34,11 +25,11 @@ def inputsave(existing_saves):
         confirm = Commands.input1()
 
         if confirm.lower() == "back":
+            # Rerun function
+            inputsave(existing_saves)
+        else:
             makesave(save_name)
             Talk_Instance = Talk(save_name)
-        else:
-            # Retry input if invalid choice
-            inputsave(existing_saves)
 
 
 def main():
@@ -47,10 +38,10 @@ def main():
     Commands.printpure("Type in the name of an existing save listed below, or a new name to create a new game.\n")
     Commands.printpure("")
 
-    existing_saves = getsaves()
+    existing_saves = Commands.list_saves()
     inputsave(existing_saves)
 
-    
+     
 
 if __name__ == "__main__":
     main()

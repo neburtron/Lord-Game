@@ -55,10 +55,12 @@ Things you'll probably need to change/look at:
 
 5. Run Project
 
-Conversation.py is the core script of what I've implemented.
+Just run the main.py script! If that doesn't work replace 'main' with 'Conversation', but it should. game saves are not yet implemented, just put in giberish for now.
+
+Only the first turn is setup for now, so running the main script directly should work.
 
 ```bash
- python Conversation.py
+ python main.py
 ```
 
 This project is early in development, and this is a rather simple prototype. If you're interested in this project, I suggest playing around with the prompts. If you make something you like/improve the ones I wrote, feel free to share them for others to use. At some point, I plan to focus on improving the prompts, but I'm not there yet.
@@ -89,8 +91,8 @@ The third and final part is the writing of the prompts for the next turn. This i
 
 #### Scripts
 
-UNFINISHED main.py
-Start of script responsible for save selection + running conversation.py. It does not work yet. 
+main.py
+Start of script responsible for save selection + running conversation.py. Starts the game and handles save selection. Saving game and all that not yet implemented, but besides that pretty done.
 
 Commands.py:
 This script is responsible for some basic actions done across the project. currently, it handles interacting with the terminal, so if and when a proper GUI is implemented Conversaton.py doesn't need to be edited, and basic file operations including a more specific command for reading prompts.json and future prompt jsons for specific turns.
@@ -119,7 +121,7 @@ Saves
 Empty folder that will contain created saves when I setup saves
 
 Save_Template
-Empty folder that's gonna be copied into saves by main.py when it loses the UNFINISHED.
+Empty folder that's gonna be copied into saves by main.py when I handle save file stuff.
 
 ## Now, soon, and later
 
@@ -132,13 +134,18 @@ I rewrote much of the stuff I wrote and it should not be the hardest thing to ex
 Much of the game is still in development, and sections may be nonsense or not yet implemented. I will try to finish things before publishing them and clean up unfinished garbage I forgot about or just left somewhere.
 
 ### Roadmap
+DONE
+- Add a main script or parent script to Conversation.py, that takes on save file management
+
+
+
+
 
 I'm not going to be the most organized. I'll move from place to place, but I'll try to work on one area at a time.
 
 1 - Conversation.py
 The plan for this project right now is to build up around Conversation.py. Before I move on there's some more stuff I want to work on in this script. 
 
-- Add a main script or parent script to Conversation.py, that takes on save file management (started)
 - Give LLM the next command the player can issue + tweak that
 - Maybe update / add to scripts since I'm already editing for next command
 - Additional info for LLM taken from elsewhere
@@ -149,6 +156,8 @@ The plan for this project right now is to build up around Conversation.py. Befor
 
 2 - Saves
 From there I am going to focus on save data. This is a pretty narritive focused game where what happens is generated as you go. Saving your stuff is pretty important. This is going to take some time, while rewriting Conversation.py I had saving in mind and know how user interactions through that script are going to happen.
+
+Prompts are going to be saved in Saves/{save}/Prompts, and this is going to include unused prompts, saved as Prompts.json, and used prompts as Prompts{turn number}.json.
 
 I'm also focusing on trying to make this script more accessible and whatnot for people who are not myself. I've spent hours and hours on this readme and I started from scratch this morning. I think people have seen this thing, and although I think the comments I've got in my code are pretty clear, the more fundamental, planning and instructions have not been good for a while. I'm gonna make this shorter too. I know it's way too long.
 

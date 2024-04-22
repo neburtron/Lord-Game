@@ -9,20 +9,18 @@ class Talk:
         
         # Values
         self.save = save
-        # Temp static value, replace with get_save or something.
-        # get save should ask for input, re ask if bad name, check if save file exists + asks for
-        # confirmation if so, asks to create new save if not, else for both cases - ask to 
-        # make new game / fresh save file W given name
         self.current_prompt_index = 0
         self.prompts = []
         self.array = []
 
         # If new game, current turn is 0
+        # change this later so that's what's actually happening
         if self.save == 0:
             self.turn = 0
             self.isturn1 = True
         else:
-            self.get_turn()
+            self.turn = self.get_turn()
+            self.isturn1 = True
             # Implement get turn number later
 
         # Get LLM's conversation directions, add it to the array, and 
@@ -39,8 +37,8 @@ class Talk:
 
     def get_prompts(self):
         try:
-            self.prompts = Commands.prompts('Prompts.json', self.save)
-            # Just opens start prompts, add stuff for other prompts later
+            self.prompts = Commands.prompts(self.save, self.turn)
+            # Run the get prompts command from commands.py
             if not self.prompts:
                 Commands.printpure("Error: No prompts retrieved.")
                 sys.exit(1)  # Exit program if prompts are not retrieved successfully
@@ -53,12 +51,10 @@ class Talk:
                 self.array.append({"role": thing, "content": character + ": " + msg})
             else:
                 self.array.append({"role": thing, "content": msg})
-
             """
             Just for putting stuff in Array
             Checks to see if the name + message are seperate, and combines them if they are not.
-            This is a thing because OpenAI API only accepts User, System, and Assistant... 
-            for my setup at least.
+            This is a thing because OpenAI API only accepts User, System, and Assistant
             """
 
     def get_next_prompt(self):
