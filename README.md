@@ -124,7 +124,8 @@ Prompts.json:
 A set of prompts used for the first turn. Used by Conversation.py and will eventually be used in part 3 for the format + style the LLM should be writing in.
 
 Saves
-Empty folder that will contain created saves when I setup saves
+Empty folder
+Empty folders made in it when you make a new save, and if you make it through turn 1, the LLM's context array from Conversation.py is dropped in there as a json.
 
 Save_Template
 Empty folder that's gonna be copied into saves by main.py when I handle save file stuff.
@@ -153,14 +154,12 @@ I'm not going to be the most organized. I'll move from place to place, but I'll 
 1 - Conversation.py
 The plan for this project right now is to build up around Conversation.py. Before I move on there's some more stuff I want to work on in this script. 
 
-- Give LLM the next command the player can issue + tweak that
-- Maybe update / add to scripts since I'm already editing for next command
+- Give LLM access to commands + have it working as intended in Conversation.py
+- Polish / edits to existing scripts for expandability / modularity
 - Additional info for LLM taken from elsewhere
-- Probably a good idea to work out what the core values are, and add them to some extent 
+- Probably a good idea to work out how I'm gonna implement core values 
     (values the player has to manage like gold, pops, etc.)
 - retcon / reroll command
-- Fix formatting so there's not :'s before stuff and any other issues that pop up 
-
 
 2 - Saves
 From there I am going to focus on save data. This is a pretty narritive focused game where what happens is generated as you go. Saving your stuff is pretty important. This is going to take some time, while rewriting Conversation.py I had saving in mind and know how user interactions through that script are going to happen.
