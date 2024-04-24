@@ -9,8 +9,8 @@ This is not a story game, it is a story generation game. I denounce anyone who w
 ## Instalation Instructions
 
 Necessary to run core project functionalities:
-- Access to LLM VIA OpenAI API. You CAN'T use ChatGPT, you need the API.
-If you don't want to pay them, you can imitate an OpenAI server W LM Studio for a local LLM model. 
+- Access to LLM VIA OpenAI API. You CAN'T just use ChatGPT, you need to go through the API.
+If you don't want to pay them, you can imitate an OpenAI server W LM Studio on a local device, with a local LLM model. 
 (other LLM software probably has similar features)
 
 
@@ -164,6 +164,7 @@ The plan for this project right now is to build up around Conversation.py. Befor
 - Probably a good idea to work out how I'm gonna implement core values 
     (values the player has to manage like gold, pops, etc.)
 - retcon / reroll command
+- Make it so that user message also runs the Find_Commands.py script, temporarally, so they can finish a thing, while also ending the converation naturally + whatnot. Better if they've got their own commands script.
 
 2 - Saves
 From there I am going to focus on save data. This is a pretty narritive focused game where what happens is generated as you go. Saving your stuff is pretty important. This is going to take some time, while rewriting Conversation.py I had saving in mind and know how user interactions through that script are going to happen.

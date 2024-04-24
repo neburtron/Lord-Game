@@ -57,9 +57,10 @@ def prompts(save, turn=0):
         file = filename
     else:
         file = filename
+        # Change this later so that:
         # If there's a file named prompts.json in saves/{save}/prompts, save that path as file var
         # If not call the make prompts script before saving same path as file var
-
+        
     # Use the load function to load JSON data
     data = load(file)
     if data is not None and isinstance(data, dict):
@@ -107,5 +108,3 @@ def list_saves():
         print(e)
     
     return folder_names
-
-

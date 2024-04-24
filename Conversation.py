@@ -79,17 +79,17 @@ class Talk:
 
         # Check and print enter description if available
         if "EnterDesc" in prompt and prompt["EnterDesc"].strip():
-            self.array_input("assistant", "Scene", prompt["EnterDesc"].strip())
+            self.array_input("system", "Scene", prompt["EnterDesc"].strip())
             Commands.printpure(f"Scene: {prompt['EnterDesc'].strip()}")
 
         # Check and print text1 if available
         if "character" in prompt and "text1" in prompt and prompt["text1"].strip():
-            self.array_input("assistant", prompt["character"], prompt["text1"].strip())
+            self.array_input("system", prompt["character"], prompt["text1"].strip())
             Commands.printpure(f"{prompt['character']}: {prompt['text1'].strip()}")
 
         # Check and print text2 if available
         if "character" in prompt and "text2" in prompt and prompt["text2"].strip():
-            self.array_input("assistant", prompt["character"], prompt["text2"].strip())
+            self.array_input("system", prompt["character"], prompt["text2"].strip())
             Commands.printpure(f"{prompt['character']}: {prompt['text2'].strip()}")
         
         # Check and give LLM Notes if available
