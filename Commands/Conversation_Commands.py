@@ -2,6 +2,7 @@
 import random
 import llm_interface
 
+
 """
 
 Commands to be implemented:
@@ -24,7 +25,7 @@ Insight check - check if thing player says is a lie from looking at prevous turn
 
 # Empty
 def Next():
-    return
+    return 
     # call next command from Conversation.py 
 
 # Done

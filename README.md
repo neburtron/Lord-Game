@@ -20,7 +20,7 @@ If you don't want to pay them, you can imitate an OpenAI server W LM Studio for 
  git clone https://github.com/neburtron/Lord-Game.git
 ```
 
-Get the game files on your computer. I think you can also download the game as a zip file.
+Get the game files on your computer. You can also download the game as a zip file.
 
 2. Navigate to the project directory (through terminal)
 
@@ -35,14 +35,13 @@ To leave the folder you're in if you go the wrong way or want to have the game f
 cd ../
 ```
 
-If you use the git clone command (in step 1), you should just be able to type CD Lord-Game because you're making it in the root directory, and all you need to do to set things up is go into the folder you got onto your computer.
+If you use the git clone command (in step 1), you should just be able to type CD Lord-Game because git pull puts stuff in the directory you're in, so all you need to do is go into the project file you just downloaded.
 
 3. Install requirements
 
 ```bash
  pip install -r requirements.txt
 ```
-Requirements.txt was created automatically, I think the only thing I've installed for this was the OpenAI API, maybe one or two others, but there's a pretty big list. I'm pretty sure it's mainly just nested dependencies, but I could be wrong, I am new to coding.
 
 4. Put your details into llm_interface.py 
 
@@ -55,7 +54,7 @@ Things you'll probably need to change/look at:
 
 5. Run Project
 
-Just run the main.py script! If that doesn't work replace 'main' with 'Conversation', but it should. game saves are not yet implemented, just put in giberish for now.
+Just run the main.py script! If that doesn't work replace 'main' with 'Conversation', but it should. 
 
 Only the first turn is setup for now, so running the main script directly should work.
 
@@ -63,7 +62,7 @@ Only the first turn is setup for now, so running the main script directly should
  python main.py
 ```
 
-This project is early in development, and this is a rather simple prototype. If you're interested in this project, I suggest playing around with the prompts. If you make something you like/improve the ones I wrote, feel free to share them for others to use. At some point, I plan to focus on improving the prompts, but I'm not there yet.
+This project is early in development, and this is a rather simple prototype. If you're interested in this project, I suggest tweaking / playing around with the prompts. If you make something you like or improve what I wrote, feel free to share them for others to use. At some point, I plan to focus on improving the prompts, but I'm not there yet in development.
 
 Additionally, anyone who wants to look at the code stuff is also encouraged to. it's public domain, if you're interested in helping out with this project I'm open to that, this is a thing I want to see materialize, any help in that effort is really appreciated. Refer to the CONTRIBUTING.md file if you're interested.
 
@@ -95,7 +94,7 @@ main.py
 Start of script responsible for save selection + running conversation.py. Starts the game and handles save selection. Saving game and all that not yet implemented, but besides that pretty done.
 
 Commands.py:
-This script is responsible for some basic actions done across the project. currently, it handles interacting with the terminal, so if and when a proper GUI is implemented Conversaton.py doesn't need to be edited, and basic file operations including a more specific command for reading prompts.json and future prompt jsons for specific turns.
+This script is responsible for some basic actions done across the project. currently, it handles interacting with the terminal, so if and when a proper GUI is implemented Conversaton.py doesn't need to be edited, and basic file operations including a more specific command for reading prompts.json files.
 
 Conversation.py:
 Currently the main file for this project, it handles the user interaction section of the turn. Interacted with through the terminal it uses the first turn's set of prompts from Prompts.json, calls the LLM using llm_interface.py, and gets the user input, handling moving on to the next prompt and exiting the program by checking if the user's message is "next" or "exit" and handling that appropriately. It also handles the chat log used by the LLM. If it reaches the last prompt and the command to move on to the next is fired, it sends the chat log array on to Value_Evaluation.py, a temp script to be used later.
@@ -110,7 +109,10 @@ Value_Evaluation.py:
 Temp script made for Conversation.py. Conversation.py calls a function in it with the chatlog array the LLM is given. Right now it just saves a file with that data, but this script is going to be responsible for starting or doing the 2nd part of the turn. 
 
 Find_Commands.py:
-Not usable yet. This gets handed copy of raw LLM output, it checks for commands called by LLM in whatever format, issues those commands in the order they were called, and returns a copy of the LLM output without commands in it (this is for Conversation.py so player doesn't need to see LLM's called commands)
+Currently unused. The script itself works from the tests I've done. All that's needed to implement it is getting whatever commands python script it's calling all setup, telling the LLM it can call the commands and telling it what they do, and writing in the call Find_Commands script + do what it says bit to the script calling it. Conversation.py has an unfinished version of this commented in. 
+
+Basically this script looks for {}'s in the text, puts them into an array, gets the commands python file to use (in Commands folder), runs whatever functions, and returns values.
+
 
 Commands/Conversation_Commands.py
 Empty python script. Gonna be part of the giving LLM instances access to commands thing, made for the Conversation.py script / the LLM instance directly interacting with the user, has list of potential functions, made because I'm working on Find_Commnads.py.
@@ -151,10 +153,12 @@ DONE
 
 I'm not going to be the most organized. I'll move from place to place, but I'll try to work on one area at a time.
 
+I'm thinking of going through again and fixing things. Make the code more intuitive and clear, and going through the documentation and fixing that in the process. Might not, might do it now, might do it later.
+
 1 - Conversation.py
 The plan for this project right now is to build up around Conversation.py. Before I move on there's some more stuff I want to work on in this script. 
 
-- Give LLM access to commands + have it working as intended in Conversation.py
+- Give LLM access to commands + have it working as intended in Conversation.py (Started)
 - Polish / edits to existing scripts for expandability / modularity
 - Additional info for LLM taken from elsewhere
 - Probably a good idea to work out how I'm gonna implement core values 
@@ -170,10 +174,9 @@ I'm also focusing on trying to make this script more accessible and whatnot for 
 
 ### Other features I'm not doing right now, but at some point probably.
 
-add 4-5 additional prompts to prompts.json so there's about 10, plus the first one, and maybe the second one, or last one W the demon, so there's 10 pretty standard examples.
+add 4-5 additional prompts to prompts.json so there's about 10, plus the first one, and maybe the second one, or last one W the demon, because they're gonna be used for telling the LLM what format to write in and those might convince it to do stuff like paralize the player + say it's the end of the day in the middle.
 
 A command for until GUI is setup: print turn - print json like that made from Value_Evaluation.py.
-
 
 Later into development, I want to move over to something with a GUI. Not for some time though
 
@@ -196,14 +199,15 @@ Refer to the license document
 
 MuteMaroonWorm - Only dev for now + creator
 
-Right now I'm the only one to work on this thing, hello, I'm MuteMar, most things in the first person I'm saying. I think you're able to contact me through GitHub, my old handle's neburtron. Here's my email too. I've also got a Deviantart if you like looking at graphite on paper, it's linked to my GitHub.
+Right now I'm the only one to work on this thing. Hello, I'm MuteMar, I'm the person writing all of this for now. I think you're able to contact me through GitHub. My old handle's Neburtron, that's also me. Here's my email too. I've also got a Deviantart if you like looking at graphite on paper, it's linked to my GitHub.
 
 https://github.com/neburtron
 mutemaroonworm@gmail.com
 
 
+
 ## Inspiration
 
 Sort the Court
-The core gameplay of this project is hugely inspired by Sort the Court, a small indie game that I've played far far too much considering the limited narrative content for a game driven more by a pre-written story than gripping gameplay. Play the game. search for sort the court in Google or click the link below.
+The core gameplay of this project is hugely inspired by Sort the Court, a small indie game that I've played far far too much considering the limited narrative content for a game driven more by a pre-written story than gripping gameplay. Play the game. search for sort the court in Google or click the link below. Think that's the original posting, but I'm not sure.
 https://graebor.itch.io/sort-the-court

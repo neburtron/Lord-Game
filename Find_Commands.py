@@ -1,38 +1,57 @@
 import Commands
+import importlib.util
+import os
+import re
 
-# Import all scripts in Commands folder either manually or automatically detect them. 
+def load_script(scriptname):
+    module_path = os.path.join(os.path.dirname(__file__), "Commands", f"{scriptname}.py")
+    spec = importlib.util.spec_from_file_location(scriptname, module_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
-"""
+def main(LLM_Output, scriptname):
+    try:
+        script_module = load_script(scriptname)
+        commands = extract_commands(LLM_Output)
+        results = execute_commands(commands, script_module)
+        return results
+    except Exception as e:
+        return f"Error: {e}"
 
-How each should work:
-0 - open whatever commands file + get list of functions in it
-1 - go through list + search for {}'s, adding to array (or other formatting used to indicate command)
-2 - save copy of text without commands
-3 - go through list of commands, if it's in the list issue commands
-4 - when it gets to the end + command not recognized, print it,
-    or return all failed seperately + have parent script deal with it.
-    If parent script handles it, there is the potential to call LLM again + have it try something else.
-    easier if done in parent script because here you'd need to hand over more variables than
-    would otherwise be nessisary.
+def extract_commands(text):
+    return re.findall(r'\{([^}]*)\}', text)
 
-"""
+def execute_commands(commands, script_module):
+    results = []
+    for command_string in commands:
+        # Split command_string into command name and parameters
+        parts = command_string.split(maxsplit=1)
+        if len(parts) > 0:
+            command_name = parts[0]
+            parameters = parts[1] if len(parts) > 1 else ""
 
+            try:
+                func = getattr(script_module, command_name)
+                if parameters:
+                    # Evaluate parameters to handle numbers and other literals
+                    parameters = eval(parameters)
+                    result = func(parameters)  # Execute the function with parameters
+                else:
+                    result = func()  # Execute the function without parameters
+                results.append((command_string, result))
+            except AttributeError:
+                results.append((command_string, "Command not recognized"))
+            except Exception as e:
+                results.append((command_string, f"Error: {e}"))
+        else:
+            results.append((command_string, "Invalid command format"))
 
-def main(LLM_Output, scriptname="Conversation_Commands"):
+    return results
+    
 
-    #commands = ("Commands/{scriptname}.py")
-
-    # I don't have internet right now, change this so that instead of being the file location
-    # commands = the list of function names for scriptname 
-
-
-    # Go through LLM_Output, find all the commands issued
-    # for all the commands, check which command they are
-    # Then run that coresponding function
-    # Then save input + whatever else needed
-
-    # Save all to array or something W command name + variables for script, and return that to parent script
-    # Then have a bit in parent script interpeting all of that.
-
-
-    return
+if __name__ == "__main__":
+    
+    output = "Test - {Roll_Dice 15} and {Roll_Dice 10}. {Next}"
+    results = main(output,"Conversation_Commands")
+    print(results)

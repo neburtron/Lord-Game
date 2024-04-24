@@ -132,16 +132,18 @@ class Talk:
         # Call LLM and get response
         llmresponse = llm_interface.main(self.array)
         if llmresponse:
-            # Get role and content from llmresponse
-            role = llmresponse.role
+            # Get content from llmresponse
             content = llmresponse.content
-                
+
             # Save what they said to conversation array
-            self.array_input(role, "", content)
+            self.array_input("assistant", "", content)
 
-
-            # Interaction with Find_Commands should go here.
-
+            """
+            WIP
+            CommandsList = Find_Commands.main(content,"Conversation_Commands")
+            for command in CommandsList:
+                print (command)
+            """
 
             # Print the message for player
             Commands.printspace(f":{content}")
