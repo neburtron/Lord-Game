@@ -2,6 +2,7 @@ from Conversation import Talk
 import Commands
 import os
 
+
 def makesave(save):
     # Implement proper logic later
     Commands.printpure(f"Creating new save: {save}")
@@ -39,7 +40,7 @@ def inputsave(existing_saves):
 
 
 def main():
-    Commands.printspace("")
+    Commands.printpure("")
     Commands.printpure("Welcome to Lord Game!")
     Commands.printpure("Type in the name of an existing save listed below, or a new name to create a new game.\n")
     Commands.printpure("")
