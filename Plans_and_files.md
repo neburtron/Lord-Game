@@ -16,8 +16,6 @@ The game works in turns. There are ten events, prompts, or pre-written situation
 When you start a new game, there is some pre-set info like the first day's worth of events, some starting seperate storylines (things happening independent to player), and some details about the setting. Memory system hasn't been written yet and as there's a lot of unwritten sections of this thing, the working demo just works with the Prompts.json file in the root directory of this project for now.
 
 
-
-
 The first thing to talk about is Conversation.py, where the player interacts with the LLM.
 
 Give or take a chatbot
@@ -110,104 +108,96 @@ What it does: (functions in it)
 Conversation.py:
 Currently the only core script implemented to any serious extent. Handle's the player's interaction with the game and hands off the conversation logs at the end. It's not perfect, the prompts aren't good and I still need to setup the commands properly, I need to get it to interact with the memory system + whatnot, but besides that it's pretty complete. Not polished, not done by any means, but it does what it should.
 
-I went through the first 2 pretty thoroughly, but I think I'm gonna stop here and go back to describing files later. Rest are unedited from previous draft when this was part of the readme. It's out of date and I'm still working on formatting and whatnot. 
+Not going to go into detail, might add it in later though.
 
 4
 llm_interface.py:
 A simple script in charge of sending whatever server is hosting the LLM the messages, returning whatever the LLM responds with. Also stores data like the model being used, the temperature, the API Key, etc.
 
-5
-Refreshed_Prompts.py
-Temp script, this is for rewriting scripts and will be called at the end of eval when the user is reading through the results of turn. It's got some stuff in it, I don't remember what I was working on to have me make the script and the contents of it, but it's not all that important and should just be looked at as an extension of whatever calls it / as an early thing to deal with when properly developing the prompt writing section of this game.
 
-6
+5
 Value_Evaluation.py:
 Temp script made for Conversation.py. Conversation.py calls a function in it with the chatlog array the LLM is given. Right now it just saves a file with that data, but this script is going to be responsible for starting or doing the 2nd part of the turn. 
 
-7
+There's some commented in plans here too.
+
+6
 Find_Commands.py:
-Currently unused. The script itself works from the tests I've done. All that's needed to implement it is getting whatever commands python script it's calling all setup, telling the LLM it can call the commands and telling it what they do, and writing in the call Find_Commands script + do what it says bit to the script calling it. Conversation.py has an unfinished version of this commented in. 
+Not yet implemented properly. The script itself works from what I can tell. the Conversation.py LLM commands script should work, and all that's needed to implement is writing in logic in Commands.py, and prompting the LLM better. For other sets of commands you need to do the same, but also write a python file in commands_callable the same as the one already in there.
 
-Basically this script looks for {}'s in the text, puts them into an array, gets the commands python file to use (in Commands folder), runs whatever functions, and returns values.
+Basically this script looks for {}'s in the text, puts them into an array, takes the given commands script to use (in Commands folder), and runs whatever functions are called, returning values for parent script to interpret.
 
-8
+7
 Commands/Conversation_Commands.py
-Empty python script. Gonna be part of the giving LLM instances access to commands thing, made for the Conversation.py script / the LLM instance directly interacting with the user, has list of potential functions, made because I'm working on Find_Commnads.py.
-
-
-
+Set of commands the LLM instance run by Conversation.py, that directly interacts with the player has access to. Used by Find_Commands.py. 
 
 Other Files:
 
-9
+8
 Conversation_Start_Prompt.txt:
 This is the prompt used for telling the LLM instances created by Conversation.py what it should be doing.
 
-10
+9
 Prompts.json:
 A set of prompts used for the first turn. Used by Conversation.py and will eventually be used in part 3 for the format + style the LLM should be writing in.
 
-11
+10
 Saves
 Empty folder
 Empty folders made in it when you make a new save, and if you make it through turn 1, the LLM's context array from Conversation.py is dropped in there as a json.
 
-12
-Commands folder
+11
+commands_callable folder
 folder full of python scripts containing list of functions different instances of LLM can call. Originally made for Find_Commands.py, as it uses a list of these functions to only call commands that exist.
 
 
-
-
 ### Roadmap
-I'm gonna redo this later. this is old. I'm thinking more about how this project is going to look when it's done + how I want to implement things, so a lot of change is to come.
 
-DONE (Just the stuff I plan on doing, not everything I end up implementing)
-- Add a main script or parent script to Conversation.py, that takes on save file management
+0. I'll change as I go
 
+- Improve / fix scripts when I see problems
 
+- Formatting: I think I should have lowercase script titles, I'm gonna probably change them in a while, but I'm not doing it now because it's a decent chunk of work to look through to check if I broke anything. I'm gonna lowercase + put_these_inbetween_words for new scripts. Sorry, I know, if you want me to fix it I'll do that sooner rather than later, just send me a message or something
 
-I'm not going to be the most organized. I'll move from place to place, but I'll try to work on one area at a time.
-
-I'm thinking of going through again and fixing things. Make the code more intuitive and clear, and going through the documentation and fixing that in the process. Might not, might do it now, might do it later.
-
-1 - Conversation.py
-The plan for this project right now is to build up around Conversation.py. Before I move on there's some more stuff I want to work on in this script. 
-
-- Give LLM access to commands + have it working as intended in Conversation.py (Started)
-- Polish / edit existing scripts for expandability / modularity
-- Additional info for LLM taken from elsewhere
-- Probably a good idea to work out how I'm gonna implement core values 
-    (values the player has to manage like gold, pops, etc.)
-- retcon / reroll command
-- Make it so that user message also runs the Find_Commands.py script, temporarally, so they can finish a thing, while also ending the converation naturally + whatnot. Better if they've got their own commands script.
-
-2 - Saves
-From there I am going to focus on save data. This is a pretty narritive focused game where what happens is generated as you go. Saving your stuff is pretty important. This is going to take some time, while rewriting Conversation.py I had saving in mind and know how user interactions through that script are going to happen.
-
-- Change it so that it deletes saves if they aren't played in. Needed for Conversation.py, runs first turn's prompts if it's told it is a new turn, and that happens if the main.py script runs the create new save thing.
+- Documentation: I'm gonna try and fix this doc and the readme, and the other ones if I see problems with them. I did a decent amount of work today on this stuff, but it's kinda dull work.
 
 
+1. Things I am going to focus on in the immediate future
+
+- Plan out and develop how the memory and other attached, unbuilt systems are to work, and start turning that into actual working code
+- add retcon / reroll command 
+- Add stuff wherever I feel like
 
 
-Prompts are going to be saved in Saves/{save}/Prompts, and this is going to include unused prompts, saved as Prompts.json, and used prompts as Prompts{turn number}.json.
+2. Other stuff I'm gonna probably work on in the not so immediate future
 
-I'm also focusing on trying to make this script more accessible and whatnot for people who are not myself. I've spent hours and hours on this readme and I started from scratch this morning. I think people have seen this thing, and although I think the comments I've got in my code are pretty clear, the more fundamental, planning and instructions have not been good for a while. I'm gonna make this shorter too. I know it's way too long.
+- Properly implement commands into Conversation.py + give the player their own python file in commands_callable
+- Add info taken from memory to Conversation.py - either add a bit to prompts.json that calls to relevant data, or some other way of doing it.
+- Implement stuff I plan on implementing, commented in throughout this project
 
-### Other features I'm not doing right now, but at some point probably.
-
-
-add 4-5 additional prompts to prompts.json so there's about 10, plus the first one, and maybe the second one, or last one W the demon, because they're gonna be used for telling the LLM what format to write in and those might convince it to do stuff like paralize the player + say it's the end of the day in the middle.
-
-A command for until GUI is setup: print turn - print json like that made from Value_Evaluation.py.
-
-Later into development, I want to move over to something with a GUI. Not for some time though
-
-If the stuff I'm working on now is completed, there might be a second part of your turn, something with a more turn based, card style town management thing, or some sort of civ clone, or something else. the LLM stuff is gonna be really slow, even on strong devices if better models are used because they can be, so something for the player to do in the meantime is a good idea.
+- Work on building core gameplay. I don't know what I'm gonna focus on first, but right now I am focused on the LLM integration. Either eval, memory, fixing Conversation.py, adding more stuff to conversation.py, the balancing values part of the game I haven't setup yet, or something else.
 
 
+3. Further away ideas
 
-#### looser ideas
-I like the idea of giving the LLM a sense of scale for what the values are worth at different intervals.
+- Moving beyond turn 1 (there's not gonna be a playable build W more than one turn for a while unless things change.)
 
-Probability either called by LLM through some command or automatically fired that LLM uses to decide what happens is a cool idea
+- Rewrite code: Probably a few times with more local + project wide rewrites. I've done it a few times already. I'm new to coding and I don't know the best way to get what I'm looking for. Not a good idea with where I'm at, I tried a little while ago and I just got lost, later down the road when I've got other systems setup like the memory stuff +/ the eval stuff.
+
+
+4. I'll probably get around to it eventually
+
+- Change it so that main.py or wherever else deletes saves if they aren't played in. Needed for Conversation.py, runs first turn's prompts if it's told it is a new turn, and that happens if the main.py script runs the create new save thing.
+
+- add like 4 - 5 additional prompts to prompts.json. They should be rather normal prompts, not like the first, second, and last one. These are to be used to tell LLM what it should make prompts look like.
+
+- Improving prompts
+
+5. If I get what I want to get done none
+
+- Add a GUI W buttons so you don't need to type {next} at the end of your message (when I fix commands)
+
+- Add a simple, traditional turn based strategy game section the player goes through to give LLM more time to work on stuff some civ clone, or an idle game, or some card based thing, or something else.
+
+
+I know this isn't that useful of a roadmap, but I don't feel comfortable enough setting more rigid plans.

@@ -65,7 +65,5 @@ def main():
     existing_saves = Commands.list_saves()
     inputsave(existing_saves)
 
-     
-
 if __name__ == "__main__":
     main()
