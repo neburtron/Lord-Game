@@ -4,7 +4,7 @@ import os
 import re
 
 def load_script(scriptname):
-    module_path = os.path.join(os.path.dirname(__file__), "Commands", f"{scriptname}.py")
+    module_path = os.path.join(os.path.dirname(__file__), "commands_callable", f"{scriptname}.py")
     spec = importlib.util.spec_from_file_location(scriptname, module_path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -55,3 +55,5 @@ if __name__ == "__main__":
     output = "Test - {Roll_Dice 15} and {Roll_Dice 10}. {Next}"
     results = main(output,"Conversation_Commands")
     print(results)
+
+    

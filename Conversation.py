@@ -6,7 +6,7 @@ import Find_Commands
 
 class Talk:
 
-    def __init__(self, save):
+    def __init__(self, save, newsave):
         
         # Values
         self.save = save
@@ -15,13 +15,12 @@ class Talk:
         self.array = []
 
         # If new game, current turn is 0
-        # change this later so that's what's actually happening
-        if self.save == 0:
+        if newsave == True:
             self.turn = 0
             self.isturn1 = True
         else:
             self.turn = self.get_turn()
-            self.isturn1 = True
+            self.isturn1 = False
             # Implement get turn number later
 
         # Get LLM's conversation directions, add it to the array, and 

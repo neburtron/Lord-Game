@@ -36,7 +36,7 @@ def inputsave(existing_saves):
             inputsave(existing_saves)
         else:
             makesave(save_name)
-            Talk_Instance = Talk(save_name)
+            Talk_Instance = Talk(save_name,True)
 
 
 def main():

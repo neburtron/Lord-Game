@@ -159,7 +159,7 @@ I'm thinking of going through again and fixing things. Make the code more intuit
 The plan for this project right now is to build up around Conversation.py. Before I move on there's some more stuff I want to work on in this script. 
 
 - Give LLM access to commands + have it working as intended in Conversation.py (Started)
-- Polish / edits to existing scripts for expandability / modularity
+- Polish / edit existing scripts for expandability / modularity
 - Additional info for LLM taken from elsewhere
 - Probably a good idea to work out how I'm gonna implement core values 
     (values the player has to manage like gold, pops, etc.)
@@ -168,6 +168,8 @@ The plan for this project right now is to build up around Conversation.py. Befor
 
 2 - Saves
 From there I am going to focus on save data. This is a pretty narritive focused game where what happens is generated as you go. Saving your stuff is pretty important. This is going to take some time, while rewriting Conversation.py I had saving in mind and know how user interactions through that script are going to happen.
+
+- Change it so that it deletes saves if they aren't played in. Needed for Conversation.py, runs first turn's prompts if it's told it is a new turn, and that happens if the main.py script runs the create new save thing.
 
 Prompts are going to be saved in Saves/{save}/Prompts, and this is going to include unused prompts, saved as Prompts.json, and used prompts as Prompts{turn number}.json.
 
