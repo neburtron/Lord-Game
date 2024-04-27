@@ -9,6 +9,7 @@ client = OpenAI(
     )
 temp = 0.7
 usedmodel="local model"
+
 # Results depend on model and other settings.
 # Additionally, if the LLM is being weird, you can look at the prompt + change however you want.
 

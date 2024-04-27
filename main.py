@@ -2,6 +2,20 @@ from Conversation import Talk
 import Commands
 import os
 
+"""
+DO LATER: LLM Stuff
+
+Check if txt file named something like OpenAI_API_Details.txt exists
+if it doesn't, tell the player, and prompt them to add in their details, guiding them through
+Change llm_interface.py to read such a file instead of having the details set in the actual script.
+ADD FILE TO .GITIGNORE !!!
+
+Either make a template file they can use instead in project / have one downloadable, and tell them if they want to add,
+remove, or change values they can just open the file in a text / code editor
+
+"""
+
+
 
 def makesave(save):
     # Implement proper logic later
@@ -9,9 +23,9 @@ def makesave(save):
     try:
         os.mkdir ("Saves/" + save)
     except:
-        Commands.print("Didn't work")
-    
-    Commands.printspace("If an error didn't pop up, a folder was made for your game! If you use the next command on the last prompt, it'll automatically save the Array used by LLM.")
+        Commands.printspace("Didn't work")
+    else:
+        Commands.printspace("Save Creation Success!")
 
 def inputsave(existing_saves):
     

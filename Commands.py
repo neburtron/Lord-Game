@@ -45,8 +45,6 @@ def read(filename):
     except FileNotFoundError:
         print(f"Error: {filename} not found.")
         return ''
-    
-
 
 
 
