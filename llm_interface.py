@@ -1,30 +1,50 @@
 from openai import OpenAI
+import Commands
 
-## LLM Details ##
-client = OpenAI(
-    base_url="http://localhost:1234/v1", 
-    # If you're actually paying OpenAI for their models, you either need to comment this out or figure out what URL to put here instead.
-    api_key="not-needed"
-    # Probably a good idea to get this from somewhere private for people that pay for OpenAI's stuff
-    )
-temp = 0.7
-usedmodel="local model"
+## Some LLM Details ##
+
+settings = None
+client = None
+is_starting = True
+
+def starting():
+    global settings
+    global client
+
+    settings = Commands.load("llm_settings.json")
+
+    if 'base_url' in settings:
+        client = OpenAI(
+            base_url=settings['base_url'], 
+            api_key=settings['api_key']
+        )
+    else:
+        client = OpenAI(
+            api_key=settings['api_key']
+        )
+    
+    global is_starting
+    is_starting = False
 
 # Results depend on model and other settings.
-# Additionally, if the LLM is being weird, you can look at the prompt + change however you want.
-
 
 ## Call Function ##
 def main(msgs):
+    global settings
+    global client
+    global is_starting
+    
+    if is_starting:
+        starting()
+
     try:
         completion = client.chat.completions.create(
-            model=usedmodel,
+            model=settings['model'],
             messages=msgs,
-            temperature=temp,
+            temperature=settings['temp'],
         )
+
         return completion.choices[0].message
     except Exception as e:
-        print()
-        print(f"Error during LLM interaction: {e}")
-        print()
+        Commands.printspace(f"Error during LLM interaction: {e}")
         return None

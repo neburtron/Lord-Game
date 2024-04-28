@@ -3,3 +3,6 @@ __pycache__/
 
 # Ignore Visual Studio Code settings
 .vscode/
+
+# Ignore the LLM Settings file
+llm_settings.json

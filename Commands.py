@@ -2,17 +2,25 @@ import json
 import os
 
 
+
+
 def save(filename, contents):
     # Save contents to a file. Supports dictionaries, other types are written directly.
+    # Just for Json files, I don't think I used this for normal txt files anywhere
+    # make a new function for that if needed.
     try:
+        # Convert list of dictionaries to a single dictionary
+        settings = {}
+        for item in contents:
+            settings.update(item)
+
+        # Save as JSON with indentation
         with open(filename, 'w') as f:
-            if isinstance(contents, dict):
-                json.dump(contents, f, indent=4)
-            else:
-                f.write(str(contents))
+            json.dump(settings, f, indent=4)
     except (IOError, PermissionError) as e:
         print(f"Error saving to {filename}: {e}")
 
+    
 def load(filename):
     # Load contents from a file.
     try:
@@ -45,8 +53,6 @@ def read(filename):
     except FileNotFoundError:
         print(f"Error: {filename} not found.")
         return ''
-
-
 
 def prompts(save, turn=0):
     filename = "Prompts.json"

@@ -2,20 +2,46 @@ from Conversation import Talk
 import Commands
 import os
 
-"""
-DO LATER: LLM Stuff
+def check_text_file():
 
-Check if txt file named something like OpenAI_API_Details.txt exists
-if it doesn't, tell the player, and prompt them to add in their details, guiding them through
-Change llm_interface.py to read such a file instead of having the details set in the actual script.
-ADD FILE TO .GITIGNORE !!!
+    file_name = "llm_settings.json"
+    
+    # Check if the LLM details file exists
+    if os.path.isfile(file_name):
+        # Do nothing if so
+        return
+    else:
+        # Array to store settings in
+        details =[]
 
-Either make a template file they can use instead in project / have one downloadable, and tell them if they want to add,
-remove, or change values they can just open the file in a text / code editor
+        Commands.printspace("llm_settings.json not found. Enter your details below to automatically generate one, or write one yourself with the names used by OpenAI.")
+        
+        Commands.printspace("What model do you want to use?")
+        model = Commands.input1().strip().lower()
+        details.append({"model": model})
 
-"""
+        Commands.printspace("What temperature do you want to use (Doesn't really matter, I set it as 0.7)")
+        temp = Commands.input1().strip()
+        details.append({"temp": temp})
 
+        Commands.printspace("What is your API Key?")
+        API = Commands.input1()
+        details.append({"api_key": API})
 
+        Commands.printspace("Do you want to specify the URL? If you're using OpenAI's servers to run LLM leave this blank, if not put whatever here.")
+        base_url = Commands.input1().strip().lower()
+        if base_url:
+            details.append({"base_url": base_url})
+
+        Commands.printspace("")
+        Commands.printspace("")
+
+        Commands.printspace("If you mispelled anything, want to change the values, or otherwise want to change  things, open the llm_settings.json file and add, remove, or change stuff as you see fit.")
+
+        Commands.save(file_name, details) 
+        # save to json file
+
+        return
 
 def makesave(save):
     # Implement proper logic later
@@ -54,6 +80,10 @@ def inputsave(existing_saves):
 
 
 def main():
+    # Get nessisary LLM Settings
+    check_text_file()
+
+    # Start Prompt
     Commands.printpure("")
     Commands.printpure("Welcome to Lord Game!")
     Commands.printpure("Type in the name of an existing save listed below, or a new name to create a new game.\n")
