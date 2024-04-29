@@ -1,18 +1,22 @@
 # Lord-Game
 
-Lord Game is a proof of concept for the implementation of Large Language Models (LLMs) in story generator games. Story Generator games are a particular genre where a complex world is simulated, the player is given some role in this world, and the fun comes from the player doing whatever they want. Think Minecraft, Rimworld, games produced by Paradox Interactive, etc. The idea is to use LLMs and their emergent creativity and flexibility, to further player agency.
+This project is hugely inspired by the game Sort the Court, a story-based, no-stakes, relaxing game where you are tasked with being the king, and responding yes or no to people asking for your rulings. This project replaces that binary choice with a textbox. The current build goes through the first turn, and I'll be honest, right now, it's basically just a chatbot. This is a chatbot I've spent a lot of time working on and writing in such a way that it can be expanded, and I have no intention to stop any point soon. Unless I die in a freak accident, it's not going to stay another lame chatbot.
 
-This proof of concept is hugely inspired by the game Sort the Court, a story-based, no-stakes, relaxing game where you are tasked with being the king, and responding yes or no to people asking for your rulings. This project replaces that binary choice with a textbox. (It's gonna be more than a chatbot I swear)
+Lord Game is a proof of concept for the implementation of Large Language Models (LLMs) in story generator games. Story Generator games are a particular genre of games that focus on making a complex simulation, and letting the player interact with this world. Some Table Top Role Playing Games (TTRPGs) aim for the same ideals of player agency in a structured world. DND, Pathfinder, Fate, and a billion other game systems have the sort of freedom this prototype aims to inspire the creation of. 
 
-This is not a story game, it is a story generation game. I denounce anyone who wants to replace artists with by-design derivative algorithms, as the pursuit and creation of art is only meaningful for someone who can experience its majesty. This is a game that uses LLMs as an algorithm for its emergent properties of reason and decision-making. It is an early proof of concept and uses Sort the Court as inspiration because of its simplicity.
+To be clear though, this is not a digitize DND attempt. There is a saturated market of games with this goal, and Virtual Tabletops have already achieved this. I would argue that the difference between the mediums of Tabletop Games and Video Games has led to two different approaches to achieving the same goal and this prototype fits cleanly into the video game medium's philosophy. In a dnd game, the DM is also a player, and their job is to be the world, with the help of rule books. In a game of CK3, there isn't a DM. The rules work without an interpreter.
+
 
 ## Instalation Instructions
 
-Necessary to run core project functionalities:
+### Necessary to run core project functionalities:
 
 Access to LLM VIA OpenAI API. You CAN'T just use ChatGPT, you need to go through the API.
 
-THis project uses the OpenAI API, but this doesn't mean you need to use their services. Working on this project, I've use LLama 2 7B Q8 through LM Studio run locally on my M1 Macbook Pro. this is not an endorsement of them, I didn't put in the most due diligence when selecting the LLM to run, it's competitors likely have similar features. 
+This project uses the OpenAI API, but this doesn't mean you need to use their services. Working on this project, I've use LLama 2 7B Q8 through LM Studio run locally on my M1 Macbook Pro. this is not an endorsement of them, I didn't put in the most due diligence when selecting the LLM to run, it's competitors likely have similar features. 
+
+
+### Actual Setup
 
 1. Clone the repository:
 
