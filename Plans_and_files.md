@@ -167,7 +167,7 @@ folder full of python scripts containing list of functions different instances o
 - Plan out and develop how the memory and other attached, unbuilt systems are to work, and start turning that into actual working code
 - add retcon / reroll command 
 - Add stuff wherever I feel like
-
+- I need to figure out the Commands stuff. I was just looking through OpenAI's docs, and apparently there's some infastructure setup already for the LLM calling commands, but I don't know if that works for LLMs not run by them, or what's going on there. 
 
 2. Other stuff I'm gonna probably work on in the not so immediate future
 

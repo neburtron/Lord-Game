@@ -9,10 +9,10 @@ This is not a story game, it is a story generation game. I denounce anyone who w
 ## Instalation Instructions
 
 Necessary to run core project functionalities:
-- Access to LLM VIA OpenAI API. You CAN'T just use ChatGPT, you need to go through the API.
-If you don't want to pay them, you can imitate an OpenAI server W LM Studio on a local device, with a local LLM model. 
-(other LLM software probably has similar features)
 
+Access to LLM VIA OpenAI API. You CAN'T just use ChatGPT, you need to go through the API.
+
+THis project uses the OpenAI API, but this doesn't mean you need to use their services. Working on this project, I've use LLama 2 7B Q8 through LM Studio run locally on my M1 Macbook Pro. this is not an endorsement of them, I didn't put in the most due diligence when selecting the LLM to run, it's competitors likely have similar features. 
 
 1. Clone the repository:
 
@@ -43,20 +43,13 @@ If you use the git clone command (in step 1), you should just be able to type CD
  pip install -r requirements.txt
 ```
 
-4. Put your details into llm_interface.py 
+4. Run Project
 
-Just open up llm_interface.py in a text editor or code editor, and change the values. I left out some because I didn't find the need to, it should be rather simple to add them in.
-
-Things you'll probably need to change/look at:
-- API Key
-- Model
-- Base_URL
-
-5. Run Project
-
-Just run the main.py script! If that doesn't work replace 'main' with 'Conversation', but it should. 
+Just run the main.py script!
 
 Only the first turn is setup for now, so running the main script directly should work.
+
+Main.py should automatically ask you the settings to use to connect to the llm. After this it will put it into a json called llm_settings, so if you want to go through that again just remove that file, if you want to change those values edit llm_settings.json in a text editor, and if you want to change what settings are used, change that file and llm_interface.py.
 
 ```bash
  python main.py
