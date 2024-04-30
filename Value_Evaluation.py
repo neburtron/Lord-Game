@@ -8,6 +8,15 @@ Before anything, it's probably a good idea to format it so it's just one message
 
 This script handles the array given to it by conversation.py
 
+
+Step 1 - break down
+
+1 - Seperate into prompts
+
+2 - Break down what happened + remove fluff
+ 
+
+
 It looks through the info and interprets it in two senses: 
 1, immediate value changes + value changes per turn
 2, story / lore / described changes / things that happened.

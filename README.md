@@ -9,7 +9,7 @@ To be clear though, this is not a digitize DND attempt. There is a saturated mar
 
 ## Instalation Instructions
 
-### Necessary to run core project functionalities:
+### Necessary to run project:
 
 Access to LLM VIA OpenAI API. You CAN'T just use ChatGPT, you need to go through the API.
 
@@ -59,9 +59,12 @@ Main.py should automatically ask you the settings to use to connect to the llm. 
  python main.py
 ```
 
-This project is early in development, and this is a rather simple prototype. If you're interested in this project, I suggest tweaking / playing around with the prompts. If you make something you like or improve what I wrote, feel free to share them for others to use. At some point, I plan to focus on improving the prompts, but I'm not there yet in development.
+This project is early in development, and this is a rather simple prototype. I am focusing on getting a complete build finished, so polishing the working gameplay is not a priority. If you want to run the demo, I suggest editing the prompts. There are two sets of prompts used in the current working build, Prompts.json and Conversation_Start_Prompt.txt, both in this project's root directory. 
 
-Additionally, anyone who wants to look at the code stuff is also encouraged to. it's public domain, if you're interested in helping out with this project I'm open to that, this is a thing I want to see materialize, any help in that effort is really appreciated. Refer to the CONTRIBUTING.md file if you're interested.
+Prompts.json has several sections in it. Text1, Text2, and EnterDesc, are both printed and given to the LLM, with the name of the characters attached to text1 and text2. Notes is only given to the LLM.
+
+If you change stuff / make stuff with this project, I'd be interested to see what you came up with, and by all means post it.
+
 
 ## How this project works and future plans
 

@@ -1,0 +1,6 @@
+{
+    "model": "local-model",
+    "temp": "0.7",
+    "api_key": "not-needed",
+    "base_url": "http://localhost:1234/v1"
+}
