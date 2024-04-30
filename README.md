@@ -68,7 +68,7 @@ If you change stuff / make stuff with this project, I'd be interested to see wha
 
 ## How this project works and future plans
 
-Refer to [Plans_and_Files.md](Plans_and_Files.md)
+Refer to [Plans_and_Files.md](plans_and_files.md)
 
 ## Contributing
 
@@ -77,7 +77,7 @@ Refer to [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 
-Refer to: [License](LICENSE.md)
+Refer to: [License](LICENSE)
 
 
 (I use the Unlicense, which basically just says this is public domain)
