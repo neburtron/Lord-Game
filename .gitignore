@@ -6,3 +6,6 @@ __pycache__/
 
 # Ignore the LLM Settings file
 llm_settings.json
+
+# ignore saves
+saves/

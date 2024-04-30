@@ -1,6 +1,6 @@
 import llm_interface
-import Commands
-import Find_Commands
+import commands
+import find_commands
 
 """
 Before anything, it's probably a good idea to format it so it's just one message W unified format W/O weird stuff
@@ -59,6 +59,6 @@ Might have missed some stuff.
 def main(conversation, save): 
     # Placeholder script that just writes array to json
     # Made it put it in selected save W turn number because why not
-    Commands.save("{save}/conversation_Turn{turn}.json", conversation)
+    commands.save("{save}/conversation_turn{turn}.json", conversation)
     print("conversation saved to conversation.json.")
 

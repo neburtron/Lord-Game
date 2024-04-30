@@ -13,10 +13,10 @@ Really, right now I'm still working on how the game is to work, it's not going t
 
 The game works in turns. There are ten events, prompts, or pre-written situations per turn, and the player's role is to react to them. This is the simple gameplay structure taken from Sort the Court that I am building on into something monsterous.
 
-When you start a new game, there is some pre-set info like the first day's worth of events, some starting seperate storylines (things happening independent to player), and some details about the setting. Memory system hasn't been written yet and as there's a lot of unwritten sections of this thing, the working demo just works with the Prompts.json file in the root directory of this project for now.
+When you start a new game, there is some pre-set info like the first day's worth of events, some starting seperate storylines (things happening independent to player), and some details about the setting. Memory system hasn't been written yet and as there's a lot of unwritten sections of this thing, the working demo just works with the prompts.json file in the root directory of this project for now.
 
 
-The first thing to talk about is Conversation.py, where the player interacts with the LLM.
+The first thing to talk about is conversation.py, where the player interacts with the LLM.
 
 Give or take a chatbot
 Right now it isn't done, but a working build of this script has been written.
@@ -31,7 +31,7 @@ Next, interpretion
 
 Currently in development / being planned out.
 
-Value_Evaluation is a temp script with some plans writen in it. It's called by Conversation.py, and right now just saves Array (LLMs version of conversation log) as a json file I think in the save file made in main.py
+value_evaluation is a temp script with some plans writen in it. It's called by conversation.py, and right now just saves Array (LLMs version of conversation log) as a json file I think in the save file made in main.py
 
 I am not going to go too far in depth with this, because it largely depends on how the memory system is going to be setup, and that is still really in the air. I just wrote the plans in that doc + if you want to know more maybe refer to that / just ask me about it. I might've just forgotten to mention whatever you're curious about, but I might've also just not figured out how I want to handle that, so be warned.
 
@@ -61,7 +61,7 @@ Another thing - Storylines should be a thing. Things that are unresolved / curre
 
 Writing new Prompts
 
-This part is less pivotal and I don't think it's gonna be as hard, but I still need to figure out how I'm going to exactly handle it. At the end of every turn, new prompts need to be generated. Based on the current state of the world, maybe some stuff from the memory system, example prompts from Prompts.json, open storylines / events timetabled or ready to be used, etc, and write new prompts. This should follow the format of Prompts.json, and at the end of the script it should make a new script called Prompts.json + rename +/ move the last one. That or just make a new Prompts.json with the new prompts with an earlier bit renaming and moving the old Prompts{turn number}.json file.
+This part is less pivotal and I don't think it's gonna be as hard, but I still need to figure out how I'm going to exactly handle it. At the end of every turn, new prompts need to be generated. Based on the current state of the world, maybe some stuff from the memory system, example prompts from prompts.json, open storylines / events timetabled or ready to be used, etc, and write new prompts. This should follow the format of prompts.json, and at the end of the script it should make a new script called prompts.json + rename +/ move the last one. That or just make a new prompts.json with the new prompts with an earlier bit renaming and moving the old prompts{turn number}.json file.
 
 
 
@@ -90,7 +90,7 @@ What it does:
 - Runs Conversaton.py W save's name, and a Bool var for if it's a newly made save
 
 2
-Commands.py
+commands.py
 General script for doing stuff like making a new json file + saving thing to it. Called by other scripts.
 
 What it does: (functions in it)
@@ -98,14 +98,14 @@ What it does: (functions in it)
 - Load: return contents of given json file 
 - append: Add thing to end of file (Supports appending dictionaries in JSON format)
 - read: Read contents of given file (for txt files I think)
-- prompts: Load Prompts.json specifically. (how to work after builds W more than one turn commented in)
+- prompts: Load prompts.json specifically. (how to work after builds W more than one turn commented in)
 - printspace: Print input to terminal, but with empty space above and below
 - printpure: Same as above, but without spaces. These are commands so it's easier to add a proper GUI
 - input1: the 1's there so it's distinquishable from input(). Same idea as above, get user input. + return it
 - list_saves: Used in main.py, list folders in save folder + return list
 
 3
-Conversation.py:
+conversation.py:
 Currently the only core script implemented to any serious extent. Handle's the player's interaction with the game and hands off the conversation logs at the end. It's not perfect, the prompts aren't good and I still need to setup the commands properly, I need to get it to interact with the memory system + whatnot, but besides that it's pretty complete. Not polished, not done by any means, but it does what it should.
 
 Not going to go into detail, might add it in later though.
@@ -116,48 +116,49 @@ A simple script in charge of sending whatever server is hosting the LLM the mess
 
 
 5
-Value_Evaluation.py:
-Temp script made for Conversation.py. Conversation.py calls a function in it with the chatlog array the LLM is given. Right now it just saves a file with that data, but this script is going to be responsible for starting or doing the 2nd part of the turn. 
+value_evaluation.py:
+Temp script made for conversation.py. conversation.py calls a function in it with the chatlog array the LLM is given. Right now it just saves a file with that data, but this script is going to be responsible for starting or doing the 2nd part of the turn. 
 
 There's some commented in plans here too.
 
 6
-Find_Commands.py:
-Not yet implemented properly. The script itself works from what I can tell. the Conversation.py LLM commands script should work, and all that's needed to implement is writing in logic in Commands.py, and prompting the LLM better. For other sets of commands you need to do the same, but also write a python file in commands_callable the same as the one already in there.
+find_commands.py:
+Not yet implemented properly. The script itself works from what I can tell. the conversation.py LLM commands script should work, and all that's needed to implement is writing in logic in commands.py, and prompting the LLM better. For other sets of commands you need to do the same, but also write a python file in commands_callable the same as the one already in there.
 
 Basically this script looks for {}'s in the text, puts them into an array, takes the given commands script to use (in Commands folder), and runs whatever functions are called, returning values for parent script to interpret.
 
 7
 Commands/Conversation_Commands.py
-Set of commands the LLM instance run by Conversation.py, that directly interacts with the player has access to. Used by Find_Commands.py. 
+Set of commands the LLM instance run by conversation.py, that directly interacts with the player has access to. Used by find_commands.py. 
 
 Other Files:
 
 8
-Conversation_Start_Prompt.txt:
-This is the prompt used for telling the LLM instances created by Conversation.py what it should be doing.
+conversation_start_prompt.txt:
+This is the prompt used for telling the LLM instances created by conversation.py what it should be doing.
 
 9
-Prompts.json:
-A set of prompts used for the first turn. Used by Conversation.py and will eventually be used in part 3 for the format + style the LLM should be writing in.
+prompts.json:
+A set of prompts used for the first turn. Used by conversation.py and will eventually be used in part 3 for the format + style the LLM should be writing in.
 
 10
 Saves
 Empty folder
-Empty folders made in it when you make a new save, and if you make it through turn 1, the LLM's context array from Conversation.py is dropped in there as a json.
+Empty folders made in it when you make a new save, and if you make it through turn 1, the LLM's context array from conversation.py is dropped in there as a json.
 
 11
 commands_callable folder
-folder full of python scripts containing list of functions different instances of LLM can call. Originally made for Find_Commands.py, as it uses a list of these functions to only call commands that exist.
+folder full of python scripts containing list of functions different instances of LLM can call. Originally made for find_commands.py, as it uses a list of these functions to only call commands that exist.
 
+
+
+I am in the process of rewriting the prompt settings input. In the new version, there are two tabs, and and I will eventually set it up so that you can use OpenAI's API or whatever HuggingFace offers. It's a Tkinter app, and it looks pretty good so far. All I need to do is update the Jsons, update the readme, rewrite llm_interface.py, and fix main.py, and it's gonna be usable. Basic, but readable GUI. 
 
 ### Roadmap
 
 0. I'll change as I go
 
 - Improve / fix scripts when I see problems
-
-- Formatting: I think I should have lowercase script titles, I'm gonna probably change them in a while, but I'm not doing it now because it's a decent chunk of work to look through to check if I broke anything. I'm gonna lowercase + put_these_inbetween_words for new scripts. Sorry, I know, if you want me to fix it I'll do that sooner rather than later, just send me a message or something
 
 - Documentation: I'm gonna try and fix this doc and the readme, and the other ones if I see problems with them. I did a decent amount of work today on this stuff, but it's kinda dull work.
 
@@ -171,11 +172,11 @@ folder full of python scripts containing list of functions different instances o
 
 2. Other stuff I'm gonna probably work on in the not so immediate future
 
-- Properly implement commands into Conversation.py + give the player their own python file in commands_callable
-- Add info taken from memory to Conversation.py - either add a bit to prompts.json that calls to relevant data, or some other way of doing it.
+- Properly implement commands into conversation.py + give the player their own python file in commands_callable
+- Add info taken from memory to conversation.py - either add a bit to prompts.json that calls to relevant data, or some other way of doing it.
 - Implement stuff I plan on implementing, commented in throughout this project
 
-- Work on building core gameplay. I don't know what I'm gonna focus on first, but right now I am focused on the LLM integration. Either eval, memory, fixing Conversation.py, adding more stuff to conversation.py, the balancing values part of the game I haven't setup yet, or something else.
+- Work on building core gameplay. I don't know what I'm gonna focus on first, but right now I am focused on the LLM integration. Either eval, memory, fixing conversation.py, adding more stuff to conversation.py, the balancing values part of the game I haven't setup yet, or something else.
 
 
 3. Further away ideas
@@ -187,7 +188,7 @@ folder full of python scripts containing list of functions different instances o
 
 4. I'll probably get around to it eventually
 
-- Change it so that main.py or wherever else deletes saves if they aren't played in. Needed for Conversation.py, runs first turn's prompts if it's told it is a new turn, and that happens if the main.py script runs the create new save thing.
+- Change it so that main.py or wherever else deletes saves if they aren't played in. Needed for conversation.py, runs first turn's prompts if it's told it is a new turn, and that happens if the main.py script runs the create new save thing.
 
 - add like 4 - 5 additional prompts to prompts.json. They should be rather normal prompts, not like the first, second, and last one. These are to be used to tell LLM what it should make prompts look like.
 

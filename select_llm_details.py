@@ -1,7 +1,7 @@
 import os
 import tkinter as tk					 
 from tkinter import ttk 
-import Commands
+import commands
 
 # Not Final
 # The stuff in main.py is currently used
@@ -24,8 +24,8 @@ def load_last_tab_index():
         # Return default tab index if the file is not found
         return 0
 
-OpenAI_Settings = Commands.load(os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
-HuggingFace_Settings = Commands.load(os.path.join(SETTINGS_FOLDER, "HuggingFace.json"))
+OpenAI_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
+HuggingFace_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "HuggingFace.json"))
 
 def save_settings(model_settings):
     # Save settings logic here

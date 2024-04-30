@@ -2,7 +2,7 @@
 """
 Set of ongoing storylines independed, and potentially hidden from user.
 
-Make a file like Prompts.py + get starting list there if new game
+Make a file like prompts.py + get starting list there if new game
 When doing this, it's probably a good idea for future developments, to put story setup stuff in it's own folder
 
 At end of each turn, after Eval, what the player did / what they dealt with, if it impacts the thing being simulated, 

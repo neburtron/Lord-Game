@@ -1,4 +1,4 @@
-#from Conversation import Talk
+#from conversation import Talk
 import random
 import llm_interface
 
@@ -26,7 +26,8 @@ Insight check - check if thing player says is a lie from looking at prevous turn
 # Empty
 def Next():
     return 
-    # call next command from Conversation.py 
+    # call next command from conversation.py 
+    # If this script is used, return whatever instead of calling script...
 
 # Done
 def Roll_Dice(sides):
@@ -36,7 +37,7 @@ def Roll_Dice(sides):
 # Empty
 def Hidden_Note(text):
     return
-    # Change Conversation.py's relay prompt thing so that it handles all stuff printed
+    # Change conversation.py's relay prompt thing so that it handles all stuff printed
     # besides user input, streamline process, and have this have the same behavior as notes
     # section from prompts.
 

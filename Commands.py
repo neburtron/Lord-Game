@@ -55,7 +55,7 @@ def read(filename):
         return ''
 
 def prompts(save, turn=0):
-    filename = "Prompts.json"
+    filename = "prompts.json"
     if turn == 0:
         # Use the provided filename directly
         file = filename

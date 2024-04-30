@@ -59,16 +59,16 @@ Main.py should automatically ask you the settings to use to connect to the llm. 
  python main.py
 ```
 
-This project is early in development, and this is a rather simple prototype. I am focusing on getting a complete build finished, so polishing the working gameplay is not a priority. If you want to run the demo, I suggest editing the prompts. There are two sets of prompts used in the current working build, Prompts.json and Conversation_Start_Prompt.txt, both in this project's root directory. 
+This project is early in development, and this is a rather simple prototype. I am focusing on getting a complete build finished, so polishing the working gameplay is not a priority. If you want to run the demo, I suggest editing the prompts. There are two sets of prompts used in the current working build, prompts.json and conversation_start_prompt.txt, both in this project's root directory. 
 
-Prompts.json has several sections in it. Text1, Text2, and EnterDesc, are both printed and given to the LLM, with the name of the characters attached to text1 and text2. Notes is only given to the LLM.
+prompts.json has several sections in it. Text1, Text2, and EnterDesc, are both printed and given to the LLM, with the name of the characters attached to text1 and text2. Notes is only given to the LLM.
 
 If you change stuff / make stuff with this project, I'd be interested to see what you came up with, and by all means post it.
 
 
 ## How this project works and future plans
 
-Refer to [Plans_and_Files.md](Plans_and_files.md)
+Refer to [Plans_and_Files.md](plans_and_files.md)
 
 ## Contributing
 

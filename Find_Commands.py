@@ -1,4 +1,4 @@
-import Commands
+import commands
 import importlib.util
 import os
 import re

@@ -1,8 +1,8 @@
 import llm_interface
-import Commands
+import commands
 import sys
-import Value_Evaluation
-import Find_Commands
+import value_evaluation
+import find_commands
 
 class Talk:
 
@@ -24,7 +24,7 @@ class Talk:
             # Implement get turn number later
 
         # Get LLM's conversation directions, add it to the array, and 
-        LLM_start_prompt = Commands.read("Conversation_Start_Prompt.txt")
+        LLM_start_prompt = commands.read("conversation_start_prompt.txt")
         self.array_input("system","",LLM_start_prompt)
         self.get_prompts()
 
@@ -37,13 +37,13 @@ class Talk:
 
     def get_prompts(self):
         try:
-            self.prompts = Commands.prompts(self.save, self.turn)
+            self.prompts = commands.prompts(self.save, self.turn)
             # Run the get prompts command from commands.py
             if not self.prompts:
-                Commands.printpure("Error: No prompts retrieved.")
+                commands.printpure("Error: No prompts retrieved.")
                 sys.exit(1)  # Exit program if prompts are not retrieved successfully
         except Exception as e:
-            Commands.printpure(f"Error in prompt retrieval: {e}")
+            commands.printpure(f"Error in prompt retrieval: {e}")
             sys.exit(1)  # Exit program for any other unexpected errors
     
     def array_input(self,thing,character,msg):
@@ -66,30 +66,30 @@ class Talk:
             self.current_prompt_index += 1  # Move to the next prompt for the next call
             return next_prompt
         else:
-            Commands.printspace("First turn over, second turn not implemented yet. THE END.")
+            commands.printspace("First turn over, second turn not implemented yet. THE END.")
 
-            Value_Evaluation.main(self.array, self.save, self.turn)
+            value_evaluation.main(self.array, self.save, self.turn)
             # @ end of turn, run the prepare next turn script. 
             sys.exit() # Remove when continuing to turn 2 is possible 
 
     def relayprompt(self, prompt):
        # Temp notation of current prompt
-        Commands.printpure(self.current_prompt_index)
+        commands.printpure(self.current_prompt_index)
 
         # Check and print enter description if available
         if "EnterDesc" in prompt and prompt["EnterDesc"].strip():
             self.array_input("system", "Scene", prompt["EnterDesc"].strip())
-            Commands.printpure(f"Scene: {prompt['EnterDesc'].strip()}")
+            commands.printpure(f"Scene: {prompt['EnterDesc'].strip()}")
 
         # Check and print text1 if available
         if "character" in prompt and "text1" in prompt and prompt["text1"].strip():
             self.array_input("system", prompt["character"], prompt["text1"].strip())
-            Commands.printpure(f"{prompt['character']}: {prompt['text1'].strip()}")
+            commands.printpure(f"{prompt['character']}: {prompt['text1'].strip()}")
 
         # Check and print text2 if available
         if "character" in prompt and "text2" in prompt and prompt["text2"].strip():
             self.array_input("system", prompt["character"], prompt["text2"].strip())
-            Commands.printpure(f"{prompt['character']}: {prompt['text2'].strip()}")
+            commands.printpure(f"{prompt['character']}: {prompt['text2'].strip()}")
         
         # Check and give LLM Notes if available
         if "notes" in prompt and prompt["notes"].strip():
@@ -102,7 +102,7 @@ class Talk:
 
     def user_input(self, first):
         # For the first prompt it's better if it skips the LLM alltogether.
-        user_input = Commands.input1()
+        user_input = commands.input1()
             
         if first == True:
             self.isturn1 = False
@@ -112,8 +112,8 @@ class Talk:
         else:
 
             if user_input == "exit":  # Exit the program
-                Commands.printspace("Are you sure you want to exit? Type yes to confirm.")
-                confirm = Commands.input1()  # Get user confirmation
+                commands.printspace("Are you sure you want to exit? Type yes to confirm.")
+                confirm = commands.input1()  # Get user confirmation
                 if confirm == "yes":
                     sys.exit()
             elif user_input == "next":
@@ -139,13 +139,13 @@ class Talk:
 
             """
             WIP
-            CommandsList = Find_Commands.main(content,"Conversation_Commands")
+            CommandsList = find_commands.main(content,"Conversation_Commands")
             for command in CommandsList:
                 print (command)
             """
 
             # Print the message for player
-            Commands.printspace(f":{content}")
+            commands.printspace(f":{content}")
     
 
 

@@ -1,5 +1,5 @@
 from openai import OpenAI
-import Commands
+import commands
 
 ## Some LLM Details ##
 
@@ -11,7 +11,7 @@ def starting():
     global settings
     global client
 
-    settings = Commands.load("llm_settings.json")
+    settings = commands.load("llm_settings.json")
 
     if 'base_url' in settings:
         client = OpenAI(
@@ -46,5 +46,5 @@ def main(msgs):
 
         return completion.choices[0].message
     except Exception as e:
-        Commands.printspace(f"Error during LLM interaction: {e}")
+        commands.printspace(f"Error during LLM interaction: {e}")
         return None
