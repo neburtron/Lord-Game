@@ -23,7 +23,7 @@ class Talk:
             self.isturn1 = False
             # Implement get turn number later
 
-        # Get LLM's conversation directions, add it to the array, and 
+        # Get LLM's conversation directions, add it to the array, and get prompts 
         LLM_start_prompt = commands.read("conversation_start_prompt.txt")
         self.array_input("system","",LLM_start_prompt)
         self.get_prompts()
@@ -146,7 +146,6 @@ class Talk:
 
             # Print the message for player
             commands.printspace(f":{content}")
-    
 
 
         self.user_input(0)

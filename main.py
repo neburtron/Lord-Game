@@ -66,7 +66,7 @@ def inputsave(existing_saves):
     save_name = commands.input1()
 
     if save_name in existing_saves:
-        Talk_Instance = Talk(save_name)
+        Talk_Instance = Talk(save_name, False) # Replace this with formatprompts.json
     else:
         commands.printspace("No save found by that name. Type 'back' to write a different name, or type anything else to start a new game.")
         confirm = commands.input1()
@@ -76,8 +76,7 @@ def inputsave(existing_saves):
             inputsave(existing_saves)
         else:
             makesave(save_name)
-            Talk_Instance = Talk(save_name,True)
-
+            Talk_Instance = Talk(save_name,True) # Replace this with formatprompts.json
 
 def main():
     # Get nessisary LLM Settings

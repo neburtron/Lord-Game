@@ -1,9 +1,6 @@
 import json
 import os
 
-
-
-
 def save(filename, contents):
     # Save contents to a file. Supports dictionaries, other types are written directly.
     # Just for Json files, I don't think I used this for normal txt files anywhere
