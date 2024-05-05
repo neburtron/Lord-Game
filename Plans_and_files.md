@@ -1,72 +1,43 @@
 If you want a deeper look into how this project works, and where it's going, this is the place to look. Expect things to change, this is a public project and I am still figuring out how it's going to work.
 
-
+If you want to help send me a message or look through this for something to work on / some of the other files in this thing, I tried to comment in what I had in mind.
 
 
 ## Game Design
 
-This is a summary of the current plans / idea for how this game is going to look if and when it's finished. Currently I'd not recommend reading through this part, it's not organized and I'm gonna edit it later. Maybe go for the current state of the game / some other section in this doc.
+This is an overview of the idea I've got for how the game's gonna look.
 
-Really, right now I'm still working on how the game is to work, it's not going to make sense. Trust me, you're better off skipping it unless you looked at other stuff and want to help, this focuses on how the LLM aspects work and ignores everything else. It also talks about stuff in detail arbitrarally where and only where I thought of stuff to add, where I am now, working on certain bits of the project.
-
-
-
-The game works in turns. There are ten events, prompts, or pre-written situations per turn, and the player's role is to react to them. This is the simple gameplay structure taken from Sort the Court that I am building on into something monsterous.
-
-When you start a new game, there is some pre-set info like the first day's worth of events, some starting seperate storylines (things happening independent to player), and some details about the setting. Memory system hasn't been written yet and as there's a lot of unwritten sections of this thing, the working demo just works with the prompts.json file in the root directory of this project for now.
+This isn't the most organised project or planning doc. I had close to no programming experience when I started this thing, I've been working on this thing for a month, but still. 
 
 
-The first thing to talk about is conversation.py, where the player interacts with the LLM.
+### Idea
 
-Give or take a chatbot
-Right now it isn't done, but a working build of this script has been written.
-The player is given a pre-written bit of text giving them a decision to make, and the player decides what they want to do. A chatbot RPs with the player if they want to ask questions or their decision takes more than one message
+The player is given 10 pre-written situations to deal with. They write in what they want to say or do, and an LLM decides what happens. I want as much structure as possible for the LLM.
 
-When the player (or later LLM) thinks the situation is done, they can call a command to end the turn. Currently this works by seeing if the user's input is "next" ignoring capitalization and  extra   spaces. Half implemented is a way to read text written in {}'s as commands, and execute them in an external script callable throughout the project. Not done yet. When there's a GUI, these'll probably be buttons. LLM can't yet call the Next commands and if this is going to turn into something, there's gonna need to be some care put into the prompting and working with the LLM to get it to respond as desired, and not halicinate new prompts, or ask the user to make decisions they shouldn't be making.
+There are 10 events per turn, and after the player makes their decisions, a whole lot of stuff happens under the hood. First off, there are to be a set of storylines or happenings going on independent from the player. For turn 1, the prompts are taken from the prompts.json file in the root directory, after that the prompts are written by an instance of the LLM. Simularally, 10 or so active agents / things with motivations are provided for the first turn.
 
-Biggest features not yet implemented is callable commands (by LLM and player), and access to the currently theoretical memory system. There's also a few missing prompts, give or take a few depending on if we want 10 examples for prompt writing section, or if we don't need that many. First, second, and last I think are a bit wierd, maybe a few others, so probably not the best examples.
+Here's the procedure the game goes through at the end of the player's turn:
 
+1. The LLM takes relevant info out of each situation's text log
+2. The results of those decisions are determined through the LLM's decisonmaking and the roll of dice called by LLM
+3. The LLM evaluates how those effect the independent storylines. For the first turn what the active agents / core member(s) of storyline do are given, after that based on the longer term goals, world, etc, etc, the following actions are created.
+4. The LLM decides how the independent agent's actions + plans + whatever turn out / are effected
+5. All the stuff that's happened is recorded in new copy of memory folder created for turn, has to be done in a readable way(here or earlier on)
+6. Based on current state of world, what happened, and other stuff, ideas for what could happen are added to list of sown seeds. You don't need to plan your story out if you set a good enough foundation, this is a list of stuff that could come up again.
+7. Write the prompts - This is a big one I don't know exactly how I'm gonna handle. Check if independent storylines get close enough to player for them to cross paths in some form, check to see if there's any scheduled / setup events for current turn, get some proportion of sown seeds + write out prompt, and fill the rest with prompts based on some set of data from memory.
 
-Next, interpretion
-
-Currently in development / being planned out.
-
-value_evaluation is a temp script with some plans writen in it. It's called by conversation.py, and right now just saves Array (LLMs version of conversation log) as a json file I think in the save file made in main.py
-
-I am not going to go too far in depth with this, because it largely depends on how the memory system is going to be setup, and that is still really in the air. I just wrote the plans in that doc + if you want to know more maybe refer to that / just ask me about it. I might've just forgotten to mention whatever you're curious about, but I might've also just not figured out how I want to handle that, so be warned.
-
-Simply put, summarize doccument in two senses: Story / lore notes (or changes), and value changes.
-
-In this game, value changes come in the form of changes to a set of values the player has to manage. Like in Sort the Court. Unlike Sort the Court, I'm gonna be including value changes that happen every turn for X turns, until something stops it, or whatever other end states. 
-
-Then there's story stuff. Summarize, remove fluff, seperate items from one another, maybe other stuff, and send 'em off to the memory system, distant_simulated.py, and the bit that writes new prompts.
+then it loops back around.
 
 
+The biggest thing I haven't quite figured out is the memory system. It's pivotal for this project and I don't know exactly how it's going to work. I think I want to have an LOD inspired thing with the capital city, the nearby area, stuff a short ways away, and stuff far away tracked seperately with pre-determined details like towns, landmarks, and the specifics of those details tracked. This should also enable simulation of other town's economies in a way the more flexable LLM can interact with. 
 
-Memory system
+Then characters, independent storylines, and other stuff should have their own sections. Character motivations are really important, both in the longer + shorter terms for what I've got in mind.
 
-This is a really important part of this project, I'm kind of putting off working on it (or would be if I was less ambitious), and am at the point where I kind of need to think about how this is going to work to further develop the core gameplay of this project.
+Accessing stored data is also going to be tough, but hopefully it can be managed to some extent. If I can get the prompt writing script to get all the relevant info, hopefully I can include that in the context and have the LLM call for info the player references it doesn't know about. still precarious to say the least.
 
-Memory is going to work as a timeline. At the end of every turn the conversation log is summarized, then the first script goes through and figures out how each thing effects the world. Somehow. New files are made as the system works along. new text files are made if references to a thing that doesn't exist are made and lore details are put in, last turn / however many turn's back files are updated with new information / updated to better fit the current state of the simulated world, and all of that stuff.
+Also, I plan on saving each turn's data seperately since you might want to read back through after a good playthrough / for debugging to see why something weird happened / looking through the stuff that happened you had no involvement in for characters you like / did cool stuff. New memory folder created for every turn / something. 
 
-There should be either a summary of important content for each file, or they should be short enough to be accessible to LLM.
-
-I want everything to be saved, because this is a story game, and being able to look back eventually is something I want to be possible.
-
-I think the biggest things are figuring out the specifics and making this relatively simple idea work in practice with the limited nature of LLMs and whatever other problems I face.
-
-Another thing - Storylines should be a thing. Things that are unresolved / currently being worked on that the player has access to. Either here or as part of the Eval bit, there should be a series of commands that gives the LLM control over setting something up to happen in a few days time, and whatever needs to be written to have those plans being interupted.
-
-
-
-Writing new Prompts
-
-This part is less pivotal and I don't think it's gonna be as hard, but I still need to figure out how I'm going to exactly handle it. At the end of every turn, new prompts need to be generated. Based on the current state of the world, maybe some stuff from the memory system, example prompts from prompts.json, open storylines / events timetabled or ready to be used, etc, and write new prompts. This should follow the format of prompts.json, and at the end of the script it should make a new script called prompts.json + rename +/ move the last one. That or just make a new prompts.json with the new prompts with an earlier bit renaming and moving the old prompts{turn number}.json file.
-
-
-
-That's a general look at the core LLM structure I'm thinking about, alongside implemented aspects. It is not coherent, it skips over / doesn't adress a bunch of stuff that is core to the project, but I'm currently reworking my plans and when I'm able to give a coherent overview of how the game design works, I will.
-
+Storylines the player instigated / is involved with should also be kept track of. I don't know how far I want this to be pushed. Simulating 50 AI characters doing their buisness every month / season is not reasonable, but I want characters to do stuff they would do.
 
 
 
@@ -74,131 +45,94 @@ That's a general look at the core LLM structure I'm thinking about, alongside im
 
 ### Current State of Game
 
-Right now there is a working build, but it is as bare bones as you can get. It's in essence a chatbot. However, I've rewritten a lot of it more than once, and as this is an ambitious project, I've tried to keep it as modular as I could.
-
-Here's how this project works so far, in some detail. Plans / out of the way unfinished stuff will not be included, just what each thing is here for / what each thing does.
-
-Starting with Python scripts:
-
-1
-main.py
-This is the main script, and the one you should run if you want to run this project and it's not currently broken.
-
-What it does:
-- Print starting text
-- Handles choosing save and making new saves
-- Runs Conversaton.py W save's name, and a Bool var for if it's a newly made save
-
-2
-commands.py
-General script for doing stuff like making a new json file + saving thing to it. Called by other scripts.
-
-What it does: (functions in it)
-- save: Save thing to file
-- Load: return contents of given json file 
-- append: Add thing to end of file (Supports appending dictionaries in JSON format)
-- read: Read contents of given file (for txt files I think)
-- prompts: Load prompts.json specifically. (how to work after builds W more than one turn commented in)
-- printspace: Print input to terminal, but with empty space above and below
-- printpure: Same as above, but without spaces. These are commands so it's easier to add a proper GUI
-- input1: the 1's there so it's distinquishable from input(). Same idea as above, get user input. + return it
-- list_saves: Used in main.py, list folders in save folder + return list
-
-3
-conversation.py:
-Currently the only core script implemented to any serious extent. Handle's the player's interaction with the game and hands off the conversation logs at the end. It's not perfect, the prompts aren't good and I still need to setup the commands properly, I need to get it to interact with the memory system + whatnot, but besides that it's pretty complete. Not polished, not done by any means, but it does what it should.
-
-Not going to go into detail, might add it in later though.
-
-4
-llm_interface.py:
-A simple script in charge of sending whatever server is hosting the LLM the messages, returning whatever the LLM responds with. Also stores data like the model being used, the temperature, the API Key, etc.
+Right now there is a working build, but it is as bare bones as you can get. It's in essence a chatbot. However, I've rewritten a lot of it more than once, and as this is an ambitious project, I've tried to keep it as modular as I could. I'm laying the groundwork for something actually interesting and I've got an idea of where I'm headed. 
 
 
-5
-value_evaluation.py:
-Temp script made for conversation.py. conversation.py calls a function in it with the chatlog array the LLM is given. Right now it just saves a file with that data, but this script is going to be responsible for starting or doing the 2nd part of the turn. 
+Proper doccumentation is gonna come later, I'm not organized enough to edit things every time I update this project, look through it yourself, send me a message, or wait for me to get around to making this thing more professional and put together. 
 
-There's some commented in plans here too.
-
-6
-find_commands.py:
-Not yet implemented properly. The script itself works from what I can tell. the conversation.py LLM commands script should work, and all that's needed to implement is writing in logic in commands.py, and prompting the LLM better. For other sets of commands you need to do the same, but also write a python file in commands_callable the same as the one already in there.
-
-Basically this script looks for {}'s in the text, puts them into an array, takes the given commands script to use (in Commands folder), and runs whatever functions are called, returning values for parent script to interpret.
-
-7
-Commands/Conversation_Commands.py
-Set of commands the LLM instance run by conversation.py, that directly interacts with the player has access to. Used by find_commands.py. 
-
-Other Files:
-
-8
-conversation_start_prompt.txt:
-This is the prompt used for telling the LLM instances created by conversation.py what it should be doing.
-
-9
-prompts.json:
-A set of prompts used for the first turn. Used by conversation.py and will eventually be used in part 3 for the format + style the LLM should be writing in.
-
-10
-Saves
-Empty folder
-Empty folders made in it when you make a new save, and if you make it through turn 1, the LLM's context array from conversation.py is dropped in there as a json.
-
-11
-commands_callable folder
-folder full of python scripts containing list of functions different instances of LLM can call. Originally made for find_commands.py, as it uses a list of these functions to only call commands that exist.
-
-
-
-I am in the process of rewriting the prompt settings input. In the new version, there are two tabs, and and I will eventually set it up so that you can use OpenAI's API or whatever HuggingFace offers. It's a Tkinter app, and it looks pretty good so far. All I need to do is update the Jsons, update the readme, rewrite llm_interface.py, and fix main.py, and it's gonna be usable. Basic, but readable GUI. 
 
 ### Roadmap
 
-0. I'll change as I go
-
-- Improve / fix scripts when I see problems
-
-- Documentation: I'm gonna try and fix this doc and the readme, and the other ones if I see problems with them. I did a decent amount of work today on this stuff, but it's kinda dull work.
+There is no working build for this project. Right now a lot of the code required for a full turn hasn't been written, and it will take a while to get to that point, let alone a clean build you can play ad infinitum.
 
 
-1. Things I am going to focus on in the immediate future
+##### Cleanup / work that I'm gonna get around to: 
+(not part of current goal)
 
-- Plan out and develop how the memory and other attached, unbuilt systems are to work, and start turning that into actual working code
-- add retcon / reroll command 
-- Add stuff wherever I feel like
-- I need to figure out the Commands stuff. I was just looking through OpenAI's docs, and apparently there's some infastructure setup already for the LLM calling commands, but I don't know if that works for LLMs not run by them, or what's going on there. 
-
-2. Other stuff I'm gonna probably work on in the not so immediate future
-
-- Properly implement commands into conversation.py + give the player their own python file in commands_callable
-- Add info taken from memory to conversation.py - either add a bit to prompts.json that calls to relevant data, or some other way of doing it.
-- Implement stuff I plan on implementing, commented in throughout this project
-
-- Work on building core gameplay. I don't know what I'm gonna focus on first, but right now I am focused on the LLM integration. Either eval, memory, fixing conversation.py, adding more stuff to conversation.py, the balancing values part of the game I haven't setup yet, or something else.
+Moving readme, license, this doc, etc to a docs folder or whatever
+Formalizing the formatting and applying it
+Documentation / adding comments
 
 
-3. Further away ideas
 
-- Moving beyond turn 1 (there's not gonna be a playable build W more than one turn for a while unless things change.)
+#### Current Goal: 
 
-- Rewrite code: Probably a few times with more local + project wide rewrites. I've done it a few times already. I'm new to coding and I don't know the best way to get what I'm looking for. Not a good idea with where I'm at, I tried a little while ago and I just got lost, later down the road when I've got other systems setup like the memory stuff +/ the eval stuff.
+First proper version:
+Alpha Version 0.1.0 
 
-
-4. I'll probably get around to it eventually
-
-- Change it so that main.py or wherever else deletes saves if they aren't played in. Needed for conversation.py, runs first turn's prompts if it's told it is a new turn, and that happens if the main.py script runs the create new save thing.
-
-- add like 4 - 5 additional prompts to prompts.json. They should be rather normal prompts, not like the first, second, and last one. These are to be used to tell LLM what it should make prompts look like.
-
-- Improving prompts
-
-5. If I get what I want to get done none
-
-- Add a GUI W buttons so you don't need to type {next} at the end of your message (when I fix commands)
-
-- Add a simple, traditional turn based strategy game section the player goes through to give LLM more time to work on stuff some civ clone, or an idle game, or some card based thing, or something else.
+It will be done when it's done, and that won't be for some time. I'd say the work I've got in mind will probably take like a month or two, but I am not great with timelines and this is the first cohesive plan I've setup. It's may 5th as of writing this btw. 
 
 
-I know this isn't that useful of a roadmap, but I don't feel comfortable enough setting more rigid plans.
+Main features:
+- Proper UI (temp + very barebones)
+- LLM Interface + Other LLM API Support
+- Better prompting
+- Commands
+- Preparation for proper game
+
+NOTE - this build will NOT include planned memory systems, prompt writing systems, and moving past turn 1. That's gonna take a few months to like a year if things continue at the current pace. 
+
+
+#### More in depth breakdown:
+
+I've started work planning and implementing various features, and I've done this to the extent that I think I've got enough to make a cohesive update to this project. 
+
+
+##### Proper UI
+
+The only reason I feel comfortable putting this here is because some simple tkinter stuff written by chatgpt seems to really work well. I've got a prototype for the LLM settings selection thing, and it's just fricking perfect. Then all I need is a basic main menu and a chat interface with a few buttons and I don't think that's gonna be too hard, since I've already got the backend setup. Only reason this is here is because I've been working on commands and writing in {next} is kinda lame. I also might add in some screen for the end of the turn to have that there for when the main gameplay loop is ready. 
+
+
+##### LLM Interface + Other LLM API Support
+
+This is a big one. Apparently you can get LLMs to respond in a custom json format, depending on the API you use. Right now I just call the LLM as a chatbot with a conversation log. I'm going to look into OpenAI's API and other LLM APIs. I don't know much about LLM API stuff. According to ChatGPT HuggingFace's Transformers thing is the other main LLM conversational / whatever text generation thing, and I'm probably going to look at that. I don't know what I'm talking about, I know that, if you know about this stuff send me a message or something, if you don't I'll get around to putting in the time to figure whatever stuff out.
+
+Besides conversation.py, llm_interface.py needs to change, alongside a better way to change the settings. I've doe that last one already, minus the input details and having the rest of the project interact with it. 
+
+
+##### Better Prompting
+
+This is kinda nessesitated by several things, and I've been meaning to get around to it. First off, I've started some groundwork for the write prompt stuff, and changing the prompting to be more rigid in the formatting to easier obtain and express info is a good step. Second, I'm changing the conversation.py LLM formatting anyways, so why not. Third, commands. Fourth, it's better if the LLM knows exactly what it's supposed to be doing. Fifth, I want to break up each prompt into it's own chatlog, so even more stuff around the prompting stuff. I can't really put this off for another release.
+
+
+##### Commands
+
+I've got a decent way's into it, I might redo most of it to better align with the API, this is an important piece I'm ready to implement and it's gonna be great!
+
+Prep for proper game (Moving beyond turn 1)
+
+Various stuff including cleaning up the code. I want to seperate the prompts to not run into token limits and keep the LLM on task, implement the format_prompts.py script I made to handle existing saves, and whatever else. Basically everything fits into this category, but I'm keeping this here.
+
+
+Also the retcon command where you can edit the last message you sent / get the LLM to try the thing again. Also options for rerolling probabilities rolled if the LLM rolled dice.
+
+
+
+I could've forgotten some stuff / might add stuff on if things go well, or I feel like it.
+
+#### Later down the road
+
+The three main things I haven't really started work on yet are the memory system, the simulation, and the prompt generator.
+
+The memory system works as you would intuit, the LLM gathers relevant info + that info is retrieved. Beyond that it's up in the air. 
+
+Simulation refers to the world going on around the player. I plan on having a set amount of story / plotlines going on that impact the world around the player, potentially alongside some more mechanical stuff W what season it is being tracked. I'm not going to get deep into it right now, but I have a good idea of what I want in my head and despite the amount of changes + work needed to implement it I'm confident in what it's gonna look like, despite how much resources it's gonna take up.
+
+Prompt generation is going to be a pretty important part of this thing. I want the process to be rigid and a particular proportion coming from sown seeds / setup plotlines / what's already happened, alongside new stuff.
+
+Then I'm gonna focus on making it run well all together, saving and loading games, being fun, etc. 
+
+Then at some point graphics would be nice.
+
+If I get everything planned done, a turn based town management thing would be interesting as a way to give the user something to do while the actually planned stuff happens.
+
