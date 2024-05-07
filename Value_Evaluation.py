@@ -1,5 +1,5 @@
 import llm_interface
-import Commands
+import commands
 import find_commands
 
 """
