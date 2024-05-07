@@ -1,19 +1,31 @@
 # Lord-Game
 
-This project is hugely inspired by the game Sort the Court, a story-based, no-stakes, relaxing game where you are tasked with being the king, and responding yes or no to people asking for your rulings. This project replaces that binary choice with a textbox. The current build goes through the first turn, and I'll be honest, right now, it's basically just a chatbot. This is a chatbot I've spent a lot of time working on and writing in such a way that it can be expanded, and I have no intention to stop any point soon. Unless I die in a freak accident, it's not going to stay another lame chatbot.
+This project is hugely inspired by the game Sort the Court, a story-based, no-stakes, relaxing game where you are tasked with being the king, and responding yes or no to people asking for your rulings. This project replaces that binary choice with a textbox. The current build goes through the first turn, and I'll be honest, right now, it's basically just a chatbot. This is a chatbot I've spent a lot of time working on and writing in such a way that it can be expanded, and I have no intention to stop any point soon. Unless I die in a freak accident, it's not going to stay another lame chatbot. 
 
-Lord Game is a proof of concept for the implementation of Large Language Models (LLMs) in story generator games. Story Generator games are a particular genre of games that focus on making a complex simulation, and letting the player interact with this world. Some Table Top Role Playing Games (TTRPGs) aim for the same ideals of player agency in a structured world. DND, Pathfinder, Fate, and a billion other game systems have the sort of freedom this prototype aims to inspire the creation of. 
+One of the four core parts of the core gameplay loop are implemented in some working state, conversation.py and the stuff that it needs to work. That's the bit where the user interacts with the game. It needs work, and I'm currently working on making it better and less of a chatbot through changing the format it writes in, giving it access to a set of commands, giving it a bunch more info + editing the prompts, etc. That's alongside some other QOL + other changes.
 
-To be clear though, this is not a digitize DND attempt. There is a saturated market of games with this goal, and Virtual Tabletops have already achieved this. I would argue that the difference between the mediums of Tabletop Games and Video Games has led to two different approaches to achieving the same goal and this prototype fits cleanly into the video game medium's philosophy. In a dnd game, the DM is also a player, and their job is to be the world, with the help of rule books. In a game of CK3, there isn't a DM. The rules work without an interpreter.
+The other three are really important for this proof of concept: the memory system, a system for simulating stuff happening independently to the player through a rigid structure of the goal / trajectory of some agent and a process for deciding what happens and how things change at the end of every turn, and a system for writing the next set of prompts. This is an ambitious project, it isn't anything special now. If you find it interesting I'd suggest starring or watching this project and coming back in like a year. Alternatively, I'm 100% open to hearing ideas or talking about this project.
 
+you can read about them more in [Plans_and_Files.md](Plans_and_files.md).
+
+
+Lord Game is a proof of concept for the implementation of Large Language Models (LLMs) in story generator games. Story Generator games are a particular genre of games that focus on making a complex simulation, and letting the player interact with this world. Think DND but as a video game. Story Generator video games and Table Top Role Playing Games (TTRPGs) like DND are two different genres of the same medium / artform, but TTRPGs have a similar balance of true flexibility and structure this project is aiming for. In other words, this is like a proper dnd video game, but it's not a dnd port, the way you go about achieving the same thing is different depending on the medium you're working I've spent a lot less time playing DND than CK2, CK3, Vicky 3, Civ 6, and rimworld each. 
+
+Representation:
+
+This is a proof of concept in the public domain designed to be customizable. I'm making a generic kingdom management game with a steryotypical europian king in it. I wrote this as a placeholder and it really really needs to be replaced and I'm gonna change the format to make it easier to write new prompts and to give the LLM a lot more info for the first proper version of this project. This is a story generator games, feel free to change how the story starts. I don't know if anyone's actually played this thing and liked the limited current state of the game enough to consider revistiting + writing new prompts, but thought I'd put this here anyways. for the current build, some text might be stored in the actual python scripts.
+
+ the prompts are stored in prompts.json, and the LLM's instructions are stored in conversation_start_prompt.txt
 
 ## Instalation Instructions
 
 ### Necessary to run project:
 
-Access to LLM VIA OpenAI API. You CAN'T just use ChatGPT, you need to go through the API.
+Access to LLM VIA OpenAI API. You can't just use ChatGPT, you need to go through the API.
 
 This project uses the OpenAI API, but this doesn't mean you need to use their services. Working on this project, I've use LLama 2 7B Q8 through LM Studio run locally on my M1 Macbook Pro. this is not an endorsement of them, I didn't put in the most due diligence when selecting the LLM to run, it's competitors likely have similar features. 
+
+I don't know a lot about LLM APIs. I'm going to look more into them with setting up different response formats. With this I plan on setting it up so you can use another API / setup infastructure to allow that. I think huggingface is one of the major alternatives, I don't know, I'm gonna look into this more later. LM Studio's worked for me.
 
 
 ### Actual Setup
@@ -51,20 +63,19 @@ If you use the git clone command (in step 1), you should just be able to type CD
 
 Just run the main.py script!
 
-Only the first turn is setup for now, so running the main script directly should work.
-
-Main.py should automatically ask you the settings to use to connect to the llm. After this it will put it into a json called llm_settings, so if you want to go through that again just remove that file, if you want to change those values edit llm_settings.json in a text editor, and if you want to change what settings are used, change that file and llm_interface.py.
-
 ```bash
  python main.py
 ```
 
-This project is early in development, and this is a rather simple prototype. I am focusing on getting a complete build finished, so polishing the working gameplay is not a priority. If you want to run the demo, I suggest editing the prompts. There are two sets of prompts used in the current working build, prompts.json and conversation_start_prompt.txt, both in this project's root directory. 
+Only the first turn is setup for now, so running the main script directly should work.
 
-prompts.json has several sections in it. Text1, Text2, and EnterDesc, are both printed and given to the LLM, with the name of the characters attached to text1 and text2. Notes is only given to the LLM.
+Main.py should automatically ask you the settings to use to connect to the llm. You can edit the json manually in the root directory, it should be called llm_settings.json if you're in the main branch, if you're in the other one Settings/OpenAI.json should be used. In the working branch there's also a Tkinter interface that's easier to use, it should give you the option to when you run main.py, or you can just run:
 
-If you change stuff / make stuff with this project, I'd be interested to see what you came up with, and by all means post it.
+```bash
+ python select_llm_details.py
+```
 
+The current build only works for the first turn and I've not implemented most of what I have planned. I had an ok time testing it out, and if you like the demo and are looking for more, it's gonna be a while and playing around with the prompts is probably your best bet... or DND. prompts.json and conversation_start_prompt.txt are the main ones. Prompts.json has 2 bits of text sent to both the player and LLM and notes sent only to the LLM. Format's gonna change in the first numbered version of this thing, so keep that in mind too.
 
 ## How this project works and future plans
 
@@ -78,7 +89,6 @@ Refer to [CONTRIBUTING.md](CONTRIBUTING.md)
 ## License
 
 Refer to: [License](LICENSE)
-
 
 (I use the Unlicense, which basically just says this is public domain)
 
@@ -97,4 +107,5 @@ mutemaroonworm@gmail.com
 
 Sort the Court
 The core gameplay of this project is hugely inspired by Sort the Court, a small indie game that I've played far far too much considering the limited narrative content for a game driven more by a pre-written story than gripping gameplay. Play the game. search for sort the court in Google or click the link below. Think that's the original posting, but I'm not sure.
+
 https://graebor.itch.io/sort-the-court
