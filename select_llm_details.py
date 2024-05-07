@@ -12,6 +12,11 @@ import commands
 
 SETTINGS_FOLDER = "settings"
 
+OpenAI_Settings = None
+HuggingFace_Settings = None
+tabControl = None
+
+
 def save_tab_index(tab_index):
     with open(os.path.join(SETTINGS_FOLDER, "last_tab_index.txt"), "w") as file:
         file.write(str(tab_index))
@@ -43,36 +48,45 @@ def create_settings_widgets(frame, model_settings):
 
     ttk.Button(frame, text="Save", command=lambda: save_settings({setting: entry_var.get() for setting, entry_var in entry_vars.items()})).grid(column=0, row=row, columnspan=2, pady=10)
 
+
 def on_tab_changed(event):
+    global tabControl
     selected_tab_index = tabControl.index("current")
     save_tab_index(selected_tab_index)
 
-root = tk.Tk() 
-root.title("Tab Widget") 
-root.minsize(height=500, width=500)
-root.geometry("500x500")
+def run_llm_settings():
+    global OpenAI_Settings
+    global HuggingFace_Settings
+    global tabControl
+    
+    root = tk.Tk()
+    root.title("Tab Widget")
+    root.minsize(height=500, width=500)
+    root.geometry("500x500")
 
+    label = ttk.Label(root, text="Edit LLM Settings \n\n\n Select tab of API you want to use. \n For OpenAI, base URL should be left blank if you are using their official servers. \n")
+    label.pack(pady=10)
 
-label = ttk.Label(root, text="Edit LLM Settings \n\n\n Select tab of API you want to use. \n For OpenAI, base URL should be left blank if you are using their official servers. \n")
-label.pack(pady=10)
+    tabControl = ttk.Notebook(root)
+    tabControl.bind("<<NotebookTabChanged>>", on_tab_changed)
 
-tabControl = ttk.Notebook(root) 
-tabControl.bind("<<NotebookTabChanged>>", on_tab_changed)
+    OpenAI = ttk.Frame(tabControl)
+    HuggingFace = ttk.Frame(tabControl)
 
-OpenAI = ttk.Frame(tabControl) 
-HuggingFace = ttk.Frame(tabControl) 
+    tabControl.add(OpenAI, text='OpenAI')
+    tabControl.add(HuggingFace, text='HuggingFace')
+    tabControl.pack(expand=1, fill="both")
 
-tabControl.add(OpenAI, text='OpenAI') 
-tabControl.add(HuggingFace, text='HuggingFace') 
-tabControl.pack(expand=1, fill="both") 
+    last_tab_index = load_last_tab_index()
+    tabControl.select(last_tab_index)
 
-last_tab_index = load_last_tab_index()
-tabControl.select(last_tab_index)
+    ttk.Label(OpenAI, text="OpenAI").grid(column=0, row=0, padx=30, pady=30)
+    create_settings_widgets(OpenAI, OpenAI_Settings)
 
-ttk.Label(OpenAI, text="OpenAI").grid(column=0, row=0, padx=30, pady=30) 
-create_settings_widgets(OpenAI, OpenAI_Settings)
+    ttk.Label(HuggingFace, text="HuggingFace").grid(column=0, row=0, padx=30, pady=30)
+    create_settings_widgets(HuggingFace, HuggingFace_Settings)
 
-ttk.Label(HuggingFace, text="HuggingFace").grid(column=0, row=0, padx=30, pady=30) 
-create_settings_widgets(HuggingFace, HuggingFace_Settings)
+    root.mainloop()
 
-root.mainloop()
+if __name__ == "__main__":
+    run_llm_settings()

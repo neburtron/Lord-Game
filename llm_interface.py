@@ -1,7 +1,13 @@
 from openai import OpenAI
 import commands
 
+
+
+
 ## Some LLM Details ##
+
+# This script needs to be edited to work with different APIs + stuff
+
 
 settings = None
 client = None
@@ -11,7 +17,7 @@ def starting():
     global settings
     global client
 
-    settings = commands.load("llm_settings.json")
+    settings = commands.load("Settings/OpenAI.json")
 
     if 'base_url' in settings:
         client = OpenAI(

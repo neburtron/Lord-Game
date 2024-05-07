@@ -1,50 +1,32 @@
 from conversation import Talk
 import commands
+import select_llm_details
+
 import os
+import tkinter as tk					 
+from tkinter import ttk 
+
 
 def check_text_file():
 
-    file_name = "llm_settings.json"
-    
-    # Check if the LLM details file exists
-    if os.path.isfile(file_name):
-        # Do nothing if so
-        return
+    print("testing")
+    select_llm_details.run_llm_settings()
+
+    last_tab_index = commands.read("Settings/last_tab_index")
+    selected = commands.read(last_tab_index)
+
+    if selected == 0:
+        details = commands.load("Settings/OpenAI.json")
+        return details
+    elif selected == 1:
+        details = commands.load("Settings/HuggingFace.json")
+        return details
     else:
-        # Array to store settings in
-        details =[]
-
-        commands.printspace("llm_settings.json not found. Enter your details below to automatically generate one, or write one yourself with the names used by OpenAI.")
-        
-        commands.printspace("What model do you want to use?")
-        model = commands.input1().strip().lower()
-        details.append({"model": model})
-
-        commands.printspace("What temperature do you want to use (Doesn't really matter, I set it as 0.7)")
-        temp = commands.input1().strip()
-        details.append({"temp": temp})
-
-        commands.printspace("What is your API Key?")
-        API = commands.input1()
-        details.append({"api_key": API})
-
-        commands.printspace("Do you want to specify the URL? If you're using OpenAI's servers to run LLM leave this blank, if not put whatever here.")
-        base_url = commands.input1().strip().lower()
-        if base_url:
-            details.append({"base_url": base_url})
-
-        commands.printspace("")
-        commands.printspace("")
-
-        commands.printspace("If you mispelled anything, want to change the values, or otherwise want to change  things, open the llm_settings.json file and add, remove, or change stuff as you see fit.")
-
-        commands.save(file_name, details) 
-        # save to json file
-
-        return
+        commands.printspace("Error with finding selected API")
+        return None
 
 def makesave(save):
-    # Implement proper logic later
+    # Implement proper makesave stuff later
     commands.printpure(f"Creating new save: {save}")
     try:
         os.mkdir ("Saves/" + save)
@@ -79,18 +61,31 @@ def inputsave(existing_saves):
             Talk_Instance = Talk(save_name,True) # Replace this with formatprompts.json
 
 def main():
-    # Get nessisary LLM Settings
-    check_text_file()
+    # Add if around here that checks if the settings files exist. 
+    # Make the settings jsons and run check_text_file if not, this whole thing if so.
+
+    commands.printpure("Do you want to change LLM settings? (write Y for yes, N for no)")    
+    choose = commands.input1().strip().upper()
+    
+    if choose == "Y":
+        check_text_file()
+    elif choose == "N":
+        pass
+    else:
+        commands.printspace ("you didn't type what I told you to, I am disapointed in you. You don't get to play anymore. Deleting python version 3.12 ...")
+
+        commands.printspace("\n\n\n Successfully deleted Python.")
+        return
 
     # Start Prompt
-    commands.printpure("")
+    commands.printspace("\n\n\n")
     commands.printpure("Welcome to Lord Game!")
     commands.printpure("Type in the name of an existing save listed below, or a new name to create a new game.\n")
     commands.printpure("")
     commands.printpure("Note - Game saves are not fully implemented, and current version only goes up to turn 1.")
     commands.printpure("If you play all the way through, your progress will be saved, but you can't play an existing save without error or your old save being overwritten.")
     commands.printpure("")
-
+    
     existing_saves = commands.list_saves()
     inputsave(existing_saves)
 

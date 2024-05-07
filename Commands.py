@@ -19,7 +19,7 @@ def save(filename, contents):
 
     
 def load(filename):
-    # Load contents from a file.
+    # Load contents from a json file.
     try:
         with open(filename, 'r') as f:
             return json.load(f)
