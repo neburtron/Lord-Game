@@ -1,7 +1,19 @@
 import json
 import os
 
+def save_txt(file_name, content):
+    try:
+        with open(file_name, 'w') as file:
+            file.write(content)
+        print(f"Content successfully written to {file_name}")
+    except Exception as e:
+        print(f"Error occurred: {e}")
+    
+
 def save(filename, contents):
+    # Change this, I tweaked this to get the settings thing to work, make it more general 
+    # or whatever to make it work proper.
+
     # Save contents to a file. Supports dictionaries, other types are written directly.
     # Just for Json files, I don't think I used this for normal txt files anywhere
     # make a new function for that if needed.

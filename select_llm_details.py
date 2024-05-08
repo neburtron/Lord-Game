@@ -2,6 +2,9 @@ import os
 import tkinter as tk					 
 from tkinter import ttk 
 import commands
+import json
+import os
+import shutil
 
 # Not Final
 # The stuff in main.py is currently used
@@ -16,6 +19,10 @@ OpenAI_Settings = None
 HuggingFace_Settings = None
 tabControl = None
 
+OpenAI_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
+HuggingFace_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "HuggingFace.json"))
+
+
 
 def save_tab_index(tab_index):
     with open(os.path.join(SETTINGS_FOLDER, "last_tab_index.txt"), "w") as file:
@@ -26,17 +33,19 @@ def load_last_tab_index():
         with open(os.path.join(SETTINGS_FOLDER, "last_tab_index.txt"), "r") as file:
             return int(file.read())
     except FileNotFoundError:
-        # Return default tab index if the file is not found
+        commands.save_txt("Settings/last_tab_index.txt", 0)
         return 0
 
-OpenAI_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
-HuggingFace_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "HuggingFace.json"))
+def save_settings(model_settings, settings_file):
+    try:
+        with open(settings_file, "w") as file:
+            json.dump(model_settings, file, indent=4)
+    except:
+        print("failed when trying to save")
+    else:
+        print("Settings saved:", model_settings)
 
-def save_settings(model_settings):
-    # Save settings logic here
-    print("Settings saved:", model_settings)
-
-def create_settings_widgets(frame, model_settings):
+def create_settings_widgets(frame, model_settings, settings_file):
     row = 1
     entry_vars = {}
     for setting, value in model_settings.items():
@@ -46,15 +55,37 @@ def create_settings_widgets(frame, model_settings):
         ttk.Entry(frame, textvariable=entry_var).grid(column=1, row=row, padx=5, pady=5)
         row += 1
 
-    ttk.Button(frame, text="Save", command=lambda: save_settings({setting: entry_var.get() for setting, entry_var in entry_vars.items()})).grid(column=0, row=row, columnspan=2, pady=10)
+    save_button = ttk.Button(frame, text="Save", command=lambda: save_settings({setting: entry_var.get() for setting, entry_var in entry_vars.items()}, settings_file))
+    save_button.grid(column=0, row=row, columnspan=2, pady=10)
 
 
 def on_tab_changed(event):
+    
+
     global tabControl
     selected_tab_index = tabControl.index("current")
     save_tab_index(selected_tab_index)
 
+
 def run_llm_settings():
+    # Function to duplicate JSON template if not found
+    def duplicate_json_template(src, dest):
+        shutil.copyfile(src, dest)
+
+    try:
+        with open(os.path.join(SETTINGS_FOLDER, "HuggingFace.json"), "r") as file:
+            pass
+    except FileNotFoundError:
+        # Duplicate HuggingFaceTemplate.json
+        duplicate_json_template(os.path.join(SETTINGS_FOLDER, "HuggingFaceTemplate.json"), os.path.join(SETTINGS_FOLDER, "HuggingFace.json"))
+
+    try:
+        with open(os.path.join(SETTINGS_FOLDER, "OpenAI.json"), "r") as file:
+            pass
+    except FileNotFoundError:
+        # Duplicate OpenAITemplate.json
+        duplicate_json_template(os.path.join(SETTINGS_FOLDER, "OpenAITemplate.json"), os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
+
     global OpenAI_Settings
     global HuggingFace_Settings
     global tabControl
@@ -80,11 +111,15 @@ def run_llm_settings():
     last_tab_index = load_last_tab_index()
     tabControl.select(last_tab_index)
 
+    # Load settings after creating files
+    OpenAI_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
+    HuggingFace_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "HuggingFace.json"))
+
     ttk.Label(OpenAI, text="OpenAI").grid(column=0, row=0, padx=30, pady=30)
-    create_settings_widgets(OpenAI, OpenAI_Settings)
+    create_settings_widgets(OpenAI, OpenAI_Settings, os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
 
     ttk.Label(HuggingFace, text="HuggingFace").grid(column=0, row=0, padx=30, pady=30)
-    create_settings_widgets(HuggingFace, HuggingFace_Settings)
+    create_settings_widgets(HuggingFace, HuggingFace_Settings, os.path.join(SETTINGS_FOLDER, "HuggingFace.json"))
 
     root.mainloop()
 
