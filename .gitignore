@@ -3,3 +3,7 @@ __pycache__/
 
 # Ignore Visual Studio Code settings
 .vscode/
+
+# Ignore saved settings files
+Settings/OpenAI.json
+Settings/OpenAI.json

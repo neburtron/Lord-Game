@@ -1,3 +1,44 @@
+import commands
+
+
+# Just started putting things into place, this is nothing, I'm gonna go back to it later.
+
+class Simulate:
+
+    def __init__(self, save, turn):
+        self.turn = turn
+        self.save = save
+
+        if turn == 0:
+            self.prompts = self.get_prompts(True)
+        else:
+            self.prompts = self.get_prompts(False)
+
+        self.prompts = self.get_prompts()
+    
+
+    def get_prompts(self,thing):
+        
+        def open_file():
+            return 5
+
+        if thing == True:
+            # get data from turn 1. Either keep in root for now or have a starting data folder
+            prompts = open_file("filename.json or folder/filename.json")
+            return prompts
+        else:
+            # Get from wherever it's stored for the turn
+            thing = 5 # Replace with thing to get file location (saves/save/filename.json or whatever)
+            prompts = open_file(thing)
+            return prompts
+
+
+
+if __name__ == "__main__":
+    Sim_Instance = Simulate(5, 5)
+
+
+
 
 """
 Set of ongoing storylines independed, and potentially hidden from user.
