@@ -7,7 +7,6 @@ import os
 import shutil
 
 # Not Final
-# The stuff in main.py is currently used
 # I'm going to play around with the settings + update llm_interface.py
 # When that's done I'll change the read me and you'll be able to change settings with this thing.
 # gets settings from Settings/OpenAI.json + Settings/HuggingFace.json, edit those docs to change what settings are given.

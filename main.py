@@ -1,25 +1,31 @@
-from conversation import Talk
+from conversation import 
 import commands
 import select_llm_details
+from format_prompts import Prompts
 
 import os
 import tkinter as tk					 
 from tkinter import ttk 
 
-
 def check_text_file():
 
     print("testing")
     select_llm_details.run_llm_settings()
+    settings = "settings"
+    thing = os.path.join(settings, "last_tab_index.txt")
 
-    last_tab_index = commands.read("Settings/last_tab_index")
-    selected = commands.read(last_tab_index)
+    try:
+        selected = commands.read(thing)
+
+    except:
+        selected = 0
+        commands.save_txt(thing, "0")
 
     if selected == 0:
-        details = commands.load("Settings/OpenAI.json")
+        details = commands.load(os.path.join(settings, "OpenAI.json"))
         return details
     elif selected == 1:
-        details = commands.load("Settings/HuggingFace.json")
+        details = commands.load(os.path.join(settings, "HuggingFace.json"))
         return details
     else:
         commands.printspace("Error with finding selected API")
@@ -48,7 +54,8 @@ def inputsave(existing_saves):
     save_name = commands.input1()
 
     if save_name in existing_saves:
-        Talk_Instance = Talk(save_name, False) # Replace this with formatprompts.json
+
+        Game_Instance = Prompts(save_name, False)
     else:
         commands.printspace("No save found by that name. Type 'back' to write a different name, or type anything else to start a new game.")
         confirm = commands.input1()
@@ -58,9 +65,12 @@ def inputsave(existing_saves):
             inputsave(existing_saves)
         else:
             makesave(save_name)
-            Talk_Instance = Talk(save_name,True) # Replace this with formatprompts.json
+            Game_Instance = Prompts(save_name,True)
 
 def main():
+    
+    print (os.getcwd())
+
     # Add if around here that checks if the settings files exist. 
     # Make the settings jsons and run check_text_file if not, this whole thing if so.
 

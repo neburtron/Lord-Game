@@ -1,6 +1,7 @@
 import commands
 from conversation import Talk
 import os
+import sys
 
 """
 
@@ -19,16 +20,19 @@ Setting things up to make things easier later.
 class Prompts:
 
     def __init__(self, save, new_save):
+        
         self.save = save
         self.new_save = new_save
         self.directory = f"saves/{save}"
+        self.turn = 0
+
         self.check_prompts()
 
     def check_prompts(self):
         if self.new_save == True:
             self.relay(True)
         else:
-            prompts_file = os.path.join(self.directory, self.save, "prompts.json")
+            prompts_file = os.path.join(self.directory, "prompts.json")
             if os.path.exists(prompts_file):
                 self.relay(False)
             else:
@@ -37,11 +41,23 @@ class Prompts:
     def generate(self):
         # Get data + send to write prompts script
         # Then run relay
-
         self.relay(False)
- 
-    def relay(self, newsave):
-        prompt = commands.prompts() # Prompts command should be rewritten 
-        Talk_Instance = Talk(prompt) # remove the old get prompt stuff from this script + save var from here.
-        pass
 
+
+    def relay(self, newsave):
+        try:
+            self.prompts = commands.prompts(self.save, self.turn)
+            # Run the get prompts command from commands.py. Rewrite at some point
+            if not self.prompts:
+                commands.printpure("Error: No prompts retrieved.")
+                sys.exit(1)  # Exit program if prompts are not retrieved successfully
+        except Exception as e:
+            commands.printpure(f"Error in prompt retrieval: {e}")
+            sys.exit(1)  # Exit program for any other unexpected errors
+
+        Talk_Instance = Talk(self.save, self.new_save, self.prompts)
+
+
+
+if __name__ == "__main__":
+    instance = Prompts(0, True)

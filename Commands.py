@@ -63,7 +63,7 @@ def read(filename):
         print(f"Error: {filename} not found.")
         return ''
 
-def prompts(save, turn=0):
+def prompts(save, turn):
     filename = "prompts.json"
     if turn == 0:
         # Use the provided filename directly

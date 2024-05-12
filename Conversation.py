@@ -6,13 +6,31 @@ import find_commands
 
 class Talk:
 
-    def __init__(self, save, newsave):
-        
+    def __init__(self, save, newsave, prompts):
+        # Main.py should call format_prompts + feed info in from there including prompts
+
         # Values
         self.save = save
         self.current_prompt_index = 0
         self.prompts = []
         self.array = []
+        self.newsave = newsave
+
+        self.prompts = prompts
+
+        try:
+            self.prompts = commands.prompts(self.save, self.turn)
+            # Run the get prompts command from commands.py
+            if not self.prompts:
+                commands.printpure("Error: No prompts retrieved.")
+                sys.exit(1)  # Exit program if prompts are not retrieved successfully
+        except Exception as e:
+            commands.printpure(f"Error in prompt retrieval: {e}")
+            sys.exit(1)  # Exit program for any other unexpected errors
+
+
+        first_prompt = self.get_next_prompt()
+        self.relayprompt(first_prompt)
 
         # If new game, current turn is 0
         if newsave == True:
@@ -26,26 +44,13 @@ class Talk:
         # Get LLM's conversation directions, add it to the array, and get prompts 
         LLM_start_prompt = commands.read("conversation_start_prompt.txt")
         self.array_input("system","",LLM_start_prompt)
-        self.get_prompts()
 
-        first_prompt = self.get_next_prompt()
-        self.relayprompt(first_prompt)
 
     def get_turn(self):
-        # Implement later
-        return 0
+        # implement later
+        self.isturn1 = True
+        return 0    
 
-    def get_prompts(self):
-        try:
-            self.prompts = commands.prompts(self.save, self.turn)
-            # Run the get prompts command from commands.py
-            if not self.prompts:
-                commands.printpure("Error: No prompts retrieved.")
-                sys.exit(1)  # Exit program if prompts are not retrieved successfully
-        except Exception as e:
-            commands.printpure(f"Error in prompt retrieval: {e}")
-            sys.exit(1)  # Exit program for any other unexpected errors
-    
     def array_input(self,thing,character,msg):
             if character:
                 self.array.append({"role": thing, "content": character + ": " + msg})
@@ -64,13 +69,22 @@ class Talk:
         if self.current_prompt_index < len(self.prompts):
             next_prompt = self.prompts[self.current_prompt_index] # Continue to next prompt
             self.current_prompt_index += 1  # Move to the next prompt for the next call
+            
+            value_evaluation.main(self.array, self.save, self.turn, self.current_prompt_index)
+            self.array = []
+            # This should work, but I'm rewriting a bunch of this project and am not going to test it
+            # for a little bit.
+
             return next_prompt
+        
         else:
             commands.printspace("First turn over, second turn not implemented yet. THE END.")
 
-            value_evaluation.main(self.array, self.save, self.turn)
+            value_evaluation.main(self.array, self.save, self.turn, self.current_prompt_index)
             # @ end of turn, run the prepare next turn script. 
-            sys.exit() # Remove when continuing to turn 2 is possible 
+            #sys.exit()
+            commands.printpure ("Out of prompts, that's all I've got for now. If you want you can run it again with the same prompts or play around with prompts.json.")
+
 
     def relayprompt(self, prompt):
        # Temp notation of current prompt
