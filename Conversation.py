@@ -1,8 +1,11 @@
+import value_evaluation
+
+import sys
+
 import llm_interface
 import commands
-import sys
-import value_evaluation
 import find_commands
+
 
 class Talk:
 
@@ -18,20 +21,6 @@ class Talk:
 
         self.prompts = prompts
 
-        try:
-            self.prompts = commands.prompts(self.save, self.turn)
-            # Run the get prompts command from commands.py
-            if not self.prompts:
-                commands.printpure("Error: No prompts retrieved.")
-                sys.exit(1)  # Exit program if prompts are not retrieved successfully
-        except Exception as e:
-            commands.printpure(f"Error in prompt retrieval: {e}")
-            sys.exit(1)  # Exit program for any other unexpected errors
-
-
-        first_prompt = self.get_next_prompt()
-        self.relayprompt(first_prompt)
-
         # If new game, current turn is 0
         if newsave == True:
             self.turn = 0
@@ -40,6 +29,10 @@ class Talk:
             self.turn = self.get_turn()
             self.isturn1 = False
             # Implement get turn number later
+
+        first_prompt = self.get_next_prompt()
+        self.relayprompt(first_prompt)
+
 
         # Get LLM's conversation directions, add it to the array, and get prompts 
         LLM_start_prompt = commands.read("conversation_start_prompt.txt")
@@ -70,7 +63,7 @@ class Talk:
             next_prompt = self.prompts[self.current_prompt_index] # Continue to next prompt
             self.current_prompt_index += 1  # Move to the next prompt for the next call
             
-            value_evaluation.main(self.array, self.save, self.turn, self.current_prompt_index)
+            value_evaluation.main(self.array, self.save, self.current_prompt_index)
             self.array = []
             # This should work, but I'm rewriting a bunch of this project and am not going to test it
             # for a little bit.
@@ -163,6 +156,3 @@ class Talk:
 
 
         self.user_input(0)
-
-if __name__ == "__main__":
-    talk_instance = Talk(0)

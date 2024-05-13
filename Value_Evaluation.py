@@ -56,12 +56,13 @@ Might have missed some stuff.
 
 """
 
-def main(conversation, save, turn, prompt): 
+def main(conversation, save, current_prompt_index, turn=0):
+    commands.save(f"{save}/conversation_turn{turn}_prompt{current_prompt_index}.json", conversation)
+    commands.printspace("saved text to json.")
+    pass
+    
     # Placeholder script that just writes array to json
     # Made it put it in selected save W turn number because why not
     
     # If there's not a folder that fits naming format W turn number, make it + change next bit to put new files in current folder
     # and also remove the turn part from the name...
-    
-    commands.save("{save}/conversation_turn{turn}_prompt{prompt}.json", conversation)
-    # commands.printspace("saved text to json.")

@@ -1,4 +1,3 @@
-import os
 import tkinter as tk					 
 from tkinter import ttk 
 import commands
@@ -12,7 +11,7 @@ import shutil
 # gets settings from Settings/OpenAI.json + Settings/HuggingFace.json, edit those docs to change what settings are given.
 # API selected by last open tab, kept in Settings/last_tab_index.txt
 
-SETTINGS_FOLDER = "settings"
+SETTINGS_FOLDER = "Settings"
 
 OpenAI_Settings = None
 HuggingFace_Settings = None
@@ -32,7 +31,6 @@ def load_last_tab_index():
         with open(os.path.join(SETTINGS_FOLDER, "last_tab_index.txt"), "r") as file:
             return int(file.read())
     except FileNotFoundError:
-        commands.save_txt("Settings/last_tab_index.txt", 0)
         return 0
 
 def save_settings(model_settings, settings_file):
@@ -59,7 +57,6 @@ def create_settings_widgets(frame, model_settings, settings_file):
 
 
 def on_tab_changed(event):
-    
 
     global tabControl
     selected_tab_index = tabControl.index("current")
@@ -84,6 +81,13 @@ def run_llm_settings():
     except FileNotFoundError:
         # Duplicate OpenAITemplate.json
         duplicate_json_template(os.path.join(SETTINGS_FOLDER, "OpenAITemplate.json"), os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
+    
+    try:
+        with open(os.path.join(SETTINGS_FOLDER, "last_tab_index.txt"), "r") as file:
+            pass
+    except FileNotFoundError:
+        with open("last_tab_index.txt", "w") as file:
+            file.write("0")
 
     global OpenAI_Settings
     global HuggingFace_Settings

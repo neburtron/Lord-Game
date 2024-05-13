@@ -63,23 +63,13 @@ def read(filename):
         print(f"Error: {filename} not found.")
         return ''
 
-def prompts(save, turn):
-    filename = "prompts.json"
-    if turn == 0:
-        # Use the provided filename directly
-        file = filename
-    else:
-        file = filename
-        # Change this later so that:
-        # If there's a file named prompts.json in saves/{save}/prompts, save that path as file var
-        # If not call the make prompts script before saving same path as file var
-        
-    # Use the load function to load JSON data
-    data = load(file)
-    if data is not None and isinstance(data, dict):
-        return data.get("prompts", [])
-    else:
-        return []
+def load_last_tab_index(Settings_Folder):
+    try:
+        with open(os.path.join(Settings_Folder, "last_tab_index.txt"), "r") as file:
+            return int(file.read())
+    except FileNotFoundError:
+        return 0
+
 
 def printspace(thing):
     print()
