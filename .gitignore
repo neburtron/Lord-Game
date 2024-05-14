@@ -6,4 +6,4 @@ __pycache__/
 
 # Ignore saved settings files
 Settings/OpenAI.json
-Settings/OpenAI.json
+Settings/HuggingFace.json

@@ -9,7 +9,6 @@ This is an overview of the idea I've got for how the game's gonna look.
 
 This isn't the most organised project or planning doc. I had close to no programming experience when I started this thing, I've been working on this thing for a month, but still. 
 
-
 ### Idea
 
 The player is given 10 pre-written situations to deal with. They write in what they want to say or do, and an LLM decides what happens. I want as much structure as possible for the LLM.
@@ -87,11 +86,9 @@ NOTE - this build will NOT include planned memory systems, prompt writing system
 
 I've started work planning and implementing various features, and I've done this to the extent that I think I've got enough to make a cohesive update to this project. 
 
-
 ##### Proper UI
 
 The only reason I feel comfortable putting this here is because some simple tkinter stuff written by chatgpt seems to really work well. I've got a prototype for the LLM settings selection thing, and it's just fricking perfect. Then all I need is a basic main menu and a chat interface with a few buttons and I don't think that's gonna be too hard, since I've already got the backend setup. Only reason this is here is because I've been working on commands and writing in {next} is kinda lame. I also might add in some screen for the end of the turn to have that there for when the main gameplay loop is ready. 
-
 
 ##### LLM Interface + Other LLM API Support
 
@@ -99,11 +96,9 @@ This is a big one. Apparently you can get LLMs to respond in a custom json forma
 
 Besides conversation.py, llm_interface.py needs to change, alongside a better way to change the settings. I've doe that last one already, minus the input details and having the rest of the project interact with it. 
 
-
 ##### Better Prompting
 
 This is kinda nessesitated by several things, and I've been meaning to get around to it. First off, I've started some groundwork for the write prompt stuff, and changing the prompting to be more rigid in the formatting to easier obtain and express info is a good step. Second, I'm changing the conversation.py LLM formatting anyways, so why not. Third, commands. Fourth, it's better if the LLM knows exactly what it's supposed to be doing. Fifth, I want to break up each prompt into it's own chatlog, so even more stuff around the prompting stuff. I can't really put this off for another release.
-
 
 ##### Commands
 
@@ -115,8 +110,6 @@ Various stuff including cleaning up the code. I want to seperate the prompts to 
 
 
 Also the retcon command where you can edit the last message you sent / get the LLM to try the thing again. Also options for rerolling probabilities rolled if the LLM rolled dice.
-
-
 
 I could've forgotten some stuff / might add stuff on if things go well, or I feel like it.
 

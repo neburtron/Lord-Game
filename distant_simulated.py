@@ -1,49 +1,28 @@
 import commands
 
-
-# Just started putting things into place, this is nothing, I'm gonna go back to it later.
-
-class Simulate:
-
-    def __init__(self, save, turn):
-        self.turn = turn
-        self.save = save
-
-        if turn == 0:
-            self.prompts = self.get_prompts(True)
-        else:
-            self.prompts = self.get_prompts(False)
-
-        self.prompts = self.get_prompts()
-    
-
-    def get_prompts(self,thing):
-        
-        def open_file():
-            return 5
-
-        if thing == True:
-            # get data from turn 1. Either keep in root for now or have a starting data folder
-            prompts = open_file("filename.json or folder/filename.json")
-            return prompts
-        else:
-            # Get from wherever it's stored for the turn
-            thing = 5 # Replace with thing to get file location (saves/save/filename.json or whatever)
-            prompts = open_file(thing)
-            return prompts
-
-
-
-if __name__ == "__main__":
-    Sim_Instance = Simulate(5, 5)
-
-
-
-
 """
-Set of ongoing storylines independed, and potentially hidden from user.
 
-Make a file like prompts.py + get starting list there if new game
+Distant Simulated script Planning
+
+Works similar to conversation.py, but different.
+
+Called after Eval script + given results of player's turn stuff
+
+
+1. Init stuff
+2. Save the given results of turn 1 gotten from eval
+3. Get the info that acts in the same role as prompts.json
+4. Go through array of storylines and player decisions and figure out if that's gonna effect the storyline
+5. Go through storylines + info written on what happens this turn + resolve
+6. Edit info / make changes to world or whatever
+7. Decide next steps + whatever
+8. Call next script or whatever
+
+This isn't that coherent, I know, sorry.
+
+
+
+
 When doing this, it's probably a good idea for future developments, to put story setup stuff in it's own folder
 
 At end of each turn, after Eval, what the player did / what they dealt with, if it impacts the thing being simulated, 
@@ -95,4 +74,38 @@ Save all the stuff, try to do it in an organized manner.
 I know this is a really big addition to make to the plans, but I want to make a good game and I was able to get this far...
 
 """
+
+class Simulate:
+
+    def __init__(self, save, turn):
+        self.turn = turn
+        self.save = save
+
+        if turn == 0:
+            self.prompts = self.get_prompts(True)
+        else:
+            self.prompts = self.get_prompts(False)
+
+        self.prompts = self.get_prompts("thing")
+    
+
+    def get_prompts(self,thing):
+        
+        def open_file(thing2):
+            return thing2
+
+        if thing == True:
+            # get data from turn 1. Either keep in root for now or have a starting data folder
+            prompts = open_file("filename.json or folder/filename.json")
+            return prompts
+        else:
+            # Get from wherever it's stored for the turn
+            thing = 5 # Replace with thing to get file location (saves/save/filename.json or whatever)
+            prompts = open_file(thing)
+            return prompts
+
+
+
+if __name__ == "__main__":
+    Sim_Instance = Simulate(5, 5)
 

@@ -1,11 +1,8 @@
-import value_evaluation
-
 import sys
-
+import value_evaluation
 import llm_interface
 import commands
 import find_commands
-
 
 class Talk:
 
@@ -38,7 +35,6 @@ class Talk:
         LLM_start_prompt = commands.read("conversation_start_prompt.txt")
         self.array_input("system","",LLM_start_prompt)
 
-
     def get_turn(self):
         # implement later
         self.isturn1 = True
@@ -49,13 +45,6 @@ class Talk:
                 self.array.append({"role": thing, "content": character + ": " + msg})
             else:
                 self.array.append({"role": thing, "content": msg})
-
-            """
-            Just for putting stuff in Array
-            Checks to see if the name + message are seperate, and combines them if they are not.
-            Character seperate from thing because LLM only accepts System, User, and Assistant for
-            the person saying the message, and character names are important.
-            """
 
     def get_next_prompt(self):
         #check if there's more prompt
@@ -77,7 +66,6 @@ class Talk:
             # @ end of turn, run the prepare next turn script. 
             #sys.exit()
             commands.printpure ("Out of prompts, that's all I've got for now. If you want you can run it again with the same prompts or play around with prompts.json.")
-
 
     def relayprompt(self, prompt):
        # Temp notation of current prompt
@@ -104,8 +92,6 @@ class Talk:
             # For LLM only
 
         self.user_input(self.isturn1)
-
-
 
     def user_input(self, first):
         # For the first prompt it's better if it skips the LLM alltogether.
@@ -134,25 +120,20 @@ class Talk:
                 self.llmresponse()
 
     def llmresponse(self):
-        
-        # Call LLM and get response
         llmresponse = llm_interface.main(self.array)
         if llmresponse:
             # Get content from llmresponse
             content = llmresponse.content
-
             # Save what they said to conversation array
             self.array_input("assistant", "", content)
-
             """
             WIP
             CommandsList = find_commands.main(content,"Conversation_Commands")
             for command in CommandsList:
                 print (command)
             """
-
             # Print the message for player
             commands.printspace(f":{content}")
 
-
         self.user_input(0)
+

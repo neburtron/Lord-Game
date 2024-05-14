@@ -6,9 +6,7 @@ import os
 def main():
 
     commands.printpure("Do you want to change LLM settings? (write Y for yes, N for no)")    
-    
     choose = commands.input1().strip().upper()
-    
     if choose == "Y":
         select_llm_details.run_llm_settings()
     elif choose == "N":
@@ -18,7 +16,6 @@ def main():
 
         commands.printspace("\n\n\n Successfully deleted Python.")
         return
-
     # Start Prompt
     commands.printspace("\n\n")
     commands.printpure("Welcome to Lord Game!")
@@ -27,7 +24,6 @@ def main():
     commands.printpure("Note - Game saves are not fully implemented, and current version only goes up to turn 1.")
     commands.printpure("If you play all the way through, your progress will be saved, but you can't play an existing save without error or your old save being overwritten.")
     commands.printpure("")
-    
     existing_saves = commands.list_saves()
     inputsave(existing_saves)
 
@@ -42,15 +38,11 @@ def makesave(save):
         commands.printspace("Save Creation Success!")
 
 def inputsave(existing_saves):
-    
     commands.printspace("Saves:")
-
     # Display existing save names
     for save in existing_saves:
         commands.printpure(save)
-
-    commands.printpure("")  # Blank line for spacing
-
+    commands.printpure("")
     save_name = commands.input1()
 
 
