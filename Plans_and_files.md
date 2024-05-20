@@ -7,11 +7,7 @@ If you want to help send me a message or look through this for something to work
 
 This is an overview of the idea I've got for how the game's gonna look.
 
-<<<<<<< Updated upstream
-This isn't the most organised project or planning doc. I had close to no programming experience when I started this thing, I've been working on this thing for a month, but still. 
-=======
 This isn't the most organised project or planning doc. I had close to no programming experience when I started this thing, I've been working on this thing for a month and a half, but still. 
->>>>>>> Stashed changes
 
 ### Idea
 
@@ -93,11 +89,7 @@ I've started work planning and implementing various features, and I've done this
 
 ##### Proper UI
 
-<<<<<<< Updated upstream
-The only reason I feel comfortable putting this here is because some simple tkinter stuff written by chatgpt seems to really work well. I've got a prototype for the LLM settings selection thing, and it's just fricking perfect. Then all I need is a basic main menu and a chat interface with a few buttons and I don't think that's gonna be too hard, since I've already got the backend setup. Only reason this is here is because I've been working on commands and writing in {next} is kinda lame. I also might add in some screen for the end of the turn to have that there for when the main gameplay loop is ready. 
-=======
 The select LLM GUI thing works well and that's kinda pushed me to finally getting a proper UI for this thing. I don't really get Tkinter, but I'm gonna power through. Just need to get the main menu setup, save selection, and something for the actual ingame stuff. Also a way to link them together. Shouldn't be that hard, but I want it to look good and I've not had the most luck with it. 
->>>>>>> Stashed changes
 
 ##### LLM Interface + Other LLM API Support
 
@@ -115,9 +107,6 @@ I've got a decent way's into it, I might redo most of it to better align with th
 
 
 
-
-
-
 Prep for proper game (Moving beyond turn 1)
 
 Various stuff including cleaning up the code. I want to seperate the prompts to not run into token limits and keep the LLM on task, implement the format_prompts.py script I made to handle existing saves, and whatever else. Basically everything fits into this category, but I'm keeping this here.
@@ -126,10 +115,6 @@ I'm working on a rewrite of conversation.py right now and am probably going to r
 
 Also the retcon command where you can edit the last message you sent / get the LLM to try the thing again. Also options for rerolling probabilities rolled if the LLM rolled dice.
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 I could've forgotten some stuff / might add stuff on if things go well, or I feel like it.
 
 #### Later down the road

@@ -5,7 +5,6 @@ import sys
 
 """
 
-
 - Figure out what goes into prompts.json in final thing
 - Edit starting prompts.json 
 - other stuff
@@ -60,7 +59,6 @@ class Prompts:
         else:
             return []
 
-
     def relay(self):
         try:
             self.prompts_list = self.prompts()
@@ -72,6 +70,8 @@ class Prompts:
             sys.exit(1)  # Exit program for any other unexpected errors
 
         Talk_Instance = Talk(self.save, self.new_save, self.prompts_list)
+
+
 
 if __name__ == "__main__":
     instance = Prompts(90, True)

@@ -5,11 +5,15 @@ import json
 import os
 import shutil
 
-# Not Final
-# I'm going to play around with the settings + update llm_interface.py
-# When that's done I'll change the read me and you'll be able to change settings with this thing.
-# gets settings from Settings/OpenAI.json + Settings/HuggingFace.json, edit those docs to change what settings are given.
-# API selected by last open tab, kept in Settings/last_tab_index.txt
+"""
+Not Final
+
+I'm going to play around with the settings + update llm_interface.py
+When that's done I'll change the read me and you'll be able to change settings with this thing.
+gets settings from Settings/OpenAI.json + Settings/HuggingFace.json, edit those docs to change what settings are given.
+API selected by last open tab, kept in Settings/last_tab_index.txt
+"""
+
 
 SETTINGS_FOLDER = "Settings"
 
@@ -19,8 +23,6 @@ tabControl = None
 
 OpenAI_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
 HuggingFace_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "HuggingFace.json"))
-
-
 
 def save_tab_index(tab_index):
     with open(os.path.join(SETTINGS_FOLDER, "last_tab_index.txt"), "w") as file:
@@ -86,7 +88,7 @@ def run_llm_settings():
         with open(os.path.join(SETTINGS_FOLDER, "last_tab_index.txt"), "r") as file:
             pass
     except FileNotFoundError:
-        with open("last_tab_index.txt", "w") as file:
+        with open(os.path.join(SETTINGS_FOLDER,"last_tab_index.txt"), "w") as file:
             file.write("0")
 
     global OpenAI_Settings
