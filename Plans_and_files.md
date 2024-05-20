@@ -63,7 +63,6 @@ Formalizing the formatting and applying it
 Documentation / adding comments
 
 
-
 #### Current Goal: 
 
 First proper version:
@@ -132,3 +131,25 @@ Then I'm gonna focus on making it run well all together, saving and loading game
 Then at some point graphics would be nice.
 
 If I get everything planned done, a turn based town management thing would be interesting as a way to give the user something to do while the actually planned stuff happens.
+
+
+
+
+
+
+
+
+### Save File Stuff
+
+Folder
+    turn
+    current prompt
+    prompts.json
+    independent storylines
+    memory folder
+        stuff
+    Turn Records folder
+        folder for each turn
+    
+
+

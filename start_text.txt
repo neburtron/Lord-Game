@@ -1,0 +1,7 @@
+
+Welcome to Lord Game!
+
+Type in the name of an existing save listed below, or a new name to create a new game.
+
+Note - Game saves are not fully implemented, and current version only goes up to turn 1.
+If you play all the way through, your progress will be saved, but you can't play an existing save without error or your old save being overwritten.

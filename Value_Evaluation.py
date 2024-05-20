@@ -57,8 +57,12 @@ Might have missed some stuff.
 """
 
 def main(conversation, save, current_prompt_index, turn=0):
-    commands.save(f"{save}/conversation_turn{turn}_prompt{current_prompt_index}.json", conversation)
-    commands.printspace("saved text to json.")
+    try:
+        commands.save(f"{save}/conversation_turn{turn}_prompt{current_prompt_index}.json", conversation)
+    except:
+        commands.printspace("Value_evaluation's main function Didn't do the write file thing.")
+    else:
+        commands.printspace("saved text to json.")
     pass
     
     # Placeholder script that just writes array to json
