@@ -7,7 +7,11 @@ If you want to help send me a message or look through this for something to work
 
 This is an overview of the idea I've got for how the game's gonna look.
 
+<<<<<<< Updated upstream
 This isn't the most organised project or planning doc. I had close to no programming experience when I started this thing, I've been working on this thing for a month, but still. 
+=======
+This isn't the most organised project or planning doc. I had close to no programming experience when I started this thing, I've been working on this thing for a month and a half, but still. 
+>>>>>>> Stashed changes
 
 ### Idea
 
@@ -52,7 +56,7 @@ Proper doccumentation is gonna come later, I'm not organized enough to edit thin
 
 ### Roadmap
 
-There is no working build for this project. Right now a lot of the code required for a full turn hasn't been written, and it will take a while to get to that point, let alone a clean build you can play ad infinitum.
+It's gonna be a long time for this project to get anywhere close to what I've got invisioned in my head. I'm working on building up and building using good material the right way.
 
 
 ##### Cleanup / work that I'm gonna get around to: 
@@ -71,6 +75,7 @@ Alpha Version 0.1.0
 
 It will be done when it's done, and that won't be for some time. I'd say the work I've got in mind will probably take like a month or two, but I am not great with timelines and this is the first cohesive plan I've setup. It's may 5th as of writing this btw. 
 
+Editing docs on the 20th now, it's gonna be a while. I'll either get this done in June or August or later. Probably not july because I've got 2 summer classes and if it's as much work as a normal class that's like taking two full sets of classes, also known as a "that girl from homeless to harvard". More than that it's a math class and a coding class, so that's probably gonna be a break for some time at least.
 
 Main features:
 - Proper UI (temp + very barebones)
@@ -79,7 +84,7 @@ Main features:
 - Commands
 - Preparation for proper game
 
-NOTE - this build will NOT include planned memory systems, prompt writing systems, and moving past turn 1. That's gonna take a few months to like a year if things continue at the current pace. 
+NOTE - this build will NOT include planned memory systems, prompt writing systems, and moving past turn 1. That's gonna take at least like a year to get to that point if things continue at the current pace. 
 
 
 #### More in depth breakdown:
@@ -88,13 +93,17 @@ I've started work planning and implementing various features, and I've done this
 
 ##### Proper UI
 
+<<<<<<< Updated upstream
 The only reason I feel comfortable putting this here is because some simple tkinter stuff written by chatgpt seems to really work well. I've got a prototype for the LLM settings selection thing, and it's just fricking perfect. Then all I need is a basic main menu and a chat interface with a few buttons and I don't think that's gonna be too hard, since I've already got the backend setup. Only reason this is here is because I've been working on commands and writing in {next} is kinda lame. I also might add in some screen for the end of the turn to have that there for when the main gameplay loop is ready. 
+=======
+The select LLM GUI thing works well and that's kinda pushed me to finally getting a proper UI for this thing. I don't really get Tkinter, but I'm gonna power through. Just need to get the main menu setup, save selection, and something for the actual ingame stuff. Also a way to link them together. Shouldn't be that hard, but I want it to look good and I've not had the most luck with it. 
+>>>>>>> Stashed changes
 
 ##### LLM Interface + Other LLM API Support
 
 This is a big one. Apparently you can get LLMs to respond in a custom json format, depending on the API you use. Right now I just call the LLM as a chatbot with a conversation log. I'm going to look into OpenAI's API and other LLM APIs. I don't know much about LLM API stuff. According to ChatGPT HuggingFace's Transformers thing is the other main LLM conversational / whatever text generation thing, and I'm probably going to look at that. I don't know what I'm talking about, I know that, if you know about this stuff send me a message or something, if you don't I'll get around to putting in the time to figure whatever stuff out.
 
-Besides conversation.py, llm_interface.py needs to change, alongside a better way to change the settings. I've doe that last one already, minus the input details and having the rest of the project interact with it. 
+Besides conversation.py, llm_interface.py needs to change, alongside a better way to change the settings. I've started some stuff in that regard, but it needs work.
 
 ##### Better Prompting
 
@@ -104,13 +113,23 @@ This is kinda nessesitated by several things, and I've been meaning to get aroun
 
 I've got a decent way's into it, I might redo most of it to better align with the API, this is an important piece I'm ready to implement and it's gonna be great!
 
+
+
+
+
+
 Prep for proper game (Moving beyond turn 1)
 
 Various stuff including cleaning up the code. I want to seperate the prompts to not run into token limits and keep the LLM on task, implement the format_prompts.py script I made to handle existing saves, and whatever else. Basically everything fits into this category, but I'm keeping this here.
 
+I'm working on a rewrite of conversation.py right now and am probably going to rework stuff to fit with the new, better layout and whatnot. 
 
 Also the retcon command where you can edit the last message you sent / get the LLM to try the thing again. Also options for rerolling probabilities rolled if the LLM rolled dice.
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 I could've forgotten some stuff / might add stuff on if things go well, or I feel like it.
 
 #### Later down the road
@@ -128,4 +147,3 @@ Then I'm gonna focus on making it run well all together, saving and loading game
 Then at some point graphics would be nice.
 
 If I get everything planned done, a turn based town management thing would be interesting as a way to give the user something to do while the actually planned stuff happens.
-

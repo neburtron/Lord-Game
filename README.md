@@ -1,5 +1,9 @@
 # Lord-Game
 
+NOTE - If anything is broken go back to the version from around the 7th. It should work, but I changed some stuff and haven't tested everything out to verify that I have in fact fixed everything. I made a new branch to preserve a working version of the game and just merged it since it's been a while since and it seems like it works fine overall. 
+
+
+
 This project is hugely inspired by the game Sort the Court, a story-based, no-stakes, relaxing game where you are tasked with being the king, and responding yes or no to people asking for your rulings. This project replaces that binary choice with a textbox. The current build goes through the first turn, and I'll be honest, right now, it's basically just a chatbot. This is a chatbot I've spent a lot of time working on and writing in such a way that it can be expanded, and I have no intention to stop any point soon. Unless I die in a freak accident, it's not going to stay another lame chatbot. 
 
 One of the four core parts of the core gameplay loop are implemented in some working state, conversation.py and the stuff that it needs to work. That's the bit where the user interacts with the game. It needs work, and I'm currently working on making it better and less of a chatbot through changing the format it writes in, giving it access to a set of commands, giving it a bunch more info + editing the prompts, etc. That's alongside some other QOL + other changes.
@@ -67,15 +71,11 @@ Just run the main.py script!
  python main.py
 ```
 
-Only the first turn is setup for now, so running the main script directly should work.
+main.py should ask you to select your LLM's settings. If you type 'Y', a tkinter window should open and let you select your settings. Right now only OpenAI's API works, multiple tabs are there for when I setup Huggingface or whatever other API stuff. Later which tab you close on will be the model you've got selected. 
 
-Main.py should automatically ask you the settings to use to connect to the llm. You can edit the json manually in the root directory, it should be called llm_settings.json if you're in the main branch, if you're in the other one Settings/OpenAI.json should be used. In the working branch there's also a Tkinter interface that's easier to use, it should give you the option to when you run main.py, or you can just run:
+The current build only works for the first turn and I've not implemented most of what I have planned. I had an ok time testing it out, and if you like the demo and are looking for more, it's gonna be a while and playing around with the prompts is probably your best bet... or DND. 
 
-```bash
- python select_llm_details.py
-```
-
-The current build only works for the first turn and I've not implemented most of what I have planned. I had an ok time testing it out, and if you like the demo and are looking for more, it's gonna be a while and playing around with the prompts is probably your best bet... or DND. prompts.json and conversation_start_prompt.txt are the main ones. Prompts.json has 2 bits of text sent to both the player and LLM and notes sent only to the LLM. Format's gonna change in the first numbered version of this thing, so keep that in mind too.
+prompts.json and conversation_start_prompt.txt are the main ones. Prompts.json has 2 bits of text sent to both the player and LLM and notes sent only to the LLM. Format's gonna change a ton pretty soon, so be aware of that. 
 
 ## How this project works and future plans
 
