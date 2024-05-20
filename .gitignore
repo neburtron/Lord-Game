@@ -4,8 +4,6 @@ __pycache__/
 # Ignore Visual Studio Code settings
 .vscode/
 
-# Ignore the LLM Settings file
-llm_settings.json
-
-# ignore saves
-saves/
+# Ignore saved settings files
+Settings/OpenAI.json
+Settings/HuggingFace.json

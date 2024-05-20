@@ -1,7 +1,19 @@
 import json
 import os
 
+def save_txt(file_name, content):
+    try:
+        with open(file_name, 'w') as file:
+            file.write(content)
+        print(f"Content successfully written to {file_name}")
+    except Exception as e:
+        print(f"Error occurred: {e}")
+    
+
 def save(filename, contents):
+    # Change this, I tweaked this to get the settings thing to work, make it more general 
+    # or whatever to make it work proper.
+
     # Save contents to a file. Supports dictionaries, other types are written directly.
     # Just for Json files, I don't think I used this for normal txt files anywhere
     # make a new function for that if needed.
@@ -19,7 +31,7 @@ def save(filename, contents):
 
     
 def load(filename):
-    # Load contents from a file.
+    # Load contents from a json file.
     try:
         with open(filename, 'r') as f:
             return json.load(f)
@@ -51,23 +63,13 @@ def read(filename):
         print(f"Error: {filename} not found.")
         return ''
 
-def prompts(save, turn=0):
-    filename = "prompts.json"
-    if turn == 0:
-        # Use the provided filename directly
-        file = filename
-    else:
-        file = filename
-        # Change this later so that:
-        # If there's a file named prompts.json in saves/{save}/prompts, save that path as file var
-        # If not call the make prompts script before saving same path as file var
-        
-    # Use the load function to load JSON data
-    data = load(file)
-    if data is not None and isinstance(data, dict):
-        return data.get("prompts", [])
-    else:
-        return []
+def load_last_tab_index(Settings_Folder):
+    try:
+        with open(os.path.join(Settings_Folder, "last_tab_index.txt"), "r") as file:
+            return int(file.read())
+    except FileNotFoundError:
+        return 0
+
 
 def printspace(thing):
     print()
