@@ -1,0 +1,52 @@
+{
+    "prompts": [
+      {
+        "title": "First",
+        "EnterDesc": "",
+        "text1": "Alright let's begin. I’ve got this whole thing to go through so forgive me if I go through quickly…",
+        "text2": "I’m Gary, I’m your advisor, I helped raise you until you were whisked away at the age of three, you’re now the lord of Small Village, every week or so you’re gonna get a line of people coming in asking for you to solve their problems. Got that? \n \n(to move on to the next prompt, type 'next', and to exit type 'exit')\n",
+        "character": "Advisor",
+        "notes": ""
+      },
+      {
+        "title": "Wizard Character",
+        "EnterDesc": "A young, skinny person wearing a dark blue robe, a pair of spectacles, and a short messy haircut walks up to your throne and looks at you.",
+        "text1": "Greetings! I am a scholar from ---- who's fell on hard times... Do you have space in your court and heart for someone who's gonna change the world?",
+        "text2": "",
+        "character": "Wizard",
+        "notes": "This is a nonbinary Wizard. Don't use gendered pronouns for them. Besides pronouns and protraying them as being nonbinary, characterize them as just as a young ambitious magic scholar type character."
+      },
+      {
+        "title": "Builder Character",
+        "EnterDesc": "",
+        "text1": "Hey lord. I’m the town’s head architect. Thought I’d introduce myself. If you need anything built or fixed I’m the one to come to.",
+        "text2": "",
+        "character": "Gruff Builder Guy",
+        "notes": ""
+      },
+      {
+        "title": "Merchant",
+        "EnterDesc": "",
+        "text1": "Good tidings! I am Markhas Good, the Merchant. I came here to give my condolences for the passing of your father. He truly was a good man. I knew him personally…",
+        "text2": "You know, before he… uh. passed… he and I were working on a thing. Him and I were in the rough stages of getting a trade agreement between Small Town and the neighboring portwood. Very rough plans of course, but it occurs to me that this may be a great way to honor the man. What do you say? Should I start pressing my contacts?",
+        "character": "Markhas the Merchant",
+        "notes": "This guy's not being entirely honest and is trying to push for a trade agreement the Player/king's dad was not open to. Up to you how malicious this dude is, it could just be Markhas thinking it's a safer bet to lie."
+      },
+      {
+        "title": "Mysterious Stranger",
+        "EnterDesc": "",
+        "text1": "Ah, Lord it’s good to see you back after so many years abroad. I see you've grown into quite the impressive young man. *tips hat* My name is... difficult to pronounce, but I assure ye it's a pleasure to make your acquaintance. *reaches into coat pocket* I have business in Small Village. *drops a small pouch of coins* I’ve come here to air my condolences for your father. Him and I had our disagreements, but he was a great man. I hope you and I are more async… \n*he drops another coin pouch from his pocket*",
+        "text2": "",
+        "character": "Mysterious Stranger",
+        "notes": "This guy is trying to bribe the king, try and write him in a way where it makes sense for him to be so blatant about trying to bribe the king."
+      },
+      {
+        "title": "Demon",
+        "EnterDesc": "The doors to your throne room close, but you aren't done yet. The people around you freeze and you realize that you're paralyzed from the neck down. You watch the classical portrayal of a demon walk out from behind a pillar out of the corner of your eye",
+        "text1": "Yo, I’m Damian, nice to meet you, just making the rounds, I’m a demon as you can see by my devilishly handsome 2d sprite, I’m a guy who loves chaos and making deals with shortsighted schmucks and other sorts of associates…",
+        "text2": "You know the stories, if you want to make a deal just call me with a few seconds notice and we can work something out. Cool?",
+        "character": "Defaun",
+        "notes": "Just a demon character, do with him as you'd like."
+      }
+    ]
+  }

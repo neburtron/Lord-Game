@@ -3,6 +3,7 @@ import sys
 import commands
 from conversation import Talk
 
+
 class Prompts:
     def __init__(self, save):
         self.save = save

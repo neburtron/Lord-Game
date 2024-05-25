@@ -3,16 +3,8 @@
     {
       "title": "First",
       "EnterDesc": "",
-      "text1": "You are the lord of a small town. Your father passed away a short time ago, and today marks your first day on the throne. There's a particular tension in the air this cold late winter, early spring.\n\nIt isn't in the air, but your chest.\n\nBefore anything else, you must choose how you wish to rule. There are decisions to be made, and the time for that will be soon, but a good king is an active one, one with a vision for the future. The greatest rulers were lead by a sight of how the world could be.\n\nIn a word, in a sentence, in a paragraph, in this world, what do you want to be?",
-      "text2": "",
-      "character": "???",
-      "notes": ""
-    },
-    {
-      "title": "Second",
-      "EnterDesc": "",
-      "text1": "Great, cool. This is the most I’ve heard you say. Moving on, I’ve got this whole thing to go through so forgive me if I go through quickly…",
-      "text2": "I’m Gary, I’m your advisor, I helped raise you until you were whisked away at the age of three, you’re now the lord of Small Village, the key to the treasury is in the bottom left, every week you’re gonna get a line of people coming in asking for you to solve their problems. Got that? \n \n(to move on to the next prompt, type 'next', and to exit type 'exit')\n",
+      "text1": "Alright let's begin. I’ve got this whole thing to go through so forgive me if I go through quickly…",
+      "text2": "I’m Gary, I’m your advisor, I helped raise you until you were whisked away at the age of three, you’re now the lord of Small Village, every week or so you’re gonna get a line of people coming in asking for you to solve their problems. Got that? \n \n(to move on to the next prompt, type 'next', and to exit type 'exit')\n",
       "character": "Advisor",
       "notes": ""
     },

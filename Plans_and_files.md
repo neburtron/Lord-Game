@@ -54,7 +54,6 @@ Proper doccumentation is gonna come later, I'm not organized enough to edit thin
 
 It's gonna be a long time for this project to get anywhere close to what I've got invisioned in my head. I'm working on building up and building using good material the right way.
 
-
 ##### Cleanup / work that I'm gonna get around to: 
 (not part of current goal)
 
@@ -68,9 +67,7 @@ Documentation / adding comments
 First proper version:
 Alpha Version 0.1.0 
 
-It will be done when it's done, and that won't be for some time. I'd say the work I've got in mind will probably take like a month or two, but I am not great with timelines and this is the first cohesive plan I've setup. It's may 5th as of writing this btw. 
-
-Editing docs on the 20th now, it's gonna be a while. I'll either get this done in June or August or later. Probably not july because I've got 2 summer classes and if it's as much work as a normal class that's like taking two full sets of classes, also known as a "that girl from homeless to harvard". More than that it's a math class and a coding class, so that's probably gonna be a break for some time at least.
+It will be done when it's done, and that won't be for some time. I'd say the work I've got in mind will probably be a few months away, but I am not great with timelines and this is the first cohesive plan I've setup. I'll post working builds publically and it should for the most part work, the release is more about getting this project where I want it to be in a more organized manner.
 
 Main features:
 - Proper UI (temp + very barebones)
@@ -116,6 +113,9 @@ Also the retcon command where you can edit the last message you sent / get the L
 
 I could've forgotten some stuff / might add stuff on if things go well, or I feel like it.
 
+
+
+
 #### Later down the road
 
 The three main things I haven't really started work on yet are the memory system, the simulation, and the prompt generator.
@@ -131,10 +131,6 @@ Then I'm gonna focus on making it run well all together, saving and loading game
 Then at some point graphics would be nice.
 
 If I get everything planned done, a turn based town management thing would be interesting as a way to give the user something to do while the actually planned stuff happens.
-
-
-
-
 
 
 

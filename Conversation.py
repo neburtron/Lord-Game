@@ -2,7 +2,6 @@ import sys
 import value_evaluation
 import llm_interface
 import commands
-import find_commands
 
 class Talk:
 
@@ -18,27 +17,17 @@ class Talk:
 
         self.prompts = prompts
 
-        # If new game, current turn is 0
-        if newsave == True:
-            self.turn = 0
-            self.isturn1 = True
-        else:
-            self.turn = self.get_turn()
-            self.isturn1 = False
-            # Implement get turn number later
-
+        # Temp, done right in rewrite
+        self.turn = 0
+        self.isturn1 = True
+        
         first_prompt = self.get_next_prompt()
         self.relayprompt(first_prompt)
-
 
         # Get LLM's conversation directions, add it to the array, and get prompts 
         LLM_start_prompt = commands.read("conversation_start_prompt.txt")
         self.array_input("system","",LLM_start_prompt)
-
-    def get_turn(self):
-        # implement later
-        self.isturn1 = True
-        return 0    
+ 
 
     def array_input(self,thing,character,msg):
             if character:
@@ -91,49 +80,38 @@ class Talk:
             self.array_input("system", "notes", prompt["notes"].strip())
             # For LLM only
 
-        self.user_input(self.isturn1)
+        self.user_input()
 
-    def user_input(self, first):
-        # For the first prompt it's better if it skips the LLM alltogether.
+    def user_input(self):
+
         user_input = commands.input1()
-            
-        if first == True:
-            self.isturn1 = False
-            self.array_input("user", "player", user_input)
+
+        if user_input == "exit":  # Exit the program
+            commands.printspace("Are you sure you want to exit? Type yes to confirm.")
+            confirm = commands.input1()  # Get user confirmation
+            if confirm == "yes":
+                sys.exit()
+        elif user_input == "next":
+            # Move on to next prompt
+            self.array_input("user", "player", "next")
             prompt = self.get_next_prompt()
             self.relayprompt(prompt)
         else:
-
-            if user_input == "exit":  # Exit the program
-                commands.printspace("Are you sure you want to exit? Type yes to confirm.")
-                confirm = commands.input1()  # Get user confirmation
-                if confirm == "yes":
-                    sys.exit()
-            elif user_input == "next":
-                # Move on to next prompt
-                self.array_input("user", "player", "next")
-                prompt = self.get_next_prompt()
-                self.relayprompt(prompt)
-            else:
-                # Send message to Array and send Array to LLM for response
-                self.array_input("user", "player", user_input)
-                self.llmresponse()
+            # Send message to Array and send Array to LLM for response
+            self.array_input("user", "player", user_input)
+            self.llmresponse()
 
     def llmresponse(self):
         llmresponse = llm_interface.main(self.array)
         if llmresponse:
             # Get content from llmresponse
             content = llmresponse.content
+            
             # Save what they said to conversation array
             self.array_input("assistant", "", content)
-            """
-            WIP
-            CommandsList = find_commands.main(content,"Conversation_Commands")
-            for command in CommandsList:
-                print (command)
-            """
-            # Print the message for player
+            
+            # Print for player
             commands.printspace(f":{content}")
 
-        self.user_input(0)
+        self.user_input()
 

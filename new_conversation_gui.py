@@ -6,8 +6,21 @@ Thing that calls the new conversation.py rewrite.
 
 Figure out some sort of GUI whenever I get around to it. 
 
-Yeah. I'm probably going to go with Tkinter.
-- The LLM settings thing looks good 
-- I know a tiny bit about how it works. 
+
+
+How this should work
+
+static backdrop
+Text chat in center of screen overlayed semi-transparent over backdrop
+Input text box at bottom
+Buttons under that
+settings menu top right
+Stats in bottom left - like sort the court
+Footer at bottom of screen with a few buttions on it
+
+
+
+
+
 
 """
