@@ -64,7 +64,7 @@ class Talk:
             self.isturn1 = True
         else:
             self.isturn1 = False
-
+ 
     def run(self):
         # Run the stuff separate + should be called after instance created
         while self.current_prompt_index < len(self.prompts):
@@ -72,6 +72,7 @@ class Talk:
             self.run_turn()
         
         self.reset_turn()
+        
         # End of thing, run next script / return oh yeah that's all done now to parent.
   
     def reset_turn(self):

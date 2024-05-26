@@ -118,6 +118,10 @@ I could've forgotten some stuff / might add stuff on if things go well, or I fee
 
 #### Later down the road
 
+I did a lot of things wrong and I feel like going through and just starting fresh after the next update. I might not, but there's an endless pile of work I need to do for this thing and I want to do the things that I do right and stuff like the workflows and making sure that git ignore is working as intended and a whold bunch of other stuff I think is pretty important.
+
+
+
 The three main things I haven't really started work on yet are the memory system, the simulation, and the prompt generator.
 
 The memory system works as you would intuit, the LLM gathers relevant info + that info is retrieved. Beyond that it's up in the air. 

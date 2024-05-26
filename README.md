@@ -21,6 +21,8 @@ This is a proof of concept in the public domain designed to be customizable. I'm
 
  the prompts are stored in prompts.json, and the LLM's instructions are stored in conversation_start_prompt.txt
 
+Note - I started a second project to play around with what distant_simulated.py's gonna do. click on my profile and it's the only other one. It's not working, but I wanted to work more with having a game running for more than one turn and it seemed like a better idea to avoid the player input part and focus on the other part that works with the same character turn after turn. Wanted a fresh empty workspace. Wanted to link here so you can get to all the different fragmented parts of development from looking at this page / project. 
+
 ## Instalation Instructions
 
 ### Necessary to run project:

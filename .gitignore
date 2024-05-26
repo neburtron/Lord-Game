@@ -5,5 +5,5 @@ __pycache__/
 .vscode/
 
 # Ignore saved settings files
-Settings/OpenAI.json
 Settings/HuggingFace.json
+Settings/OpenAI.json
