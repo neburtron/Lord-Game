@@ -1,7 +1,7 @@
+import os
 import commands
 import select_llm_details
 from format_prompts import Prompts
-import os
 
 def main():
     commands.printpure("Do you want to change LLM settings? (write Y for yes, N for no)")

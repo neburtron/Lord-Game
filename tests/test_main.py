@@ -1,5 +1,5 @@
-import unittest
 import os
+import unittest
 from main import makesave
 
 class TestMain(unittest.TestCase):
