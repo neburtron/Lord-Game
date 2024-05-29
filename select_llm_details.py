@@ -21,8 +21,8 @@ OpenAI_Settings = None
 HuggingFace_Settings = None
 tabControl = None
 
-OpenAI_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
-HuggingFace_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "HuggingFace.json"))
+OpenAI_Settings = commands.load_json(os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
+HuggingFace_Settings = commands.load_json(os.path.join(SETTINGS_FOLDER, "HuggingFace.json"))
 
 def save_tab_index(tab_index):
     with open(os.path.join(SETTINGS_FOLDER, "last_tab_index.txt"), "w") as file:
@@ -117,8 +117,8 @@ def run_llm_settings():
     tabControl.select(last_tab_index)
 
     # Load settings after creating files
-    OpenAI_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
-    HuggingFace_Settings = commands.load(os.path.join(SETTINGS_FOLDER, "HuggingFace.json"))
+    OpenAI_Settings = commands.load_json(os.path.join(SETTINGS_FOLDER, "OpenAI.json"))
+    HuggingFace_Settings = commands.load_json(os.path.join(SETTINGS_FOLDER, "HuggingFace.json"))
 
     ttk.Label(OpenAI, text="OpenAI").grid(column=0, row=0, padx=30, pady=30)
     create_settings_widgets(OpenAI, OpenAI_Settings, os.path.join(SETTINGS_FOLDER, "OpenAI.json"))

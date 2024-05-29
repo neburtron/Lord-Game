@@ -8,30 +8,15 @@ def save_txt(file_name, content):
         print(f"Content successfully written to {file_name}")
     except Exception as e:
         print(f"Error occurred: {e}")
-    
 
-def save(filename, contents):
-    # Change this, I tweaked this to get the settings thing to work, make it more general 
-    # or whatever to make it work proper.
-
-    # Save contents to a file. Supports dictionaries, other types are written directly.
-    # Just for Json files, I don't think I used this for normal txt files anywhere
-    # make a new function for that if needed.
+def save_json(filename, contents):
     try:
-        # Convert list of dictionaries to a single dictionary
-        settings = {}
-        for item in contents:
-            settings.update(item)
-
-        # Save as JSON with indentation
         with open(filename, 'w') as f:
-            json.dump(settings, f, indent=4)
+            json.dump(contents, f, indent=4)
     except (IOError, PermissionError) as e:
         print(f"Error saving to {filename}: {e}")
 
-    
-def load(filename):
-    # Load contents from a json file.
+def load_json(filename):
     try:
         with open(filename, 'r') as f:
             return json.load(f)
@@ -41,6 +26,14 @@ def load(filename):
     except json.JSONDecodeError:
         print(f"Error decoding JSON from {filename}.")
         return None
+
+def read_file(filename):
+    try:
+        with open(filename, 'r') as f:
+            return f.read()
+    except FileNotFoundError:
+        print(f"Error: {filename} not found.")
+        return ''
 
 def append(filename, contents):
     # Append contents to a file. Supports appending dictionaries in JSON format.
@@ -53,15 +46,6 @@ def append(filename, contents):
                 f.write(str(contents) + '\n')
     except (IOError, PermissionError) as e:
         print(f"Error appending to {filename}: {e}")
-
-def read(filename):
-    # Read contents from a file.
-    try:
-        with open(filename, 'r') as f:
-            return f.read()
-    except FileNotFoundError:
-        print(f"Error: {filename} not found.")
-        return ''
 
 def load_last_tab_index(Settings_Folder):
     try:

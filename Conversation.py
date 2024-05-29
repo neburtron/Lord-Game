@@ -25,15 +25,15 @@ class Talk:
         self.relayprompt(first_prompt)
 
         # Get LLM's conversation directions, add it to the array, and get prompts 
-        LLM_start_prompt = commands.read("conversation_start_prompt.txt")
+        LLM_start_prompt = commands.read_file("conversation_start_prompt.txt")
         self.array_input("system","",LLM_start_prompt)
  
 
     def array_input(self,thing,character,msg):
-            if character:
-                self.array.append({"role": thing, "content": character + ": " + msg})
-            else:
-                self.array.append({"role": thing, "content": msg})
+        if character:
+            self.array.append({"role": thing, "content": character + ": " + msg})
+        else:
+            self.array.append({"role": thing, "content": msg})
 
     def get_next_prompt(self):
         #check if there's more prompt

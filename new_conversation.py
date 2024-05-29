@@ -1,9 +1,9 @@
-import json
 import sys
 import os
 
 import llm_interface
 import find_commands
+import commands
 
 
 """
@@ -24,8 +24,6 @@ I'd like to make a flowchart that goes over how this thing works. Might decide
 against it, but might not at the same time.
 
 Commands
-
-GUI script
 """
 
 
@@ -38,15 +36,14 @@ class Talk:
         self.prompts = prompts
         self.prompts_num = prompts_num
 
-        # Setup vars
+        # Setup non-input vars
         self.current_prompt_index = 0
         self.array = []
         self.turn = 0
         self.isturn1 = False
 
-        self.instruct = "Read json here. Also remember to write a new instructions doc that's in json format."
-
-        # Get the current turn number from txt file in save folder
+        # Get data from files
+        self.instruct = commands.load_json("conversation_start_prompt.txt")
         self.get_turn()
 
     def get_turn(self):
@@ -64,16 +61,13 @@ class Talk:
             self.isturn1 = True
         else:
             self.isturn1 = False
- 
+
     def run(self):
-        # Run the stuff separate + should be called after instance created
         while self.current_prompt_index < len(self.prompts):
             self.reset_turn()
             self.run_turn()
-        
         self.reset_turn()
-        
-        # End of thing, run next script / return oh yeah that's all done now to parent.
+        # If not called by parent after this script is done, call next script here. 
   
     def reset_turn(self):
         file_path = os.path.join('saves', self.save, f'turn{self.turn}', 'conversation', f'{self.current_prompt_index}.txt')
@@ -81,8 +75,7 @@ class Talk:
             os.makedirs(os.path.dirname(file_path), exist_ok=True)
             
             # Save the array to a JSON file
-            with open(file_path, 'w') as file:
-                json.dump(self.array, file, indent=4)
+            commands.save_json("file_path", self.array)
             
             # Clear the array
             self.array.clear()
@@ -91,7 +84,7 @@ class Talk:
             self.array.append(self.instruct)
             self.prompt = self.get_next_prompt()
             self.array.append(self.prompt)
-            print(self.prompt) # change this later. 
+            commands.printpure(self.prompt) # change this later. 
 
         except Exception as e:
             print(f"An error occurred: {e}", file=sys.stderr)
@@ -99,7 +92,7 @@ class Talk:
         
     def run_turn(self):
         """
-        Whole bunch of stuff here
+        Whole bunch of stuff here, use nested functions
         """
         return
 
@@ -109,3 +102,7 @@ class Talk:
             self.current_prompt_index += 1
             return next_prompt
         return None
+
+if __name__ == "__main__":
+    Instance = Talk("", "", "")
+    Instance.run()

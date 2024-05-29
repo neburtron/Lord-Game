@@ -4,13 +4,13 @@ import commands
 settings = None
 client = None
 is_starting = True
-tab = commands.read("Settings/last_tab_index")
+tab = commands.read_file("Settings/last_tab_index")
 tab = 0  # Temp
 
 def initialize_openai():
     global settings, client, is_starting
 
-    settings = commands.load("Settings/OpenAI.json")
+    settings = commands.load_json("Settings/OpenAI.json")
     client = OpenAI(
         base_url=settings.get('base_url'),
         api_key=settings['api_key']
@@ -20,7 +20,7 @@ def initialize_openai():
 def initialize_huggingface():
     global settings, is_starting
 
-    settings = commands.load("Settings/HuggingFace.json")
+    settings = commands.load_json("Settings/HuggingFace.json")
     is_starting = False
 
 def starting():
