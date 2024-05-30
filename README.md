@@ -1,27 +1,41 @@
 # Lord-Game
 
-NOTE - If anything is broken go back to the version from around the 7th. It should work, but I changed some stuff and haven't tested everything out to verify that I have in fact fixed everything. I made a new branch to preserve a working version of the game and just merged it since it's been a while since and it seems like it works fine overall. 
+NOTE - This is a very broken, incomplete, rough project. I hope it works, it might not. The idea is good though. I'm gonna work on this and get it to the point where it works in it's most minimal state and I'm happy with it, then I'll release it. That might be after a full rewrite, though.
+
+
+## Game Idea
+
+This game's trying to be a story generator game. Story generator as in the type of game DF, Rimworld, Minecraft, Viky3, CK3, etc are. A world is simulated and the player acts. This is a pet project, because for ages I've wanted to see a game where you can do literally whatever you want if you put in the effort. Video game specifically, I know about DND, but that's it's own thing, mediums impact the art and the existance of what I'm looking for in a movie doesn't make my wanting a tv show that delivers the same idea invalid. They're different, I like PDX Interactive games, I want to kill the space pope with a rocketlauncher without needing to sit through another stupid waste of time intervention.  
 
 
 
-This project is hugely inspired by the game Sort the Court, a story-based, no-stakes, relaxing game where you are tasked with being the king, and responding yes or no to people asking for your rulings. This project replaces that binary choice with a textbox. The current build goes through the first turn, and I'll be honest, right now, it's basically just a chatbot. This is a chatbot I've spent a lot of time working on and writing in such a way that it can be expanded, and I have no intention to stop any point soon. Unless I die in a freak accident, it's not going to stay another lame chatbot. 
+LLMs have demonstrated some emergent reasoning capabilities, and this project aims to structure that. The core gameplay is simple, modeled off of the game Sort the Court. People come in with problems, you deal with them. Some specifics are in the air currently, but every turn 10 new prompts are written based on information stored about the simulated world. The user talks with a second LLM instance that plays the role of the petitoner and anyone else in the room. A third decides the probable outcomes of the player's choice, one outcome is chosen, and a fourth instance turns that subjective effect into changes to the data stored about the world and whatever else. This is a proof of concept to enable better devs to do this better. I want to go to the moon in CK4, how have we got to CK3 without space travel?!?
 
-One of the four core parts of the core gameplay loop are implemented in some working state, conversation.py and the stuff that it needs to work. That's the bit where the user interacts with the game. It needs work, and I'm currently working on making it better and less of a chatbot through changing the format it writes in, giving it access to a set of commands, giving it a bunch more info + editing the prompts, etc. That's alongside some other QOL + other changes.
+Then to make the world more alive, later in this project I plan on simulating things happening independent from the player. Independent storylines. The idea is to start off with 5 - 10 characters with a lot of info on their motivations, ways of buisness, what they want, etc, and have them move one step towards that every turn, the rest run the same way as the player's choices. Then there's some logic that determines when a new independent agent is needed, either if storylines are resolved and there's less than enough, or if a character goes off to do a thing and it wouldn't make sense to just have them return in X turns, or if other criteria is met. Then a character that meets criteria will be taken from the game, or an external folder, and given agency. This should make gameplay more chaotic.
 
-The other three are really important for this proof of concept: the memory system, a system for simulating stuff happening independently to the player through a rigid structure of the goal / trajectory of some agent and a process for deciding what happens and how things change at the end of every turn, and a system for writing the next set of prompts. This is an ambitious project, it isn't anything special now. If you find it interesting I'd suggest starring or watching this project and coming back in like a year. Alternatively, I'm 100% open to hearing ideas or talking about this project.
+That's the current goal. Simulating other things is out of my wheelhouse, I'm not a game dev, just a novice inventor. If I'm done my plans or if I get people working on this thing with me and they're interested in this, I had another idea. Add on this a turn based card game town management bit or something. The LLMs are gonna take their sweet time, so a second phase of gameplay while the first does it's stuff is a good idea. Something simple that doesn't require a lot of computation. I want to add a resource managment aspect, and having gold and pops through some sort of basic thing, even if it's just an idle game, that's more world simulated without another order of magnitude of storylines.
 
-you can read about them more in [Plans_and_Files.md](Plans_and_files.md).
+Right now we're not there. The simplest bit, the place the player interacts with the game isn't close to done and it's the simpliest. The rest I've got but ideas for. I still need to setup the GUI. I started this project with no experience on the first of april, and a proper build's not gonna be out for at least a year.
+
+The memory system is still really underdeveloped. I want a sown seeds text file for the prompt writer, I want town folders tied to a 2d plane with cords, and I want character files. Doing this well is going to take a lot of creativity.
+
+The independent storylines thing isn't hard. All I need to do is have the memory system and LLM interface stuff figured out. I have something working for the LLM interface, but it's kinda dogshit unless I'm mistaken. Besides that it's just applying what I've already got.
+
+The writing prompts thing also relies on the memory system. Writing through the different systems I'm just now realizing I've been putting this off. 
+
+Evaluation isn't that hard. Only part that's in the air is how it interacts with the memory system and that's old news by now.
+
+Interaction needs work. The way the LLM is called needs work, so do the prompts, and commands need to be figured out, and I just want to make it better written. Conversation.py rewrite underway.
+
+GUI's a matter of doing it. Something that looks good is gonna take some time, but I want something working for now.
+
+I also need to write out the starting info and write out docs for changing around that stuff.
 
 
-Lord Game is a proof of concept for the implementation of Large Language Models (LLMs) in story generator games. Story Generator games are a particular genre of games that focus on making a complex simulation, and letting the player interact with this world. Think DND but as a video game. Story Generator video games and Table Top Role Playing Games (TTRPGs) like DND are two different genres of the same medium / artform, but TTRPGs have a similar balance of true flexibility and structure this project is aiming for. In other words, this is like a proper dnd video game, but it's not a dnd port, the way you go about achieving the same thing is different depending on the medium you're working I've spent a lot less time playing DND than CK2, CK3, Vicky 3, Civ 6, and rimworld each. 
 
-Representation:
+Planning doc has more, it might be outdated, but so might the readme. Here: [Plans_and_Files.md](plans_and_files.md).
 
-This is a proof of concept in the public domain designed to be customizable. I'm making a generic kingdom management game with a steryotypical europian king in it. I wrote this as a placeholder and it really really needs to be replaced and I'm gonna change the format to make it easier to write new prompts and to give the LLM a lot more info for the first proper version of this project. This is a story generator games, feel free to change how the story starts. I don't know if anyone's actually played this thing and liked the limited current state of the game enough to consider revistiting + writing new prompts, but thought I'd put this here anyways. for the current build, some text might be stored in the actual python scripts.
 
- the prompts are stored in prompts.json, and the LLM's instructions are stored in conversation_start_prompt.txt
-
-Note - I started a second project to play around with what distant_simulated.py's gonna do. click on my profile and it's the only other one. It's not working, but I wanted to work more with having a game running for more than one turn and it seemed like a better idea to avoid the player input part and focus on the other part that works with the same character turn after turn. Wanted a fresh empty workspace. Wanted to link here so you can get to all the different fragmented parts of development from looking at this page / project. 
 
 ## Instalation Instructions
 
@@ -75,9 +89,9 @@ Just run the main.py script!
 
 main.py should ask you to select your LLM's settings. If you type 'Y', a tkinter window should open and let you select your settings. Right now only OpenAI's API works, multiple tabs are there for when I setup Huggingface or whatever other API stuff. Later which tab you close on will be the model you've got selected. 
 
-The current build only works for the first turn and I've not implemented most of what I have planned. I had an ok time testing it out, and if you like the demo and are looking for more, it's gonna be a while and playing around with the prompts is probably your best bet... or DND. 
+The current build only works for the first turn and it's honestly not worth playing if I didn't break something. I had an ok time testing it, you're better off playing with DungeonAI or running a game of Pathfinder.
 
-prompts.json and conversation_start_prompt.txt are the main ones. Prompts.json has 2 bits of text sent to both the player and LLM and notes sent only to the LLM. Format's gonna change a ton pretty soon, so be aware of that. 
+
 
 ## How this project works and future plans
 
@@ -87,6 +101,7 @@ Refer to [Plans_and_Files.md](Plans_and_files.md)
 
 Refer to [CONTRIBUTING.md](CONTRIBUTING.md)
 
+Outdated, just contact me, I'm the only one working on this thing, I know some people have seen this project, but the extent is a star and a watch, and I'd be 100% open to talk about it if you're interested.
 
 ## License
 
