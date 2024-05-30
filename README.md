@@ -1,5 +1,14 @@
 # Lord-Game
 
+ABANDONED
+I am starting fresh, the right way. New version called "The Head that Wears the Crown". The github project is just called Wears the Crown because short. This code is a mess, I do not suggest looking thorugh it, if you've got any interest in this project just wait or contact me to be close to development.
+
+
+
+
+
+
+
 NOTE - This is a very broken, incomplete, rough project. I hope it works, it might not. The idea is good though. I'm gonna work on this and get it to the point where it works in it's most minimal state and I'm happy with it, then I'll release it. That might be after a full rewrite, though.
 
 
